@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -15,6 +14,7 @@ body {
     align-items: center;
     justify-content: flex-start;
 } 
+
 /* Logo Container: Centers the logo and adds a white border */
 .logo-container {
     margin-bottom: 50px; /* Space below the logo before the sections */
@@ -69,7 +69,8 @@ body {
     background-color: #444;
     color: #00aaff;
 }
-* Link Bubble Styling */
+
+/* Link Bubble Styling */
 .link-container {
     margin-top: 80px; /* Adjust margin to ensure links are below the navbar */
     margin-bottom: 20px;
@@ -92,8 +93,9 @@ body {
     background-color: #287bb5;
 }
 
-/* OWASP Top 10 Styling */
-.owasp-top10 {
+/* OWASP Top 10 and CVE Styling */
+.owasp-top10,
+.cve-list {
     background-color: #282828;
     padding: 20px;
     margin: 20px 0;
@@ -103,46 +105,48 @@ body {
     color: #ffffff;
 }
 
-.owasp-top10 h2 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-.owasp-top10 ul {
-    list-style-type: disc;
-    margin-left: 20px;
-}
-
-.owasp-top10 ul li {
-    margin: 10px 0;
-    line-height: 1.6;
-}
-
-/* CVE List Styling */
-.cve-list {
-    width: 80%;
-    margin: 20px auto;
-    background-color: #282828;
-    padding: 20px;
-    border-radius: 10px;
-}
-
+.owasp-top10 h2,
 .cve-list h2 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #ff0000; /* Red color for OWASP Top 10 and CVE headers */
+    text-align: center;
 }
 
+.owasp-top10 ul,
 .cve-list ul {
-    list-style-type: disc;
-    margin-left: 20px;
+    list-style-type: none; /* Add/Remove bullet points */
+    margin-left: 0; 
+    padding-left: 0; /*No padding that could cause misalignment */
 }
 
+.owasp-top10 ul li strong,
+.cve-list ul li strong {
+    color: #ff0000; /* Red color for bold CVE identifiers */
+}
+
+.owasp-top10 ul li,
 .cve-list ul li {
     margin: 10px 0;
     line-height: 1.6;
+    color: #ffffff;
 }
 
-/* Responsive Design */
+/* Specific styling for the paragraph under the CVE header */
+.cve-list p {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 30px; /* Increase this value to add more space */
+}
+
+/* OWASP Item Header Styling - CVE Section header*/
+.owasp-item-header {
+    font-size: 1.5rem; /* Adjust the font size to be bigger */
+    margin: 40px 0; /* Adjust margins to increase space above and below */
+    color: #ff0000; /* Red color to match the rest of the headings */
+}
+
+
 @media (max-width: 768px) {
     .navbar ul li {
         display: block;
