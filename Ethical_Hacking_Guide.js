@@ -1,6 +1,6 @@
 // Ethical_Hacking_Guide.js
 
-// Example: Add functionality to toggle sections for better readability
+// Add functionality to toggle sections for better readability
 
 document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelectorAll('section');
