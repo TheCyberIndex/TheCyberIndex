@@ -224,3 +224,32 @@ button:hover {
     margin: 0; /* Remove margins from nested paragraphs */
     padding: 0; /* Remove padding from nested paragraphs */
 }
+/* Responsive Design for mobile */
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column; /* Stack menu items vertically */
+        align-items: center;
+    }
+
+    .navbar ul li {
+        margin: 5px 0; /* Add margin between the links */
+    }
+
+    .navbar ul li a {
+        font-size: 16px; /* Slightly smaller text */
+        padding: 8px 15px; /* Adjust padding */
+    }
+
+    .link-container {
+        width: 90%;
+    }
+
+    .owasp-top10, .cve-list {
+        width: 90%;
+    }
+
+    .temporary-notice {
+        width: 90%; /* Ensures the notice fits well on mobile screens */
+        font-size: 0.8rem; /* Slightly reduce font size for better fit */
+    }
+}
