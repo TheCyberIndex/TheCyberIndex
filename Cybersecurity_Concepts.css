@@ -224,4 +224,72 @@ button:hover {
     margin: 0; /* Remove margins from nested paragraphs */
     padding: 0; /* Remove padding from nested paragraphs */
 }
+/* Styles for tablets and smaller screens */
+@media screen and (max-width: 1024px) {
+    .logo {
+        max-width: 80%;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+    }
+
+    .navbar ul li {
+        margin: 10px 0;
+    }
+
+    .owasp-top10, .cve-list {
+        width: 90%;
+    }
+
+    .link-bubble {
+        padding: 8px 15px;
+        font-size: 16px;
+    }
+}
+
+/* Styles for mobile devices */
+@media screen and (max-width: 768px) {
+    body {
+        padding-top: 50px;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+    }
+
+    .navbar ul li {
+        margin: 5px 0;
+    }
+
+    .owasp-top10, .cve-list {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .link-container {
+        margin-top: 60px;
+        margin-bottom: 15px;
+    }
+
+    .link-bubble {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Styles for larger desktop screens */
+@media screen and (min-width: 1280px) {
+    .navbar ul {
+        justify-content: space-around;
+    }
+
+    .logo {
+        max-width: 60%;
+    }
+
+    .owasp-top10, .cve-list {
+        width: 70%;
+    }
+}
 
