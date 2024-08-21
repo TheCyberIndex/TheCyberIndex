@@ -1,0 +1,226 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #2e2e2e;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.6;
+    padding-top: 80px; /* Space for the fixed navbar */
+}
+
+/* Navigation Bar Styling */
+.navbar {
+    width: 100%;
+    background-color: #333;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    text-align: center;
+    border-bottom: 2px solid #444;
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: #00aaff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a.active {
+    background-color: #444;
+    color: #00aaff;
+}
+
+/* Logo Container */
+.logo-container {
+    margin: 20px 0;
+}
+
+.logo {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 3px solid #ffffff;
+    border-radius: 10px;
+}
+
+/* Index Container */
+.index-container {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#indexTab {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#indexTab li {
+    margin: 10px;
+}
+
+#indexTab li a {
+    color: #3399ff;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 2px solid #3399ff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#indexTab li a:hover {
+    background-color: #3399ff;
+    color: #1a1a1a;
+}
+
+/* Section Styling */
+.concept-section {
+    background-color: #3a3a3a;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    width: 80%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.concept-section h2 {
+    font-size: 2rem;
+    color: #3399ff;
+    margin-bottom: 10px;
+}
+
+.concept-section h3 {
+    font-size: 1.4rem;
+    color: #e0e0e0;
+    margin-top: 20px;
+}
+
+.concept-section p {
+    font-size: 1rem;
+    color: #d0d0d0;
+}
+
+/* Password Generator Styling */
+#generatedPassword {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    border: 2px solid #3399ff;
+    border-radius: 5px;
+    background-color: #2e2e2e;
+    color: #ffffff;
+}
+
+button {
+    background-color: #3399ff;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #287bb5;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logo {
+        max-width: 80%;
+    }
+
+    .concept-section {
+        width: 90%;
+    }
+
+    #indexTab {
+        flex-direction: column;
+    }
+
+    #indexTab li {
+        margin: 5px 0;
+    }
+}
+/* Section 7: Penetration Testing Styling */
+#section7 {
+    background-color: #4444; /* Dark background for contrast */
+    color: #ffffff; /* White text for readability */
+    padding: 20px; /* Space around content */
+    border-radius: 10px; /* Rounded corners for the section */
+    margin: 20px 0; /* Margin for spacing between sections */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+#section7 h2 {
+    font-size: 2rem; /* Larger font size for section headings */
+    margin-bottom: 10px; /* Space below the heading */
+}
+
+#section7 h3 {
+    font-size: 1.5rem; /* Slightly smaller font size for subheadings */
+    margin-top: 20px; /* Space above the subheading */
+    margin-bottom: 10px; /* Space below the subheading */
+}
+
+#section7 p {
+    line-height: 1.6; /* Improve readability with line spacing */
+    margin-bottom: 15px; /* Space below paragraphs */
+}
+
+#section7 a {
+    color: #00aaff; /* Light blue color for links */
+    text-decoration: none; /* Remove underline from links */
+    font-weight: bold; /* Make links stand out */
+}
+
+#section7 a:hover {
+    text-decoration: underline; /* Add underline on hover for better visibility */
+}
+
+/* Remove extra padding and margin in paragraphs */
+#section7 p p {
+    margin: 0; /* Remove margins from nested paragraphs */
+    padding: 0; /* Remove padding from nested paragraphs */
+}

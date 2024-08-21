@@ -1,0 +1,56 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Logo Container: Centers the logo */
+.logo-container {
+    margin-bottom: 50px; /* Space below the logo before the buttons */
+}
+
+/* Logo Styling: Adjust size, add border and centering */
+.logo {
+    max-width: 60%; /* Scales down the image, adjust percentage as needed */
+    height: auto; /* Maintains aspect ratio */
+    display: block;
+    margin: 0 auto;
+    border: 5px solid white; /* Adds a white border around the logo */
+    border-radius: 10px; /* Optional: Adds rounded corners to the border */
+}
+
+/* Button Container: Aligns buttons below the logo */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Button styling */
+.button {
+    background-color: #3399ff;
+    color: #ffffff;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    margin: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #287bb5;
+}

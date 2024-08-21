@@ -1,0 +1,164 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding-top: 60px; /* Adjust this value to match the height of your navbar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+} 
+/* Logo Container: Centers the logo and adds a white border */
+.logo-container {
+    margin-bottom: 50px; /* Space below the logo before the sections */
+    margin-top: 10px;
+}
+
+.logo {
+    max-width: 50%; /* Scales down the image */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 5px solid white; /* White border around the logo */
+    border-radius: 10px; /* Optional: Rounds the corners of the border */
+}
+
+/* Navigation Bar Styling */
+.navbar {
+    width: 100%;
+    background-color: #333;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    text-align: center;
+    border-bottom: 2px solid #444;
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: #00aaff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a.active {
+    background-color: #444;
+    color: #00aaff;
+}
+* Link Bubble Styling */
+.link-container {
+    margin-top: 80px; /* Adjust margin to ensure links are below the navbar */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.link-bubble {
+    background-color: #3399ff;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    margin: 5px;
+    display: inline-block;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.link-bubble:hover {
+    background-color: #287bb5;
+}
+
+/* OWASP Top 10 Styling */
+.owasp-top10 {
+    background-color: #282828;
+    padding: 20px;
+    margin: 20px 0;
+    width: 80%;
+    border-radius: 10px;
+    text-align: left;
+    color: #ffffff;
+}
+
+.owasp-top10 h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.owasp-top10 ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.owasp-top10 ul li {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+/* CVE List Styling */
+.cve-list {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #282828;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cve-list h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.cve-list ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.cve-list ul li {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar ul li {
+        display: block;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .navbar ul li a {
+        padding: 10px;
+    }
+
+    .link-container {
+        width: 90%;
+    }
+
+    .owasp-top10, .cve-list {
+        width: 90%;
+    }
+}
