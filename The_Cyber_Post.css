@@ -1,0 +1,301 @@
+
+* {
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2e2e2e; /* Dark grey background */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #fff; /* Set text color to white for better contrast */
+    /* ISSUE: On local test site there is no issues with viewing. On the live page, there is excessive overflow to the left - code below is possible fix - Future me here, this did not fix it */
+    overflow-x: hidden;
+    box-sizing: border-box;
+    width: 100%;
+    
+}
+
+/* Banner Styles */
+.banner {
+    background-color: #333;
+    padding: 20px 0;
+    margin-bottom: 20px; /* Adds margin below the banner */
+}
+
+.banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 30px;
+    margin-right: 30px;
+    /* Lets see if this will fix the overflow to the right - This fixed the issue!  */
+     padding: 0 30px;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+
+.banner h1 {
+    margin: 0;
+    font-size: 2.7em;
+    color: #39ff14; /* Neon green for the title */
+    font-family: 'New Rocker', cursive;
+}
+
+/* Link Styles */
+.index-link {
+    background-color: #39ff14; /* Neon green background for the link bubble */
+    color: #000; /* Black text color */
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+    font-family: 'New Rocker', cursive;
+}
+
+.index-link:hover {
+    background-color: #2ecc71; /* Slightly darker green on hover */
+}
+
+/* Logo Styles */
+.logo-container {
+    margin: 20px auto; /* Center the logo container */
+    text-align: center;
+    width: 100%; /* Ensure the container takes the full width */
+    background-color: #2e2e2e; /* Optional: Add a light background color behind the logo */
+    padding: 20px; /* Add some padding around the logo */
+    border-radius: 10px; /* Round the corners of the container */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Add shadow to the container */
+    overflow: hidden; /* Added this to fix issues on mobile viewing */
+}
+
+.logo {
+    max-width: 550px; /* Size the logo appropriately */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center the logo */
+    border: 5px solid #fff; /* White border around the logo */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Add shadow to the logo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover effects */
+}
+
+.logo:hover {
+    transform: scale(1.05); /* Slightly scale up the logo on hover */
+    box-shadow: 0 0 25px #39ff14; /* Add a glow effect on hover */
+}
+/* Recent News Update Section Styling */
+.news-update {
+    background-color: #4a4a4a; /* Grey background for the bubble */
+    color: #ffffff; /* White text */
+    padding: 15px 15px;
+    border-radius: 10px;
+    margin: 20px auto; /* Space above and below the section */
+    max-width: 800px; /* Limit width for readability */
+    text-align: center; /* Center everything */
+    margin-bottom: 35px;
+}
+
+.news-update h2 {
+    font-size: 2.5em; /* Size of the title */
+    color: #39ff14; /* Neon green color */
+    margin-bottom: 10px;
+    text-align: center; /* Center the title */
+}
+
+.news-update p {
+    font-size: 1.2em; /* Normal text size */
+    margin-bottom: 5px; /* Small margin below the text */
+}
+
+.news-update .update-date {
+    font-size: 0.9em; /* Small size for the date */
+    color: #ff4500; /* Red color for the date */
+    font-weight: bold;
+}
+
+
+/* News Section Styles */
+.news-section {
+    padding: 20px;
+    background-color: #2b2b2b; /* Darker background for the article bubbles */
+    margin: 20px auto;
+    max-width: 1200px; /* Limit the width of the news section for better readability */
+    border-radius: 5px;
+    color: #fff; /* Set text color to white for readability */
+}
+
+/* Article Styles */
+.article {
+    background-color: #444; /* Dark grey background for the article bubble */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px; /* Margin at the bottom of each article */
+    margin-top: 30px; /* Margin at the top of each article */
+    text-align: left;
+}
+
+.article h2 {
+    font-size: 1.8em; /* Title size */
+    margin-bottom: 10px; /* Space below the title */
+    color: #ff4500; /* Title color */
+}
+
+.article p {
+    font-size: 1em; /* Paragraph size */
+    margin-bottom: 15px; /* Space below each paragraph */
+}
+
+.article a {
+    color: #00aaff; /* Link color */
+    text-decoration: underline; /* Underline links */
+}
+
+
+pre {
+    white-space: pre-wrap;       /* Allows the text to wrap */
+    word-wrap: break-word;       /* Breaks long words if necessary */
+    overflow-x: auto;            /* Adds a scrollbar if the content is too wide */
+    max-width: 100%;             /* Ensures the pre block does not exceed the screen width */
+    display: block;              /* Ensures that the pre element behaves as a block */
+    padding: 10px;               /* Adds padding inside the pre block */
+    background-color: #333;      /* Dark background color for contrast */
+    border-radius: 5px;          /* Slightly rounded corners */
+    margin: 10px 0;              /* Adds margin above and below the pre block */
+    box-sizing: border-box;      /* Ensures padding is included in the width calculation */
+}
+
+.article ul {
+    list-style: disc; /* Bullets for lists */
+    margin-left: 20px; /* Indent for lists */
+    margin-bottom: 15px; /* Space below lists */
+}
+
+.article li {
+    margin-bottom: 5px; /* Space between list items */
+}
+
+/* Responsive Design: Styles for tablets */
+@media screen and (max-width: 1024px) {
+    .banner h1 {
+        font-size: 2em; /* Slightly smaller banner title for tablets */
+    }
+
+    .logo {
+        max-width: 250px; /* Adjust logo size for tablets */
+    }
+
+    .news-update {
+        max-width: 90%;
+    }
+
+    .news-section {
+        padding: 15px;
+        max-width: 90%; /* Allow the news section to take more width on smaller screens */
+    }
+
+    .article {
+        padding: 15px;
+        margin-bottom: 25px; /* Adjusted margin for smaller screens */
+        margin-top: 25px; /* Adjusted margin for smaller screens */
+    }
+}
+
+
+    .news-section {
+        padding: 15px;
+        max-width: 90%; /* Allow the news section to take more width on smaller screens */
+        margin-left: auto; /* Center the news section */
+        margin-right: auto;
+    }
+
+    .article {
+        padding: 15px;
+        margin-bottom: 25px; /* Adjusted margin for smaller screens */
+        margin-top: 25px; /* Adjusted margin for smaller screens */
+    }
+}
+
+/* Responsive Design: Styles for mobile devices */
+@media screen and (max-width: 768px) {
+    .banner h1 {
+        font-size: 1.5em; /* Smaller banner title for mobile devices */
+    }
+
+    .logo {
+        max-width: 200px; /* Adjust logo size for mobile devices */
+    }
+
+    .news-update {
+        padding: 8px 12px;
+        max-width: 95%; /* Ensure proper spacing on mobile devices */
+        margin-left: auto; /* Center the news update section */
+        margin-right: auto;
+    }
+
+    .news-section {
+        padding: 10px;
+        max-width: 95%; /* Allow the news section to take almost full width on mobile devices */
+        margin-left: auto; /* Center the news section */
+        margin-right: auto;
+    }
+
+    .article {
+        padding: 10px;
+        margin-bottom: 20px; /* Adjusted margin for smaller screens */
+        margin-top: 20px; /* Adjusted margin for smaller screens */
+    }
+}
+/* Ensure proper word wrapping and prevent overflow */
+.article pre {
+    background-color: #333; /* Dark background for the preformatted text */
+    padding: 10px; /* Padding inside the code block */
+    border-radius: 5px; /* Rounded corners */
+    color: #00ff00; /* Green text color */
+    text-align: left; /* Left-align the text */
+    display: block;
+    width: 100%; /* Ensure the block takes full width of the container */
+    max-width: 100%; /* Prevent it from exceeding the width of its container */
+    white-space: pre-wrap; /* Wraps long lines */
+    word-wrap: break-word; /* Breaks long words if necessary */
+    overflow-x: auto; /* Adds a horizontal scrollbar if needed */
+    margin-bottom: 15px; /* Space below code blocks */
+}
+
+
+/* Responsive Design: Styles for very small mobile devices (e.g., old smartphones) */
+@media screen and (max-width: 480px) {
+    .banner h1 {
+        font-size: 1.2em; /* Even smaller banner title for very small screens */
+    }
+
+    .logo {
+        max-width: 150px; /* Adjust logo size for very small screens */
+    }
+
+    .news-update {
+        padding: 6px 10px;
+        max-width: 100%; /* Ensure full width on very small screens */
+        margin-left: auto; /* Center the news update section */
+        margin-right: auto;
+    }
+
+    .news-section {
+        padding: 8px;
+        max-width: 100%; /* Allow the news section to take the full width on very small screens */
+        margin-left: auto; /* Center the news section */
+        margin-right: auto;
+    }
+
+    .article {
+        padding: 8px;
+        margin-bottom: 15px; /* Adjusted margin for very small screens */
+        margin-top: 15px; /* Adjusted margin for very small screens */
+    }
+}
+
