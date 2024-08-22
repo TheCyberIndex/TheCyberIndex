@@ -185,34 +185,36 @@ footer {
 /* Styles for mobile devices */
 @media screen and (max-width: 768px) {
     .navbar ul {
-        flex-direction: column; /* Stack items vertically */
-        align-items: center;    /* Center items */
-        padding: 10px 0;        /* Reduce padding */
+        flex-direction: row; /* Keep items in a row (horizontal) */
+        flex-wrap: wrap;     /* Allow wrapping if needed */
+        justify-content: center; /* Center the items horizontally */
+        padding: 10px 0;     /* Reduce padding */
     }
 
     .navbar ul li {
-        margin: 5px 0;          /* Reduce margin */
+        margin: 5px 10px;    /* Reduce margin between items */
     }
 
     .navbar ul li a {
-        font-size: 16px;        /* Smaller font size */
-        padding: 8px 15px;      /* Smaller padding */
+        font-size: 14px;     /* Smaller font size */
+        padding: 6px 10px;   /* Smaller padding */
+        white-space: nowrap; /* Prevent text from wrapping */
     }
 
     .navbar {
-        height: auto;           /* Adjust height to content */
-        padding: 10px 0;        /* Add some padding */
+        height: auto;        /* Adjust height to content */
+        padding: 10px 0;     /* Add some padding */
     }
 }
 
 /* Additional styles for even smaller screens */
 @media screen and (max-width: 480px) {
     .navbar ul li a {
-        font-size: 14px;        /* Further reduce font size */
-        padding: 6px 10px;      /* Further reduce padding */
+        font-size: 12px;     /* Further reduce font size */
+        padding: 4px 8px;    /* Further reduce padding */
     }
 
     .navbar {
-        padding: 8px 0;         /* Reduce padding */
+        padding: 8px 0;      /* Reduce padding */
     }
 }
