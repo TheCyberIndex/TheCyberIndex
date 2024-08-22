@@ -185,3 +185,42 @@ body {
         width: 70%;
     }
 }
+
+/* Adjustments for the mobile navbar */
+@media screen and (max-width: 768px) {
+    .navbar ul {
+        flex-direction: row; /* Ensure the navbar items are in a row */
+        justify-content: center; /* Center the items horizontally */
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar ul li {
+        margin: 0 5px; /* Slight space between items */
+        padding: 0;
+    }
+
+    .navbar ul li a {
+        padding: 5px 8px; /* Reduce padding around text */
+        font-size: 10px; /* Decrease font size if needed */
+        line-height: 1.2; /* Adjust line-height for tighter spacing */
+    }
+
+    .navbar {
+        padding: 5px 0; /* Decrease padding to reduce overall height */
+        margin: 0;
+        background-color: #333; /* Ensure the navbar color fits the design */
+        border-bottom: 1px solid #444; /* Adjust border to fit the reduced size */
+    }
+}
+
+
+/* Navbar styles for hiding on scroll */
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: top 0.3s ease-in-out; /* Smooth transition for hiding/showing the navbar */
+    z-index: 1000; /* Ensures navbar stays on top of other content */
+}
