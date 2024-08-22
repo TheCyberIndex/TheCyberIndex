@@ -209,3 +209,14 @@ footer {
         border-bottom: 1px solid #444; /* Adjust border to fit the reduced size */
     }
 }
+
+
+/* Navbar styles for hiding on scroll */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: top 0.3s; /* Smooth transition for hiding/showing the navbar */
+    z-index: 1000;
+}
+
