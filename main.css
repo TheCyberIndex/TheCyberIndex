@@ -82,7 +82,7 @@ body {
     }
 }
 
-/* Styles for mobile devices */
+/* Styles for mobile devices (up to 768px wide) */
 @media screen and (max-width: 768px) {
     body {
         padding-top: 50px;
@@ -90,6 +90,7 @@ body {
 
     .navbar ul {
         flex-direction: column;
+        align-items: center;
     }
 
     .navbar ul li {
@@ -110,10 +111,41 @@ body {
         padding: 6px 12px;
         font-size: 14px;
     }
+
+    .logo {
+        max-width: 60%;
+    }
 }
 
-/* Styles for larger desktop screens */
-@media screen and (min-width: 1280px) {
+/* Styles for tablet screens (up to 1024px wide) */
+@media screen and (max-width: 1024px) {
+    .logo {
+        max-width: 60%; /* Adjust logo size */
+    }
+
+    .navbar ul {
+        flex-direction: column; /* Stack navbar items vertically */
+        align-items: center; /* Center navbar items */
+    }
+
+    .container {
+        padding: 0 5%; /* Reduce padding on smaller screens */
+    }
+}
+
+/* Styles for desktop screens (up to 1440px wide) */
+@media screen and (max-width: 1440px) {
+    .logo {
+        max-width: 60%; /* Adjust logo size */
+    }
+
+    .navbar ul {
+        justify-content: space-around;
+    }
+}
+
+/* Styles for larger desktop screens (above 1440px wide) */
+@media screen and (min-width: 1441px) {
     .navbar ul {
         justify-content: space-around;
     }
@@ -124,52 +156,6 @@ body {
 
     .owasp-top10, .cve-list {
         width: 70%;
-    }
-}
-
-@media (max-width: 1024px) {
-    .logo {
-        max-width: 60%; /* Reduce logo size for smaller screens */
-    }
-    
-    .navbar ul {
-        flex-direction: column; /* Stack navbar items vertically */
-        align-items: center; /* Center navbar items */
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar ul {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .container {
-        padding: 0 5%; /* Reduce padding on smaller screens */
-    }
-    
-    .logo {
-        max-width: 60%;
-    }
-}
-/* For screens up to 1440px wide - Macbook still has issues with viewing */
-@media (max-width: 1440px) {
-    .logo {
-        max-width: 60%;
-    }
-}
-
-/* For screens up to 1024px wide */
-@media (max-width: 1024px) {
-    .logo {
-        max-width: 60%;
-    }
-}
-
-/* For screens up to 768px wide */
-@media (max-width: 768px) {
-    .logo {
-        max-width: 60%;
     }
 }
 
