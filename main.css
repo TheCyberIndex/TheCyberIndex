@@ -18,13 +18,17 @@ body {
 }
 
 /* Logo Container: Centers the logo */
-.logo-container {
-    margin-bottom: 50px; /* Space below the logo before the buttons */
+.container {
+    width: 100%;
+    padding: 0 10%; /* Add padding to ensure it doesn't touch the edges */
+    box-sizing: border-box;
+    max-width: 1200px; /* Limit the maximum width */
+    margin: 0 auto; /* Center the container */
 }
 
 /* Logo Styling: Adjust size, add border and centering */
 .logo {
-    max-width: 60%; /* Scales down the image, adjust percentage as needed */
+    max-width: 100%; /* Scales down the image, adjust percentage as needed */
     height: auto; /* Maintains aspect ratio */
     display: block;
     margin: 0 auto;
@@ -54,5 +58,105 @@ body {
 .button:hover {
     background-color: #287bb5;
 }
+/* Styles for tablets and smaller screens */
+@media screen and (max-width: 1024px) {
+    .logo {
+        max-width: 80%;
+    }
 
+    .navbar ul {
+        flex-direction: column;
+    }
 
+    .navbar ul li {
+        margin: 10px 0;
+    }
+
+    .owasp-top10, .cve-list {
+        width: 90%;
+    }
+
+    .link-bubble {
+        padding: 8px 15px;
+        font-size: 16px;
+    }
+}
+
+/* Styles for mobile devices (up to 768px wide) */
+@media screen and (max-width: 768px) {
+    body {
+        padding-top: 50px;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar ul li {
+        margin: 5px 0;
+    }
+
+    .owasp-top10, .cve-list {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .link-container {
+        margin-top: 60px;
+        margin-bottom: 15px;
+    }
+
+    .link-bubble {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .logo {
+        max-width: 60%;
+    }
+}
+
+/* Styles for tablet screens (up to 1024px wide) */
+@media screen and (max-width: 1024px) {
+    .logo {
+        max-width: 60%; /* Adjust logo size */
+    }
+
+    .navbar ul {
+        flex-direction: column; /* Stack navbar items vertically */
+        align-items: center; /* Center navbar items */
+    }
+
+    .container {
+        padding: 0 5%; /* Reduce padding on smaller screens */
+    }
+}
+
+/* Styles for desktop screens (up to 1440px wide) */
+@media screen and (max-width: 1440px) {
+    .logo {
+        max-width: 40%; /* Adjust logo size */
+    }
+
+    .navbar ul {
+        justify-content: space-around;
+    }
+}
+
+/* Styles for larger desktop screens (above 1440px wide) */
+@media screen and (min-width: 1441px) {
+    .navbar ul {
+        justify-content: space-around;
+    }
+
+    .logo {
+        max-width: 60%;
+    }
+
+    .owasp-top10, .cve-list {
+        width: 70%;
+    }
+}
+
+/* All above is for smaller screens. Adjust this when needed*/
