@@ -221,5 +221,24 @@
     <footer>
         <p>&copy; 2024 The Cyber Index. All rights reserved.</p>
     </footer>
+                    // JavaScript to hide navbar on scroll down and show on scroll up
+<script>
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
+
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            // User is scrolling down, hide the navbar
+            navbar.style.top = '-100px';  // Adjust this value based on the height of your navbar
+        } else {
+            // User is scrolling up, show the navbar
+            navbar.style.top = '0';
+        }
+        lastScrollTop = scrollTop;
+    });
+</script>
+
+
 </body>
 </html>
