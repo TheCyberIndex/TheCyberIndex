@@ -55,7 +55,7 @@
         <h3>Availability</h3>
         <p>
             <p><strong>Availability</strong> ensures that information and resources are accessible to those who need them when they need them. This can involve measures such as redundancy, backups, and network load balancing. Implementing high-availability systems, regularly testing backup processes, and using failover mechanisms are crucial for minimizing downtime and maintaining service continuity. Additionally, robust infrastructure and resource planning help mitigate the impact of potential disruptions.</p>
-
+<!-- Add information avout least privilege and regular updates and patch management. -->
         </p>
     </section>
 
@@ -183,7 +183,7 @@
      <footer>
         <p>&copy; 2024 The Cyber Index. All rights reserved.</p>
     </footer>
- <!-- JavaScript to hide navbar on scroll down and show on scroll up -->
+ <!-- JavaScript to hide navbar on scroll down and show on scroll up: Fix issues with the navbar on mobile -->
 <script>
     let lastScrollTop = 0;
     const navbar = document.querySelector('.navbar');
@@ -191,10 +191,10 @@
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         if (scrollTop > lastScrollTop && scrollTop > 10) {
-            // User is scrolling down and is not at the very top of the page
-            navbar.style.top = '-100px';  // Adjust this value based on the height of your navbar
+            <!-- Fix issue with navbar disappearing when scrolling to top of page on mobile -->
+            navbar.style.top = '-100px'; 
         } else {
-            // User is scrolling up or is at the top of the page
+          
             navbar.style.top = '0';
         }
         lastScrollTop = scrollTop;
