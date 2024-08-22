@@ -152,4 +152,25 @@ body {
         max-width: 70%;
     }
 }
+/* For screens up to 1440px wide - Macbook still has issues with viewing */
+@media (max-width: 1440px) {
+    .logo {
+        max-width: 80%;
+    }
+}
+
+/* For screens up to 1024px wide */
+@media (max-width: 1024px) {
+    .logo {
+        max-width: 70%;
+    }
+}
+
+/* For screens up to 768px wide */
+@media (max-width: 768px) {
+    .logo {
+        max-width: 60%;
+    }
+}
+
 /* All above is for smaller screens. Adjust this when needed*/
