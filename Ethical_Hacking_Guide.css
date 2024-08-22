@@ -198,7 +198,7 @@ footer {
 
     .navbar ul li a {
         padding: 5px 8px; /* Reduce padding around text */
-        font-size: 14px; /* Decrease font size if needed */
+        font-size: 10px; /* Decrease font size if needed */
         line-height: 1.2; /* Adjust line-height for tighter spacing */
     }
 
