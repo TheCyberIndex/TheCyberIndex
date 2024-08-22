@@ -182,4 +182,37 @@ footer {
         width: 70%;
     }
 }
+/* Styles for mobile devices */
+@media screen and (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;    /* Center items */
+        padding: 10px 0;        /* Reduce padding */
+    }
 
+    .navbar ul li {
+        margin: 5px 0;          /* Reduce margin */
+    }
+
+    .navbar ul li a {
+        font-size: 16px;        /* Smaller font size */
+        padding: 8px 15px;      /* Smaller padding */
+    }
+
+    .navbar {
+        height: auto;           /* Adjust height to content */
+        padding: 10px 0;        /* Add some padding */
+    }
+}
+
+/* Additional styles for even smaller screens */
+@media screen and (max-width: 480px) {
+    .navbar ul li a {
+        font-size: 14px;        /* Further reduce font size */
+        padding: 6px 10px;      /* Further reduce padding */
+    }
+
+    .navbar {
+        padding: 8px 0;         /* Reduce padding */
+    }
+}
