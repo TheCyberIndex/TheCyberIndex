@@ -18,12 +18,12 @@ body {
 }
 
 /* Logo Container: Centers the logo */
-.container {
+.logo-container {
+    margin: 20px auto;
+    text-align: center;
     width: 100%;
-    padding: 0 10%; /* Add padding to ensure it doesn't touch the edges */
-    box-sizing: border-box;
-    max-width: 1200px; /* Limit the maximum width */
-    margin: 0 auto; /* Center the container */
+    max-width: 1200px; /* Need to fix scaling issues */
+    padding: 20px;
 }
 
 /* Logo Styling: Adjust size, add border and centering */
