@@ -182,39 +182,31 @@ footer {
         width: 70%;
     }
 }
-/* Styles for mobile devices */
+/* Adjustments for the mobile navbar */
 @media screen and (max-width: 768px) {
+    .navbar {
+        padding: 5px 0; /* Decrease padding to reduce overall height */
+        margin: 0;
+    }
+
     .navbar ul {
-        flex-direction: row; /* Keep items in a row (horizontal) */
-        flex-wrap: wrap;     /* Allow wrapping if needed */
-        justify-content: center; /* Center the items horizontally */
-        padding: 10px 0;     /* Reduce padding */
+        padding: 0;
+        margin: 0;
     }
 
     .navbar ul li {
-        margin: 5px 10px;    /* Reduce margin between items */
+        margin: 0;
+        padding: 0;
     }
 
     .navbar ul li a {
-        font-size: 14px;     /* Smaller font size */
-        padding: 6px 10px;   /* Smaller padding */
-        white-space: nowrap; /* Prevent text from wrapping */
+        padding: 5px 10px; /* Reduce padding around text */
+        font-size: 16px; /* Adjust font size as needed */
+        line-height: 1.2; /* Adjust line-height for tighter spacing */
     }
 
     .navbar {
-        height: auto;        /* Adjust height to content */
-        padding: 10px 0;     /* Add some padding */
-    }
-}
-
-/* Additional styles for even smaller screens */
-@media screen and (max-width: 480px) {
-    .navbar ul li a {
-        font-size: 12px;     /* Further reduce font size */
-        padding: 4px 8px;    /* Further reduce padding */
-    }
-
-    .navbar {
-        padding: 8px 0;      /* Reduce padding */
+        background-color: #333; /* Ensure the navbar color fits the design */
+        border-bottom: 1px solid #444; /* Adjust border to fit the reduced size */
     }
 }
