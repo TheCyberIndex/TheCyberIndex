@@ -218,5 +218,6 @@ footer {
     top: 0;
     left: 0;
     transition: top 0.3s ease-in-out; /* Smooth transition for hiding/showing the navbar */
+    z-index: 1000; /* Ensures navbar stays on top of other content */
 }
 
