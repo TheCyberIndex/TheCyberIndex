@@ -332,7 +332,7 @@ button:hover {
     z-index: 1000; /* Ensures navbar stays on top of other content */
 }
 
-/* this is for the bubbles on mobile)
+/* this is for the bubbles on mobile) */
 @media (max-width: 768px) {
     /* Adjust the spacing between the buttons */
     .link-container {
