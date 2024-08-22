@@ -184,28 +184,27 @@ footer {
 }
 /* Adjustments for the mobile navbar */
 @media screen and (max-width: 768px) {
-    .navbar {
-        padding: 5px 0; /* Decrease padding to reduce overall height */
-        margin: 0;
-    }
-
     .navbar ul {
+        flex-direction: row; /* Ensure the navbar items are in a row */
+        justify-content: center; /* Center the items horizontally */
         padding: 0;
         margin: 0;
     }
 
     .navbar ul li {
-        margin: 0;
+        margin: 0 5px; /* Slight space between items */
         padding: 0;
     }
 
     .navbar ul li a {
-        padding: 5px 10px; /* Reduce padding around text */
-        font-size: 16px; /* Adjust font size as needed */
+        padding: 5px 8px; /* Reduce padding around text */
+        font-size: 14px; /* Decrease font size if needed */
         line-height: 1.2; /* Adjust line-height for tighter spacing */
     }
 
     .navbar {
+        padding: 5px 0; /* Decrease padding to reduce overall height */
+        margin: 0;
         background-color: #333; /* Ensure the navbar color fits the design */
         border-bottom: 1px solid #444; /* Adjust border to fit the reduced size */
     }
