@@ -310,4 +310,110 @@ pre {
         margin-top: 15px; /* Adjusted margin for very small screens */
     }
 }
+/* Styles for tablets and smaller screens */
+@media screen and (max-width: 1024px) {
+    .logo {
+        max-width: 80%;
+    }
 
+    .navbar ul {
+        flex-direction: column;
+    }
+
+    .navbar ul li {
+        margin: 10px 0;
+    }
+
+    .owasp-top10, .cve-list {
+        width: 90%;
+    }
+
+    .link-bubble {
+        padding: 8px 15px;
+        font-size: 16px;
+    }
+}
+
+/* Styles for mobile devices */
+@media screen and (max-width: 768px) {
+    body {
+        padding-top: 50px;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+    }
+
+    .navbar ul li {
+        margin: 5px 0;
+    }
+
+    .owasp-top10, .cve-list {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .link-container {
+        margin-top: 60px;
+        margin-bottom: 15px;
+    }
+
+    .link-bubble {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Styles for larger desktop screens */
+@media screen and (min-width: 1280px) {
+    .navbar ul {
+        justify-content: space-around;
+    }
+
+    .logo {
+        max-width: 60%;
+    }
+
+    .owasp-top10, .cve-list {
+        width: 70%;
+    }
+}
+
+/* Adjustments for the mobile navbar */
+@media screen and (max-width: 768px) {
+    .navbar ul {
+        flex-direction: row; /* Ensure the navbar items are in a row */
+        justify-content: center; /* Center the items horizontally */
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar ul li {
+        margin: 0 5px; /* Slight space between items */
+        padding: 0;
+    }
+
+    .navbar ul li a {
+        padding: 5px 8px; /* Reduce padding around text */
+        font-size: 10px; /* Decrease font size if needed */
+        line-height: 1.2; /* Adjust line-height for tighter spacing */
+    }
+
+    .navbar {
+        padding: 5px 0; /* Decrease padding to reduce overall height */
+        margin: 0;
+        background-color: #333; /* Ensure the navbar color fits the design */
+        border-bottom: 1px solid #444; /* Adjust border to fit the reduced size */
+    }
+}
+
+
+/* Navbar styles for hiding on scroll */
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: top 0.3s ease-in-out; /* Smooth transition for hiding/showing the navbar */
+    z-index: 1000; /* Ensures navbar stays on top of other content */
+}
