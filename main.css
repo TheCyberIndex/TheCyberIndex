@@ -155,7 +155,7 @@ body {
 /* For screens up to 1440px wide - Macbook still has issues with viewing */
 @media (max-width: 1440px) {
     .logo {
-        max-width: 80%;
+        max-width: 60%;
     }
 }
 
