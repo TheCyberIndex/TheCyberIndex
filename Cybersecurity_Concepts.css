@@ -331,3 +331,28 @@ button:hover {
     transition: top 0.3s ease-in-out; /* Smooth transition for hiding/showing the navbar */
     z-index: 1000; /* Ensures navbar stays on top of other content */
 }
+
+/* this is for the bubbles on mobile)
+@media (max-width: 768px) {
+    /* Adjust the spacing between the buttons */
+    .link-container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .link-bubble {
+        padding: 12px 18px; /* Adjust padding to increase the size */
+        margin-bottom: 10px; /* Add spacing between the bubbles */
+        font-size: 16px; /* Increase the font size */
+    }
+
+    /* Adjust text section for better readability */
+    .section h2, .section p {
+        padding: 10px;
+        line-height: 1.5; /* Adjust line-height for better readability */
+    }
+
+    .section {
+        margin: 15px 10px; /* Add margins to avoid clustering */
+    }
+}
