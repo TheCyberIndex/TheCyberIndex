@@ -221,3 +221,9 @@ footer {
     z-index: 1000; /* Ensures navbar stays on top of other content */
 }
 
+pre, code {
+    white-space: pre-wrap;  /* Wraps the text to the next line */
+    word-wrap: break-word;  /* Breaks long words to fit within the container */
+    overflow-x: auto;       /* Adds a horizontal scrollbar if necessary */
+    max-width: 100%;        /* Ensures the code block does not exceed the container width */
+}
