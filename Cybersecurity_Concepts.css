@@ -334,26 +334,32 @@ button:hover {
 
 /* this is for the bubbles on mobile) */
 @media (max-width: 768px) {
-    /* Further adjust the spacing between the buttons */
-    .link-container {
-        margin-top: 15px;
-        margin-bottom: 15px;
-    }
-
+    /* Further reduce the font size and adjust margins */
     .link-bubble {
-        padding: 10px 15px; /* Slightly reduce padding for better spacing */
-        margin-bottom: 15px; /* Increase spacing between bubbles */
-        font-size: 14px; /* Slightly reduce font size */
+        padding: 8px 12px; /* Further reduce padding */
+        margin-bottom: 20px; /* Increase margin to space out the buttons */
+        font-size: 13px; /* Reduce font size to prevent text overlap */
+        white-space: normal; /* Allow text to wrap within buttons */
     }
 
-    /* Further adjust text section for better readability */
-    .section h2, .section p {
-        padding: 15px;
-        line-height: 1.75; /* Further increase line-height for readability */
+    .section h2 {
+        font-size: 20px; /* Reduce header size */
+        line-height: 1.5; /* Ensure headers have sufficient spacing */
     }
 
+    .section p {
+        font-size: 16px; /* Reduce paragraph font size */
+        line-height: 1.6; /* Ensure paragraphs have sufficient spacing */
+    }
+
+    /* Ensure there is sufficient padding and margin around sections */
     .section {
-        margin: 20px 15px; /* Increase margins to avoid clustering */
+        margin: 20px 10px; /* Adjust margins to create more space */
+        padding: 10px 10px; /* Add padding for better spacing */
+    }
+
+    /* For buttons with potentially longer text, ensure wrapping is handled well */
+    .link-bubble {
+        word-wrap: break-word; /* Handle word wrapping within buttons */
     }
 }
-
