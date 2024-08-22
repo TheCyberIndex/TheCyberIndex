@@ -136,7 +136,7 @@ body {
 /* Styles for desktop screens (up to 1440px wide) */
 @media screen and (max-width: 1440px) {
     .logo {
-        max-width: 60%; /* Adjust logo size */
+        max-width: 40%; /* Adjust logo size */
     }
 
     .navbar ul {
