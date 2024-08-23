@@ -164,14 +164,14 @@ body {
 /* Media query for 1080p screens */
 @media screen and (max-width: 1920px) {
     .logo {
-        max-width: 250px; /* Reduce width for 1080p screens */
+        max-width: 200px; /* Reduce width for 1080p screens */
     }
 }
 /* Adjustments for screens smaller than 1080px */
 @media screen and (max-width: 1080px) {
     .logo {
-        width: 60%;  /* Scale down slightly for smaller screens */
-        max-width: 400px;  /* Reduce max width for 1080p screens */
+        width: 50%;  /* Scale down slightly for smaller screens */
+        max-width: 200px;  /* Reduce max width for 1080p screens */
     }
 }
 
