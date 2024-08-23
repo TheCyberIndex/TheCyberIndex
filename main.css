@@ -28,7 +28,7 @@ body {
 
 /* General Logo Styling: Adjust size, add border and centering */
 .logo {
-    max-width: 100%; /* Ensures the image does not exceed the width of its container */
+    max-width: 300px; /* Ensures the image does not exceed the width of its container */
     height: auto; /* Maintains aspect ratio */
     display: block;
     margin: 0 auto;
@@ -193,6 +193,12 @@ body {
 @media screen and (min-width: 2560px) {
     .logo {
         max-width: 60%; /* Adjust logo size for 4K and larger screens */
+    }
+}
+/* Media query for 1080p screens */
+@media screen and (max-width: 1920px) {
+    .logo {
+        max-width: 250px; /* Reduce width for 1080p screens */
     }
 }
 
