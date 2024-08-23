@@ -55,34 +55,25 @@ body {
     color: #00aaff;
 }
 
-/* Logo Styles */
+/* Logo Container */
 .logo-container {
-    margin: 20px auto; /* Center the logo container */
-    text-align: center;
-    width: 100%; /* Ensure the container takes the full width */
-    background-color: #2e2e2e; /* Optional: Add a light background color behind the logo */
-    padding: 20px; /* Add some padding around the logo */
-    border-radius: 10px; /* Round the corners of the container */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Add shadow to the container */
-    overflow: hidden; /* Fix for mobile viewing */
-     margin-top: 20px;
+    margin: 20px 0;
 }
 
 .logo {
-    max-width: 550px; /* Size the logo appropriately */
+    max-width: 50%;
     height: auto;
     display: block;
-    margin: 0 auto; /* Center the logo */
-    border: 5px solid #fff; /* White border around the logo */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Add shadow to the logo */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto;
+    border: 3px solid #ffffff;
+    border-radius: 10px;
 }
 
 .logo:hover {
     transform: scale(1.05); /* Slightly scale up the logo on hover */
     box-shadow: 0 0 25px #39ff14; /* Add a glow effect on hover */
 }
+
 
 /* Recent News Update Section Styling */
 .news-update {
