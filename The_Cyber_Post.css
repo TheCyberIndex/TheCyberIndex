@@ -65,7 +65,7 @@ body {
     border-radius: 10px; /* Round the corners of the container */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Add shadow to the container */
     overflow: hidden; /* Fix for mobile viewing */
-     margin-top: 60px;
+     margin-top: 20px;
 }
 
 .logo {
