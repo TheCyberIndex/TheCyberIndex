@@ -21,6 +21,12 @@ body {
     border: 2px solid white;
     border-radius: 10px;
 }
+}
+
+.logo:hover {
+    transform: scale(1.05); /* Slightly scale up the logo on hover */
+    box-shadow: 0 0 25px #39ff14; /* Add a glow effect on hover */
+}
 
 /* Navigation Bar Styling */
 .navbar {
