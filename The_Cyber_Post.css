@@ -58,6 +58,7 @@ body {
     color: #00aaff;
 }
 /* Logo Styles */
+/* Logo Styles */
 .logo-container {
     margin: 20px auto; /* Center the logo container */
     text-align: center;
@@ -70,8 +71,7 @@ body {
 }
 
 .logo {
-    width: 100%
-    max-width: 50%; /* Size the logo appropriately */
+    max-width: 550px; /* Size the logo appropriately */
     height: auto;
     display: block;
     margin: 0 auto; /* Center the logo */
