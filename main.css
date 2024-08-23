@@ -167,5 +167,19 @@ body {
         max-width: 250px; /* Reduce width for 1080p screens */
     }
 }
+/* Adjustments for screens smaller than 1080px */
+@media screen and (max-width: 1080px) {
+    .logo {
+        width: 70%;  /* Scale down slightly for smaller screens */
+        max-width: 400px;  /* Reduce max width for 1080p screens */
+    }
+}
 
+/* Adjustments for screens smaller than 768px */
+@media screen and (max-width: 768px) {
+    .logo {
+        width: 60%;  /* Further scale down for mobile */
+        max-width: 300px;  /* Cap the max width for mobile screens */
+    }
+}
 /* All above is for smaller screens. Adjust this when needed*/
