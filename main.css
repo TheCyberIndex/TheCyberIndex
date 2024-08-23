@@ -170,7 +170,7 @@ body {
 /* Adjustments for screens smaller than 1080px */
 @media screen and (max-width: 1080px) {
     .logo {
-        width: 70%;  /* Scale down slightly for smaller screens */
+        width: 60%;  /* Scale down slightly for smaller screens */
         max-width: 400px;  /* Reduce max width for 1080p screens */
     }
 }
