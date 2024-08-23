@@ -307,7 +307,7 @@ pre {
 /* Adjustments for screens smaller than 1080px */
 @media screen and (max-width: 1080px) {
     .logo {
-        max-width: 30%; /* Further scale down for smaller screens */
+        max-width: 50%; /* Further scale down for smaller screens */
     }
 }
 
