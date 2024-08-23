@@ -104,9 +104,10 @@ body {
     font-size: 1rem;
     color: #d0d0d0;
 }
+/* Password Generator and Hash Generator Styling */
 
-/* Password Generator Styling */
-#generatedPassword {
+/* Output Styling */
+#generatedPassword, #generatedHash {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
@@ -118,6 +119,20 @@ body {
     color: #ffffff;
 }
 
+/* Input and Text Field Styling */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    border: 2px solid #3399ff;
+    border-radius: 5px;
+    background-color: #2e2e2e;
+    color: #ffffff;
+}
+
+/* Button Styling */
 button {
     background-color: #3399ff;
     color: #ffffff;
@@ -134,7 +149,6 @@ button:hover {
     background-color: #287bb5;
     transform: scale(1.05);
 }
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .logo {
