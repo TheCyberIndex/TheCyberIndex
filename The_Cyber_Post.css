@@ -183,7 +183,7 @@ pre {
     }
 
     .logo {
-        max-width: 250px; /* Adjust logo size for tablets */
+        max-width: 50%; /* Adjust logo size for tablets */
     }
 
     .news-update {
@@ -400,4 +400,10 @@ pre {
     left: 0;
     transition: top 0.3s ease-in-out; /* Smooth transition for hiding/showing the navbar */
     z-index: 1000; /* Ensures navbar stays on top of other content */
+}
+/* Adjustments for screens smaller than 1080px */
+@media screen and (max-width: 1080px) {
+    .logo {
+        max-width: 30%; /* Further scale down for smaller screens */
+    }
 }
