@@ -207,10 +207,11 @@ pre {
         font-size: 1.5em; /* Smaller banner title for mobile devices */
     }
 
+    /* Responsive Design */
+@media (max-width: 768px) {
     .logo {
-        max-width: 200px; /* Adjust logo size for mobile devices */
+        max-width: 80%;
     }
-
     .news-update {
         padding: 8px 12px;
         max-width: 95%; /* Ensure proper spacing on mobile devices */
