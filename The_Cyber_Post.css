@@ -71,7 +71,7 @@ body {
 
 .logo {
     width: 100%
-    max-width: 200px; /* Size the logo appropriately */
+    max-width: 100px; /* Size the logo appropriately */
     height: auto;
     display: block;
     margin: 0 auto; /* Center the logo */
