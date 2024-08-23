@@ -138,13 +138,17 @@ button:hover {
     transform: scale(1.05);
 }
 
+/* Ensuring hash output wraps properly on mobile devices */
 @media screen and (max-width: 768px) {
     #generatedHash {
-        word-break: break-all; /* Forces line breaks on long words */
-        white-space: normal;   /* Allows the text to wrap within the container */
-        overflow-wrap: break-word; /* Breaks long words and wraps them onto the next line */
-        word-wrap: break-word; /* Legacy support for word wrapping */
-        width: 100%; /* Ensures the container width is 100% */
+        word-wrap: break-word;      /* Breaks long words */
+        overflow-wrap: break-word;  /* For more modern browsers */
+        white-space: normal;        /* Ensures text wraps */
+        word-break: break-all;      /* Forces line breaks if necessary */
+        width: 100%;                /* Ensure the container fits the screen width */
+        display: block;             /* Ensure it's treated as a block element */
+        overflow: hidden;           /* Prevents overflow */
+        max-width: 100%;            /* Prevents it from exceeding the screen width */
     }
 }
 
