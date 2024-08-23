@@ -1,3 +1,20 @@
+// JavaScript to hide navbar on scroll down and show on scroll up
+let lastScrollTop = 0;
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', function() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop && scrollTop > 10) {
+        // User is scrolling down and is not at the very top of the page
+        navbar.style.top = '-100px';  // Adjust this value based on the height of your navbar
+    } else {
+        // User is scrolling up or is at the top of the page
+        navbar.style.top = '0';
+    }
+    lastScrollTop = scrollTop;
+});
+
+
 // Array to store articles
 let articles = [];
 
