@@ -285,3 +285,26 @@ body {
     transition: top 0.3s ease-in-out; /* Smooth transition for hiding/showing the navbar */
     z-index: 1000; /* Ensures navbar stays on top of other content */
 }
+/* Ensure text wraps inside owasp-item containers */
+.owasp-item {
+    word-wrap: break-word;  /* Forces long words to break */
+    overflow-wrap: break-word;  /* Ensures text breaks correctly */
+    max-width: 100%;  /* Ensures container doesn’t exceed the screen width */
+    box-sizing: border-box; /* Include padding and border in the element's width and height */
+}
+
+/* Ensure headers inside owasp-item wrap correctly */
+.owasp-item-header {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    white-space: normal; /* Allow text to wrap to the next line */
+}
+
+/* Ensure list items inside owasp-item wrap correctly */
+.owasp-item ul, .owasp-item li {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    white-space: normal; /* Ensure list items wrap as well */
+}
