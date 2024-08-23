@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Title</title>
     <link rel="stylesheet" href="Cybersecurity_Concepts.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
      <!-- Ensure this links to your CSS file -->
 </head>
 <body>
@@ -208,6 +209,25 @@
         lastScrollTop = scrollTop;
     });
 </script>
+    
+<h1>SHA-256 Hash Generator</h1>
+
+    <!-- Input for the text -->
+    <input type="text" id="textInput" placeholder="Enter text to hash">
+
+    <!-- Button to trigger hash generation -->
+    <button onclick="generateHash()">Generate Hash</button>
+
+    <!-- Div to display the generated hash -->
+    <div id="generatedHash">Your hash will appear here</div>
+
+    <script>
+        function generateHash() {
+            const text = document.getElementById('textInput').value;
+            const hash = CryptoJS.SHA256(text).toString(CryptoJS.enc.Hex);
+            document.getElementById('generatedHash').innerText = hash;
+        }
+    </script>
 
 
 
