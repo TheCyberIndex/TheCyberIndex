@@ -176,6 +176,24 @@
         <input type="text" id="generatedPassword" readonly>
     </section>
 
+ <!-- Section: Complex Password Generator -->
+    <section id="section8" class="concept-section">
+        <h2>Complex Password Generator</h2>
+        <p>
+            A strong password is a key element of personal and organizational security. Use the tool below to generate complex, random passwords that meet best practices for security. The generated passwords will be difficult to crack, helping to protect your accounts and sensitive data.
+        </p>
+        <button onclick="generatePassword()">Generate Password</button>
+        <input type="text" id="generatedPassword" readonly>
+    </section>
+
+    <!-- Section: SHA-256 Hash Generator -->
+    <section id="hashGenerator" class="concept-section">
+        <h2>SHA-256 Hash Generator</h2>
+        <input type="text" id="textInput" placeholder="Enter text to hash">
+        <button onclick="generateHash()">Generate Hash</button>
+        <div id="generatedHash">Your hash will appear here</div>
+    </section>
+
     <!-- JavaScript for Password Generator -->
     <script>
         function generatePassword() {
@@ -188,36 +206,9 @@
             document.getElementById("generatedPassword").value = password;
         }
     </script>
- 
- <!-- JavaScript to hide navbar on scroll down and show on scroll up: Fix issues with the navbar on mobile -->
-<script>
-    let lastScrollTop = 0;
-    const navbar = document.querySelector('.navbar');
 
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > lastScrollTop && scrollTop > 10) {
-            <!-- Fix issue with navbar disappearing when scrolling to top of page on mobile -->
-            navbar.style.top = '-100px'; 
-        } else {
-          
-            navbar.style.top = '0';
-        }
-        lastScrollTop = scrollTop;
-    });
-</script>
-    
-<h1>SHA-256 Hash Generator</h1>
-
-    <!-- Input for the text -->
-    <input type="text" id="textInput" placeholder="Enter text to hash">
-
-    <!-- Button to trigger hash generation -->
-    <button onclick="generateHash()">Generate Hash</button>
-
-    <!-- Div to display the generated hash -->
-    <div id="generatedHash">Your hash will appear here</div>
-
+    <!-- JavaScript for Hash Generator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <script>
         function generateHash() {
             const text = document.getElementById('textInput').value;
@@ -226,6 +217,21 @@
         }
     </script>
 
+    <!-- JavaScript to hide navbar on scroll down and show on scroll up -->
+    <script>
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 10) {
+                navbar.style.top = '-100px';
+            } else {
+                navbar.style.top = '0';
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
     <!-- Footer Section -->
      <footer>
         <p>&copy; 2024 The Cyber Index. All rights reserved.</p>
