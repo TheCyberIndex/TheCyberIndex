@@ -198,7 +198,6 @@ pre {
         font-size: 1.5em; /* Smaller banner title for mobile devices */
     }
 
-    /* Responsive Design */
 @media (max-width: 768px) {
     .logo {
         max-width: 80%;
