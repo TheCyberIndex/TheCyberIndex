@@ -22,13 +22,13 @@ body {
     margin: 20px auto;
     text-align: center;
     width: 100%;
-    max-width: 1200px; /* Need to fix scaling issues */
+    max-width: 1200px;
     padding: 20px;
 }
 
-/* General Logo Styling: Adjust size, add border and centering */
 .logo {
-    max-width: 300px; /* Ensures the image does not exceed the width of its container */
+    width: 80%;  /* Start with 80% of the container width */
+    max-width: 500px;  /* Ensure the image does not exceed 500px */
     height: auto; /* Maintains aspect ratio */
     display: block;
     margin: 0 auto;
