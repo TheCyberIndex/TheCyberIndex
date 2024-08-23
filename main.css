@@ -159,6 +159,13 @@ body {
         width: 70%;
     }
 }
+}
 
+/* Media query for 1080p screens */
+@media screen and (max-width: 1920px) {
+    .logo {
+        max-width: 250px; /* Reduce width for 1080p screens */
+    }
+}
 
 /* All above is for smaller screens. Adjust this when needed*/
