@@ -21,13 +21,18 @@ body {
     margin-top: 10px;
 }
 
+/* Logo Container */
+.logo-container {
+    margin: 20px 0;
+}
+
 .logo {
-    max-width: 50%; /* Scales down the image */
+    max-width: 50%;
     height: auto;
     display: block;
     margin: 0 auto;
-    border: 5px solid white; /* White border around the logo */
-    border-radius: 10px; /* Optional: Rounds the corners of the border */
+    border: 3px solid #ffffff;
+    border-radius: 10px;
 }
 
 .logo:hover {
