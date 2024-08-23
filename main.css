@@ -35,7 +35,6 @@ body {
     border: 5px solid white; /* Adds a white border around the logo */
     border-radius: 10px; /* Optional: Adds rounded corners to the border */
 }
-}
 
 .logo:hover {
     transform: scale(1.05); /* Slightly scale up the logo on hover */
