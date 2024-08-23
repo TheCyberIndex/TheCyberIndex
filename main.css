@@ -27,7 +27,7 @@ body {
 }
 
 .logo {
-    width: 80%;  /* Start with 80% of the container width */
+    width: 100%;  /* Start with 80% of the container width */
     max-width: 500px;  /* Ensure the image does not exceed 500px */
     height: auto; /* Maintains aspect ratio */
     display: block;
