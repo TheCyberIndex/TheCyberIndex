@@ -18,13 +18,14 @@ body {
 .navbar {
     width: 100%;
     background-color: #333;
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     z-index: 1000;
     text-align: center;
     border-bottom: 2px solid #444;
     transition: top 0.3s ease-in-out;
+    padding-bottom: 20px;
 }
 
 .navbar ul {
