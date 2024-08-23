@@ -36,19 +36,6 @@ body {
     border-radius: 10px; /* Optional: Adds rounded corners to the border */
 }
 
-/* Styles for tablets and smaller screens */
-@media screen and (max-width: 1024px) {
-    .logo {
-        max-width: 80%; /* Adjusts the size for tablet screens */
-    }
-}
-
-/* Styles for larger desktop screens (above 1440px wide) */
-@media screen and (min-width: 1441px) {
-    .logo {
-        max-width: 50%; /* Reduces the logo size on larger screens */
-    }
-}
 
 /* Button Container: Aligns buttons below the logo */
 .button-container {
@@ -173,33 +160,5 @@ body {
     }
 }
 
-}
-
-/* Media Query for 1080p Screens */
-@media screen and (min-width: 1920px) and (max-width: 2559px) {
-    .logo {
-        max-width: 50%; /* Adjust the size for 1080p screens */
-    }
-}
-
-/* Styles for tablets and smaller screens */
-@media screen and (max-width: 1024px) {
-    .logo {
-        max-width: 80%; /* Adjusts the size for tablet screens */
-    }
-}
-
-/* Styles for larger desktop screens (above 1440px wide) */
-@media screen and (min-width: 2560px) {
-    .logo {
-        max-width: 60%; /* Adjust logo size for 4K and larger screens */
-    }
-}
-/* Media query for 1080p screens */
-@media screen and (max-width: 1920px) {
-    .logo {
-        max-width: 250px; /* Reduce width for 1080p screens */
-    }
-}
 
 /* All above is for smaller screens. Adjust this when needed*/
