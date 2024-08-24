@@ -26,6 +26,7 @@ body {
     padding: 20px;
     overflow: hidden; /* Ensure any overflow is hidden */
     margin-above: 20px;
+    clear: both;
 }
 
 .logo {
