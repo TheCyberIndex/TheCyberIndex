@@ -233,18 +233,6 @@ pre, code {
     max-width: 100%;        /* Ensures the code block does not exceed the container width */
 }
 
-/* Modal Styling */
-.modal {
-    background-color: #2e2e2e; /* Dark grey background */
-    color: #ffffff; /* White text color */
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 400px;
-    margin: 100px auto; /* Center the modal */
-    text-align: center;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add some shadow for depth */
-    z-index: 1001; /* Make sure the modal is above the overlay */
-}
 
 
 
