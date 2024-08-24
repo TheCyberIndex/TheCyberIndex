@@ -43,7 +43,7 @@ function displayArticles() {
 
 // Adding an article
 addArticle(
-    'Cybercriminals Exploit PHP Flaw to Secretly Install Msupedge Backdoor - August 22, 2024',
+    'Cybercriminals Exploit PHP Flaw to Secretly Install Msupedge Backdoor',
     `
     <p>It is believed that the Msupedge backdoor was deployed by exploiting a recently uncovered critical vulnerability in PHP (CVE-2024-4577, CVSS score: 9.8), which allows for remote code execution.</p>
     <p>The backdoor is implemented as a dynamic-link library (DLL) that is installed in specific directories, namely "csidl_drive_fixed\\xampp" and "csidl_system\\wbem." One of these DLLs, wuplog.dll, is activated by the Apache HTTP server (httpd), while the parent process for the other DLL has not yet been identified.</p>
@@ -81,7 +81,7 @@ addArticle(
     `
 
 
-)
+);
 
 addArticle(
     'Cyberattack Halts Operations at Microchip Technology Manufacturing Plants',
@@ -97,7 +97,7 @@ addArticle(
     <p> August 22, 2024</p>
      <p><a href="https://www.securityweek.com/cyberattack-disrupts-microchip-technology-manufacturing-facilities/" target="_blank">Source</a></p>
     `
-)
+);
 
 addArticle(
     'Halliburton Reels from Cyberattack, Operations Thrown into Chaos',
@@ -118,4 +118,21 @@ addArticle(
      <p><a href="https://cybersecuritynews.com/halliburton-cyberattack/" target="_blank">Source</a></p>
     `
 
-)
+);
+
+addArticle(
+    'PG_MEM Malware Surfaces, Hijacking PostgreSQL Databases for Crypto Mining Operations',
+    `<p>Cybersecurity experts have identified a new malware strain named PG_MEM, which targets PostgreSQL database instances to mine cryptocurrency after gaining access through brute-force attacks.</p>
+    <p>According to Assaf Morag, a security researcher at Aqua, these brute-force attacks involve systematically attempting to guess database credentials, exploiting weak passwords until access is obtained. Once the attackers break in, they can use the COPY ... FROM PROGRAM SQL command to execute arbitrary shell commands on the host system, enabling them to carry out malicious activities such as stealing data or deploying malware.</p>
+    <p>The attack sequence observed by the cloud security firm focuses on vulnerable PostgreSQL databases, where the attackers create an administrator role and utilize the PROGRAM feature to execute shell commands.</p>
+    <p>After successfully brute-forcing the database, the attackers conduct an initial reconnaissance and execute commands to remove superuser privileges from the "postgres" user. This step prevents other potential attackers from exploiting the same access method.</p>
+    <p>The shell commands used in this attack drop two payloads from a remote server located at "128.199.77[.]96." These payloads, named PG_MEM and PG_CORE, are designed to eliminate competing processes (such as Kinsing), establish persistence on the host, and eventually deploy a Monero cryptocurrency miner.</p>
+    <p>This process leverages the PostgreSQL COPY command, which facilitates copying data between a file and a database table. The attack specifically abuses a parameter called PROGRAM, which allows the server to execute the provided command and record the results in the database.</p>
+    <p>While the primary goal of this campaign appears to be cryptocurrency mining, Morag warns that the attackers also gain the ability to execute commands, access data, and control the server.</p>
+    <p>Morag notes that this campaign targets PostgreSQL databases exposed to the internet with weak passwords, a common vulnerability resulting from misconfigurations and inadequate identity controls.</p>
+    <p>This disclosure follows a report from Datadog Security Labs about an opportunistic attack campaign that exploits the Log4Shell vulnerability (CVE-2021-44228, CVSS score: 10.0) in Apache Log4j. In that campaign, attackers deploy an obfuscated bash script to gather system information, install an XMRig miner, and set up a reverse shell for remote access.</p>
+    <p> August 23, 2024</p>
+    <p><a href="https://thehackernews.com/2024/08/new-malware-pgmem-targets-postgresql.html" target="_blank">Source</a></p>`
+);
+
+    
