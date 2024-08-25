@@ -93,14 +93,14 @@ nmap -sV 192.168.1.1
 nmap -A 192.168.1.1</code></pre>
 
         <h3>Alternative Tools</h3>
-        <h4>**Recon-ng**</h4>
+        <h4>Recon-ng</h4>
         <p><a href="https://github.com/lanmaster53/recon-ng" target="_blank">Recon-ng</a> is a web reconnaissance framework written in Python. It provides a modular environment to automate open-source web-based reconnaissance tasks.</p>
         <p><strong>Installation:</strong></p>
         <pre><code>sudo apt-get install recon-ng</code></pre>
         <p><strong>Example Command:</strong></p>
         <pre><code>recon-ng</code></pre>
 
-        <h4>**theHarvester**</h4>
+        <h4>theHarvester</h4>
         <p><a href="https://github.com/laramies/theHarvester" target="_blank">theHarvester</a> is a tool designed to gather emails, subdomains, hosts, employee names, open ports, and banners from different public sources.</p>
         <p><strong>Installation:</strong></p>
         <pre><code>sudo apt-get install theharvester</code></pre>
@@ -108,7 +108,7 @@ nmap -A 192.168.1.1</code></pre>
         <pre><code># Gather information on a domain
 theharvester -d example.com -l 500 -b google</code></pre>
 
-        <h4>**Shodan**</h4>
+        <h4>Shodan</h4>
         <p><a href="https://www.shodan.io/" target="_blank">Shodan</a> is a search engine for Internet-connected devices. It allows users to search for specific types of devices (webcams, routers, servers, etc.) connected to the internet.</p>
         <p><strong>Example Command:</strong></p>
         <pre><code># Search for Apache servers in a specific country
@@ -153,7 +153,7 @@ openvas-start
 openvasmd --rebuild</code></pre>
 
         <h3>Alternative Tools</h3>
-        <h4>**Nexpose**</h4>
+        <h4>Nexpose</h4>
         <p><a href="https://www.rapid7.com/products/nexpose/" target="_blank">Nexpose</a> by Rapid7 is a vulnerability management solution that helps you understand, prioritize, and reduce risk across your entire IT environment.</p>
         <p><strong>Installation:</strong></p>
         <pre><code>sudo apt-get install nexpose</code></pre>
@@ -161,7 +161,7 @@ openvasmd --rebuild</code></pre>
         <pre><code># Run a vulnerability scan using Nexpose
 nexpose -scan</code></pre>
 
-        <h4>**Nikto**</h4>
+        <h4>Nikto</h4>
         <p><a href="https://cirt.net/Nikto2" target="_blank">Nikto</a> is an open-source web server scanner that performs comprehensive tests against web servers for multiple items, including over 6700 potentially dangerous files and programs.</p>
         <p><strong>Installation:</strong></p>
         <pre><code>sudo apt-get install nikto</code></pre>
@@ -194,7 +194,7 @@ search exploit</code></pre>
 searchsploit apache</code></pre>
 
         <h3>Alternative Tools</h3>
-        <h4>**SQLMap**</h4>
+        <h4>SQLMap</h4>
         <p><a href="https://sqlmap.org/" target="_blank">SQLMap</a> is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection flaws and taking over database servers.</p>
         <p><strong>Installation:</strong></p>
         <pre><code>sudo apt-get install sqlmap</code></pre>
@@ -202,7 +202,7 @@ searchsploit apache</code></pre>
         <pre><code># Scan a website for SQL injection vulnerabilities
 sqlmap -u "http://example.com/vuln.php?id=1" --dbs</code></pre>
 
-        <h4>**John the Ripper**</h4>
+        <h4>John the Ripper</h4>
         <p><a href="https://www.openwall.com/john/" target="_blank">John the Ripper</a> is a fast password cracker used to identify weak passwords. It can perform brute-force and dictionary attacks to crack passwords.</p>
         <p><strong>Installation:</strong></p>
         <pre><code>sudo apt-get install john</code></pre>
@@ -232,7 +232,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</code></pre>
         <pre><code>./empire</code></pre>
 
         <h3>Alternative Tools</h3>
-        <h4>**Mimikatz**</h4>
+        <h4>Mimikatz</h4>
         <p><a href="https://github.com/gentilkiwi/mimikatz" target="_blank">Mimikatz</a> is an open-source tool that allows you to extract plaintexts passwords, hash, PIN codes, and Kerberos tickets from memory. It is often used for privilege escalation and lateral movement within a network.</p>
         <p><strong>Installation:</strong></p>
         <pre><code>git clone https://github.com/gentilkiwi/mimikatz.git</code></pre>
@@ -240,7 +240,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</code></pre>
         <pre><code># Extract passwords from memory
 mimikatz.exe "privilege::debug" "sekurlsa::logonpasswords" exit</code></pre>
 
-        <h4>**Netcat**</h4>
+        <h4>Netcat</h4>
         <p><a href="https://nc110.sourceforge.io/" target="_blank">Netcat</a> is a versatile networking tool used for reading from and writing to network connections using TCP or UDP. It can be used for creating backdoors, maintaining access, and transferring files.</p>
         <p><strong>Installation:</strong></p>
         <pre><code>sudo apt-get install netcat</code></pre>
