@@ -163,7 +163,7 @@ addArticle(
     <p>Initially, cybersecurity experts speculated that Hunters International might be a rebranded version of the Hive ransomware group, which the FBI infiltrated and dismantled after a six-month investigation that concluded in January 2023. However, Hunters International claimed that they merely acquired Hive’s malware and enhanced it. Hackmanac has documented 181 attacks attributed to Hunters International, targeting a diverse range of victims across both private and government sectors.</p>
     <p>Hunters International operates on a ransomware-as-a-service model, offering its malware for sale or rent. This malware infects a target’s system, encrypts files, and then demands payment to restore access. According to Scozzari, around 75 percent of the attacks linked to Hunters International involve ransomware. However, in this particular incident with the U.S. Marshals Service, the group did not mention encrypting the stolen files, which differs from their previous tactics.</p>
     <p>“It’s evident that for Hunters International, data equates to money, and their primary goal is maximizing profits rather than pursuing any political agenda,” Scozzari said. “In this sense, the more sensitive the stolen data, the higher the chances of securing a substantial ransom payment.”</p>
-    <p>August 23, 2024</p>
+    <p>August 26, 2024</p>
     <p><a href="https://apple.news/ApuE5zPhZSGenJrVr3ztMhw" target="_blank">Source</a></p>
     `
 );
