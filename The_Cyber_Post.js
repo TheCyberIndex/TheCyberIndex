@@ -150,7 +150,7 @@ addArticle(
     <p>This disclosure follows a report from Datadog Security Labs about an opportunistic attack campaign that exploits the Log4Shell vulnerability (CVE-2021-44228, CVSS score: 10.0) in Apache Log4j. In that campaign, attackers deploy an obfuscated bash script to gather system information, install an XMRig miner, and set up a reverse shell for remote access.</p>
     <p> August 23, 2024</p>
     <p><a href="https://thehackernews.com/2024/08/new-malware-pgmem-targets-postgresql.html" target="_blank">Source</a></p>`
-);
+)
 
 
 addArticle(
@@ -166,6 +166,6 @@ addArticle(
     <p>August 26, 2024</p>
     <p><a href="https://apple.news/ApuE5zPhZSGenJrVr3ztMhw" target="_blank">Source</a></p>
     `
-);
+)
 
 
