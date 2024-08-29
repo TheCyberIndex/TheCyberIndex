@@ -302,7 +302,7 @@ pre {
     }
 }
 
-/* Adjustments for the mobile navbar */
+/* Adjustments for the mobile navbar and logo */
 @media screen and (max-width: 768px) {
     .navbar ul {
         flex-direction: row; /* Ensure the navbar items are in a row */
@@ -328,7 +328,19 @@ pre {
         background-color: #333; /* Ensure the navbar color fits the design */
         border-bottom: 1px solid #444; /* Adjust border to fit the reduced size */
     }
+
+    /* Adjust logo size and position on mobile */
+    .logo-container {
+        padding-top: 10px; /* Add some space above the logo */
+    }
+
+    .logo {
+        max-width: 70%; /* Scale down the logo size for better fit */
+        margin: 0 auto; /* Center the logo */
+        transform: translateY(-50%); /* Adjust the logo's vertical position */
+    }
 }
+
 
 /* Navbar styles for hiding on scroll */
 .navbar {
