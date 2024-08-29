@@ -331,16 +331,16 @@ pre {
 
     /* Adjust logo size and position on mobile */
     .logo-container {
-        padding-top: 10px; /* Add some space above the logo */
+        padding-top: 0; /* Remove padding to bring logo in line with navbar */
     }
 
     .logo {
-        max-width: 70%; /* Scale down the logo size for better fit */
+        max-width: 50%; /* Reduce logo size further to fit within the navbar */
+        height: auto; /* Maintain aspect ratio */
         margin: 0 auto; /* Center the logo */
-        transform: translateY(-50%); /* Adjust the logo's vertical position */
+        display: block; /* Ensure the logo is centered */
     }
 }
-
 
 /* Navbar styles for hiding on scroll */
 .navbar {
