@@ -307,32 +307,15 @@ pre {
 }
     /* Adjustments for the mobile navbar and logo */
 @media screen and (max-width: 768px) {
-    .navbar {
-        position: fixed; /* Fix the navbar at the top */
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        padding: 10px 0; /* Increased padding to ensure visibility */
-        background-color: #333;
-        border-bottom: 2px solid #444;
-    }
-
-    .navbar ul {
-        flex-direction: row; /* Keep the navbar items in a row */
-        justify-content: center; /* Center the items */
-        margin: 0;
-        padding: 0;
-    }
-
+   @media (max-width: 768px) {
     .navbar ul li {
-        margin: 0 5px; /* Adjusted spacing between items */
-        padding: 0;
+        display: block;
+        text-align: left;
+        padding-left: 10px;
     }
 
     .navbar ul li a {
-        padding: 5px 8px; /* Reduced padding around text */
-        font-size: 14px; /* Adjusted font size */
+        padding: 10px;
     }
 
     .logo-container {
