@@ -1,10 +1,7 @@
-/* General Styles */
+* General Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
 }
-
 
 body {
     font-family: 'Arial', sans-serif;
@@ -61,7 +58,6 @@ body {
 /* Logo Container */
 .logo-container {
     margin: 20px 0;
-    margin-top: 20px;
 }
 
 .logo {
@@ -305,27 +301,32 @@ pre {
         max-width: 50%; /* Further scale down for smaller screens */
     }
 }
-    /* Adjustments for the mobile navbar and logo */
+
+/* Adjustments for the mobile navbar */
 @media screen and (max-width: 768px) {
-   @media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: row; /* Ensure the navbar items are in a row */
+        justify-content: center; /* Center the items horizontally */
+        padding: 0;
+        margin: 0;
+    }
+
     .navbar ul li {
-        display: block;
-        text-align: left;
-        padding-left: 10px;
+        margin: 0 5px; /* Slight space between items */
+        padding: 0;
     }
 
     .navbar ul li a {
-        padding: 10px;
+        padding: 5px 8px; /* Reduce padding around text */
+        font-size: 10px; /* Decrease font size if needed */
+        line-height: 1.2; /* Adjust line-height for tighter spacing */
     }
 
-    .logo-container {
-        padding-top: 60px; /* Create space for the logo to sit under the navbar */
-    }
-
-    .logo {
-        max-width: 80%; /* Ensure the logo scales properly on mobile */
-        margin: 0 auto;
-        display: block;
+    .navbar {
+        padding: 5px 0; /* Decrease padding to reduce overall height */
+        margin: 0;
+        background-color: #333; /* Ensure the navbar color fits the design */
+        border-bottom: 1px solid #444; /* Adjust border to fit the reduced size */
     }
 }
 
@@ -337,4 +338,4 @@ pre {
     left: 0;
     transition: top 0.3s ease-in-out; /* Smooth transition for hiding/showing the navbar */
     z-index: 1000; /* Ensures navbar stays on top of other content */
-}
+} 
