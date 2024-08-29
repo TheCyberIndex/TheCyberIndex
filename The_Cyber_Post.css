@@ -61,6 +61,7 @@ body {
 /* Logo Container */
 .logo-container {
     margin: 20px 0;
+    margin-top: 20px;
 }
 
 .logo {
