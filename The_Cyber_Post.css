@@ -1,7 +1,10 @@
 /* General Styles */
 * {
-    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
 
 body {
     font-family: 'Arial', sans-serif;
@@ -301,44 +304,44 @@ pre {
         max-width: 50%; /* Further scale down for smaller screens */
     }
 }
-
-/* Adjustments for the mobile navbar and logo */
+    /* Adjustments for the mobile navbar and logo */
 @media screen and (max-width: 768px) {
+    .navbar {
+        position: fixed; /* Fix the navbar at the top */
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 10px 0; /* Increased padding to ensure visibility */
+        background-color: #333;
+        border-bottom: 2px solid #444;
+    }
+
     .navbar ul {
-        flex-direction: row; /* Ensure the navbar items are in a row */
-        justify-content: center; /* Center the items horizontally */
-        padding: 0;
+        flex-direction: row; /* Keep the navbar items in a row */
+        justify-content: center; /* Center the items */
         margin: 0;
+        padding: 0;
     }
 
     .navbar ul li {
-        margin: 0 5px; /* Slight space between items */
+        margin: 0 5px; /* Adjusted spacing between items */
         padding: 0;
     }
 
     .navbar ul li a {
-        padding: 5px 8px; /* Reduce padding around text */
-        font-size: 10px; /* Decrease font size if needed */
-        line-height: 1.2; /* Adjust line-height for tighter spacing */
+        padding: 5px 8px; /* Reduced padding around text */
+        font-size: 14px; /* Adjusted font size */
     }
 
-    .navbar {
-        padding: 5px 0; /* Decrease padding to reduce overall height */
-        margin: 0;
-        background-color: #333; /* Ensure the navbar color fits the design */
-        border-bottom: 1px solid #444; /* Adjust border to fit the reduced size */
-    }
-
-    /* Adjust logo size and position on mobile */
     .logo-container {
-        padding-top: 0; /* Remove padding to bring logo in line with navbar */
+        padding-top: 60px; /* Create space for the logo to sit under the navbar */
     }
 
     .logo {
-        max-width: 50%; /* Reduce logo size further to fit within the navbar */
-        height: auto; /* Maintain aspect ratio */
-        margin: 0 auto; /* Center the logo */
-        display: block; /* Ensure the logo is centered */
+        max-width: 80%; /* Ensure the logo scales properly on mobile */
+        margin: 0 auto;
+        display: block;
     }
 }
 
