@@ -98,7 +98,7 @@ addArticle(
     `
 
 
-)
+);
 
 addArticle(
     'Cyberattack Halts Operations at Microchip Technology Manufacturing Plants',
@@ -114,7 +114,7 @@ addArticle(
     <p> August 22, 2024</p>
      <p><a href="https://www.securityweek.com/cyberattack-disrupts-microchip-technology-manufacturing-facilities/" target="_blank">Source</a></p>
     `
-)
+);
 
 addArticle(
     'Halliburton Reels from Cyberattack, Operations Thrown into Chaos',
@@ -135,7 +135,7 @@ addArticle(
      <p><a href="https://cybersecuritynews.com/halliburton-cyberattack/" target="_blank">Source</a></p>
     `
 
-)
+);
 
 addArticle(
     'PG_MEM Malware Surfaces, Hijacking PostgreSQL Databases for Crypto Mining Operations',
@@ -150,7 +150,7 @@ addArticle(
     <p>This disclosure follows a report from Datadog Security Labs about an opportunistic attack campaign that exploits the Log4Shell vulnerability (CVE-2021-44228, CVSS score: 10.0) in Apache Log4j. In that campaign, attackers deploy an obfuscated bash script to gather system information, install an XMRig miner, and set up a reverse shell for remote access.</p>
     <p> August 23, 2024</p>
     <p><a href="https://thehackernews.com/2024/08/new-malware-pgmem-targets-postgresql.html" target="_blank">Source</a></p>`
-)
+);
 
 
 addArticle(
@@ -166,6 +166,29 @@ addArticle(
     <p>August 26, 2024</p>
     <p><a href="https://apple.news/ApuE5zPhZSGenJrVr3ztMhw" target="_blank">Source</a></p>
     `
-)
+);
+
+addArticle(
+    'New Vulnerabilities in Microsoft macOS Apps Could Grant Hackers Unauthorized Access',
+    `
+    <p>Eight vulnerabilities have been discovered in Microsoft's macOS applications that could potentially be exploited by attackers to gain elevated privileges or access sensitive data by bypassing the operating system's permissions system, which relies on the Transparency, Consent, and Control (TCC) framework.</p>
+    <p>According to Cisco Talos, these vulnerabilities could allow an attacker to gain any privileges already granted to the compromised Microsoft applications. This means that an attacker could send emails from the user’s account without detection, record audio, take photos, or capture videos without any user interaction.</p>
+    <p>The vulnerabilities affect several Microsoft applications, including Outlook, Teams, Word, Excel, PowerPoint, and OneNote.</p>
+    <p>Cybersecurity experts have explained that malicious libraries could be injected into these applications, granting the attacker access to the app's entitlements and user-granted permissions. This access could be exploited to extract sensitive information, depending on the permissions assigned to each application.</p>
+    <p>Apple's TCC framework is designed to manage access to sensitive user data on macOS, providing users with greater transparency about how their data is accessed and used by installed applications. The framework maintains an encrypted database that tracks the permissions granted to each app, ensuring these preferences are consistently enforced across the system.</p>
+    <p>Huntress notes that TCC works alongside macOS and iOS's application sandboxing feature, which restricts an app's access to the system and other applications, adding an extra layer of security. Sandboxing also helps prevent code injection, a technique attackers use to insert malicious code into legitimate processes to gain access to protected data.</p>
+    <p>Francesco Benvenuto, a researcher at Talos, explained that "Library injection," also known as Dylib Hijacking on macOS, is a method where code is injected into a running application's process. macOS mitigates this threat with features like hardened runtime, which reduces the chances of an attacker executing arbitrary code within another app’s process.</p>
+    <p>However, if an attacker successfully injects a library into a running application, that library can use all the permissions previously granted to the app, effectively operating as the application itself.</p>
+    <p>It’s important to note that for such an attack to succeed, the threat actor must already have a certain level of access to the compromised system. This access could then be abused to open a more privileged app and inject a malicious library, effectively hijacking the app's permissions.</p>
+    <p>If an attacker compromises a trusted application, they could exploit its permissions to gain unauthorized access to sensitive information without the user’s consent or knowledge. This could happen when an application loads libraries from locations that the attacker can manipulate, especially if the app has disabled library validation—a security feature that restricts the loading of libraries to those signed by the app's developer or Apple.</p>
+    <p>Benvenuto emphasized that "macOS relies on applications to manage their permissions responsibly. A failure to do so can lead to a breakdown of the entire permission model, allowing applications to inadvertently act as conduits for unauthorized actions, bypassing TCC and compromising the system's security."</p>
+    <p>Microsoft has labeled the identified vulnerabilities as "low risk," noting that the affected apps require loading unsigned libraries to support plugins. However, the company has addressed the issue in its OneNote and Teams apps.</p>
+    <p>Benvenuto pointed out that the vulnerabilities leave the door open for attackers to exploit all of the apps' entitlements without triggering any user prompts, essentially allowing the app to serve as a permission broker for the attacker.</p>
+    <p>He also mentioned that securely managing such plugins within macOS's current framework is challenging. Notarization of third-party plugins is a possible solution, but it’s a complex process that would require Microsoft or Apple to sign third-party modules after verifying their security.</p>
+    <p>September 3, 2024</p>
+    <p><a href="https://thehackernews.com/2024/09/new-flaws-in-microsoft-macos-apps-could.html" target="_blank">Source</a></p>
+    `
+);
+
 
 
