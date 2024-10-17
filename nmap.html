@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enumeration</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+</head>
+<body>
+    <!-- Dropdown Menu HTML to be added to each page -->
+    <div class="dropdown-menu-container">
+        <button class="dropdown-toggle" onclick="toggleDropdownMenu()">Menu</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">Home</a>
+            <a href="linux_basics.html">Linux Basics</a>
+            <a href="OSINT.html">OSINT</a>
+            <a href="social_engineering.html">Social Engineering</a>
+            <a href="nmap.html">Enumeration</a>
+            <a href="exploitation.html">Exploitation</a>
+            <a href="Webapp_Testing.html">Web Application Testing</a>
+            <a href="privilege_escalation.html">Privilege Escalation</a>
+            <a href="persistence.html">Persistence</a>
+            <a href="PasswordCracking.html">Password Cracking</a>
+            <a href="WPA2_Cracking.html">WPA2 Cracking</a>
+            <a href="additional_training.html">Additional Training</a>
+
+        </div>
+    </div>
+
+    <header>
+        <h1>Enumeration</h1>
+    </header>
+
+    <section class="content">
+        <h2>Introduction to Nmap</h2>
+        <p>Nmap (Network Mapper) is a versatile open-source tool used for network discovery, security auditing, and enumeration, making it a key utility in both offensive and defensive cybersecurity tasks. Enumeration, which involves gathering detailed information from a target system, is crucial in penetration testing and network assessments, and Nmap plays a central role in this process by identifying live hosts, open ports, services, and operating systems. This data helps security professionals uncover potential vulnerabilities and misconfigurations that could be exploited. Nmap supports various scan types and advanced features, including OS detection and service versioning, while its scripting capabilities (NSE) allow for automated vulnerability assessments and configuration checks. By mastering Nmap, users can conduct comprehensive security audits, ensuring networks are better protected against threats.</p>
+
+    <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/4t4kBkMsDbQ?si=5b0Td-_uluBVtzIY" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div>
+        <p>Video Credit: <strong>NetworkChuck</strong> - Educational video on Nmap.</p>
+    </div>
+    
+
+        <h2>Installing Nmap</h2>
+        <p>To install Nmap on your system, use the following command:</p>
+        <div class="terminal">
+            <pre>sudo apt-get install nmap</pre>
+        </div>
+        <p>After installing, you can verify the version with:</p>
+        <div class="terminal">
+            <pre>nmap --version</pre>
+        </div>
+
+        <h2>Basic Scanning Commands</h2>
+        <p>The simplest use of Nmap is to perform a basic network scan. The following command scans a specific IP address or hostname to discover open ports and services:</p>
+        <div class="terminal">
+            <pre>nmap 192.168.1.1</pre>
+        </div>
+        <p>Example output:</p>
+        <div class="terminal">
+            <pre>
+Starting Nmap 7.91 ( https://nmap.org ) at 2024-10-12 18:00
+Nmap scan report for 192.168.1.1
+Host is up (0.00021s latency).
+Not shown: 997 filtered ports
+PORT    STATE  SERVICE
+22/tcp  open   ssh
+80/tcp  open   http
+443/tcp open   https
+
+Nmap done: 1 IP address (1 host up) scanned in 1.45 seconds</pre>
+        </div>
+
+        <h2>Scanning an Entire Network</h2>
+        <p>To scan an entire network range, use the CIDR notation to specify a subnet:</p>
+        <div class="terminal">
+            <pre>nmap 192.168.1.0/24</pre>
+        </div>
+        <p>This command will scan all hosts within the specified subnet (256 IP addresses).</p>
+
+        <h2>Stealth Scan (-sS)</h2>
+        <p>A stealth scan, also known as a SYN scan, is used to determine which ports are open without fully establishing a TCP connection. This scan is commonly used to bypass firewall rules and avoid detection:</p>
+        <div class="terminal">
+            <pre>nmap -sS 192.168.1.0/24</pre>
+        </div>
+        <p>Example output:</p>
+        <div class="terminal">
+            <pre>
+Starting Nmap 7.91 ( https://nmap.org ) at 2024-10-12 18:30
+Nmap scan report for 192.168.1.10
+Host is up (0.00015s latency).
+PORT    STATE SERVICE
+22/tcp  open  ssh
+80/tcp  open  http
+
+Nmap done: 256 IP addresses (10 hosts up) scanned in 5.03 seconds</pre>
+        </div>
+
+        <h2>Operating System Detection (-O)</h2>
+        <p>Nmap can also be used to detect the operating system of a target host. This feature works by analyzing the response from specific network packets:</p>
+        <div class="terminal">
+            <pre>nmap -O 192.168.1.10</pre>
+        </div>
+        <p>Example output:</p>
+        <div class="terminal">
+            <pre>
+Nmap scan report for 192.168.1.10
+Host is up (0.00011s latency).
+Device type: general purpose
+Running: Linux 4.X
+OS CPE: cpe:/o:linux:linux_kernel:4
+OS details: Linux 4.8 - 4.15
+Network Distance: 1 hop</pre>
+        </div>
+
+        <h2>Service Version Detection (-sV)</h2>
+        <p>To identify the version of the services running on open ports, use the service version detection command. This is useful for determining vulnerabilities in services running outdated versions:</p>
+        <div class="terminal">
+            <pre>nmap -sV 192.168.1.10</pre>
+        </div>
+        <p>Example output:</p>
+        <div class="terminal">
+            <pre>
+PORT    STATE SERVICE VERSION
+22/tcp  open  ssh     OpenSSH 7.6p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
+80/tcp  open  http    Apache httpd 2.4.29 ((Ubuntu))
+443/tcp open  ssl/http Apache httpd 2.4.29</pre>
+        </div>
+
+        <h2>Aggressive Scan (-A)</h2>
+        <p>An aggressive scan combines several Nmap features, including operating system detection, version detection, script scanning, and traceroute. This type of scan provides comprehensive details about the target, making it useful for in-depth security analysis:</p>
+        <div class="terminal">
+            <pre>nmap -A 192.168.1.10</pre>
+        </div>
+
+        <h2>Scan Specific Ports (-p)</h2>
+        <p>To scan specific ports, use the <code>-p</code> option followed by the port numbers:</p>
+        <div class="terminal">
+            <pre>nmap -p 22,80,443 192.168.1.10</pre>
+        </div>
+        <p>To scan a range of ports, use:</p>
+        <div class="terminal">
+            <pre>nmap -p 1-1000 192.168.1.10</pre>
+        </div>
+        <p>Scanning specific ports allows you to focus on the most common or potentially vulnerable services.</p>
+
+        <h2>Scan for UDP Ports (-sU)</h2>
+        <p>To scan for UDP ports, use the following command. UDP scanning is generally slower than TCP due to its connectionless nature:</p>
+        <div class="terminal">
+            <pre>nmap -sU 192.168.1.10</pre>
+        </div>
+        <p>Example output:</p>
+        <div class="terminal">
+            <pre>
+PORT    STATE         SERVICE
+53/udp  open          domain
+161/udp open|filtered snmp</pre>
+        </div>
+
+        <h2>Saving Scan Results to a File</h2>
+        <p>Nmap allows you to save your scan results in various formats for further analysis or documentation:</p>
+        <div class="terminal">
+            <pre>nmap -oN output.txt 192.168.1.0/24  # Normal output
+nmap -oX output.xml 192.168.1.0/24  # XML format
+nmap -oG output.gnmap 192.168.1.0/24  # Grepable output</pre>
+        </div>
+        <p>Saving results in different formats can be useful for automation or for integrating with other tools.</p>
+
+        <h2>Nmap Scripting Engine (NSE)</h2>
+        <p>Nmap comes with a powerful scripting engine (NSE) that allows you to perform advanced scans. Scripts can be used for tasks like detecting vulnerabilities, brute force login attempts, or enumerating additional information:</p>
+        <div class="terminal">
+            <pre>nmap --script=http-enum 192.168.1.10</pre>
+        </div>
+        <p>You can also run multiple scripts or use categories of scripts:</p>
+        <div class="terminal">
+            <pre>nmap --script "default,safe,vuln" 192.168.1.10</pre>
+        </div>
+        <p>To list available scripts, run:</p>
+        <div class="terminal">
+            <pre>ls /usr/share/nmap/scripts/</pre>
+        </div>
+        <p>The Nmap scripting engine greatly extends the capability of Nmap, allowing you to customize and automate scanning tasks.</p>
+
+        <h2>Combining Multiple Options</h2>
+        <p>Nmap allows you to combine multiple options to achieve a more customized and efficient scan. For example, to perform a SYN scan while specifying the output format and adjusting the timing template, you can use:</p>
+        <div class="terminal">
+            <pre>nmap -sS -O -T4 -oN output.txt 192.168.1.1</pre>
+        </div>
+        <p>Explanation:</p>
+        <ul>
+            <li><code>-sS</code>: Performs a stealth SYN scan.</li>
+            <li><code>-O</code>: Enables OS detection.</li>
+            <li><code>-T4</code>: Sets the timing template to "Aggressive," balancing speed and accuracy.</li>
+            <li><code>-oN output.txt</code>: Saves the output in a normal text file format.</li>
+        </ul>
+        <p>Combining options like this allows for more effective scanning, especially in situations where detailed information is required quickly.</p>
+
+        <h2>Timing and Performance Options</h2>
+        <p>Nmap provides several timing templates, ranging from <code>-T0</code> (Paranoid) to <code>-T5</code> (Insane), which control how aggressively Nmap performs scans:</p>
+        <ul>
+            <li><code>-T0</code>: Paranoid - Very slow, ideal for avoiding detection by IDS/IPS.</li>
+            <li><code>-T1</code>: Sneaky - Slightly faster than <code>-T0</code>, also aims to avoid detection.</li>
+            <li><code>-T3</code>: Normal - The default timing, balanced between speed and stealth.</li>
+            <li><code>-T4</code>: Aggressive - Faster, generally used when stealth is not a priority.</li>
+            <li><code>-T5</code>: Insane - The fastest, very noisy, and may be blocked by firewalls.</li>
+        </ul>
+        <p>Adjusting the timing is crucial for optimizing your scans based on the target environment and the need for stealth. For example, <code>-T4</code> is suitable for most environments where speed is more important than stealth, whereas <code>-T0</code> is used when evading detection is critical.</p>
+
+        <h2>Host Discovery</h2>
+        <p>Nmap can be used for host discovery to identify which devices are up in a network. The default scan uses ICMP echo requests (ping) and other methods:</p>
+        <div class="terminal">
+            <pre>nmap -sn 192.168.1.0/24</pre>
+        </div>
+        <p>This command will perform a ping scan to identify which hosts are up, without scanning their ports.</p>
+
+        <h2>Detecting Firewalls and IDS</h2>
+        <p>Nmap can be used to detect whether a host is behind a firewall or Intrusion Detection System (IDS). One way to do this is to analyze the response times and packet filtering behavior:</p>
+        <div class="terminal">
+            <pre>nmap -sA 192.168.1.10</pre>
+        </div>
+        <p>The <code>-sA</code> (ACK scan) is used to determine whether ports are filtered. If no response or an unfiltered response is received, it may indicate the presence of a firewall.</p>
+
+        <h2>Spoofing and Decoys</h2>
+        <p>To evade detection, Nmap supports IP address spoofing and the use of decoys. Decoys help mask the real IP address of the scanning host by making it appear as if multiple sources are scanning simultaneously. This can be very effective in confusing IDS (Intrusion Detection Systems) and making it harder for defenders to determine the true origin of the scan.</p>
+        <div class="terminal">
+            <pre>nmap -sS -O -sV -T4 -D RND:10,192.168.1.5,192.168.1.6,192.168.1.7 192.168.1.10</pre>
+        </div>
+        <p>The above command uses multiple options for an in-depth scan:</p>
+        <ul>
+            <li><code>-sS</code>: Performs a stealth SYN scan to identify open ports without fully establishing a connection.</li>
+            <li><code>-O</code>: Enables OS detection to gather information about the operating system of the target.</li>
+            <li><code>-sV</code>: Performs service version detection to determine the version of services running on the open ports.</li>
+            <li><code>-T4</code>: Sets the timing template to "Aggressive" to balance speed and accuracy.</li>
+            <li><code>-D RND:10,192.168.1.5,192.168.1.6,192.168.1.7</code>: Uses 10 random decoy IP addresses along with specific decoys (192.168.1.5, 192.168.1.6, and 192.168.1.7) to mask the true origin of the scan.</li>
+        </ul>
+        <p>This combination of options provides a comprehensive scan while making it difficult for intrusion detection systems to accurately identify the true source of the scan. Using decoys helps in confusing defenders and making detection more challenging.</p>
+        <p>For example, using <code>-D RND:10</code> generates 10 random IP addresses as decoys. You can also specify individual IP addresses for more control over the decoys being used, as shown above. This method is useful when testing networks with high-security monitoring and logging systems.</p>
+        <p>It is important to note that using decoys or spoofing can have legal and ethical implications. Ensure you have explicit permission before performing scans of this nature on any network.</p>
+    </section>
+
+
+    <footer>
+        <p>Disclaimer: This tutorial is intended for educational purposes only. Unauthorized access to systems or networks is illegal. Always obtain permission before using any network scanning tools.</p>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>

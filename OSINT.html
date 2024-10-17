@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT Framework</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <!-- Dropdown Menu HTML to be added to each page -->
+    <div class="dropdown-menu-container">
+        <button class="dropdown-toggle" onclick="toggleDropdownMenu()">Menu</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">Home</a>
+            <a href="linux_basics.html">Linux Basics</a>
+            <a href="OSINT.html">OSINT</a>
+            <a href="social_engineering.html">Social Engineering</a>
+            <a href="nmap.html">Enumeration</a>
+            <a href="exploitation.html">Exploitation</a>
+            <a href="Webapp_Testing.html">Web Application Testing</a>
+            <a href="privilege_escalation.html">Privilege Escalation</a>
+            <a href="persistence.html">Persistence</a>
+            <a href="PasswordCracking.html">Password Cracking</a>
+            <a href="WPA2_Cracking.html">WPA2 Cracking</a>
+            <a href="additional_training.html">Additional Training</a>
+
+        </div>
+    </div>
+
+    <header>
+        <h1>Open Source Intelligence (OSINT)</h1>
+    </header>
+
+    <div class="content">
+        <h2>Introduction to OSINT</h2>
+        <p>Open Source Intelligence (OSINT) involves collecting publicly available information from a wide range of sources to support cybersecurity investigations, ethical hacking, and research. This process is crucial in the reconnaissance phase of penetration testing, where understanding a target's digital footprint is key to identifying potential vulnerabilities. OSINT allows security professionals to gather valuable data, such as personal details, domain registration information, exposed assets, network configurations, and even leaked credentials, which can be used to build a profile of the target. By leveraging search engines, social media, domain lookup services, and publicly accessible databases, OSINT provides insight into potential weaknesses that may not be visible through direct scanning or active probing. This passive reconnaissance is highly effective in reducing unknowns about a target's infrastructure, network topology, or organizational structure, enabling better planning and precision in penetration tests or cybersecurity defenses. Effective OSINT helps identify security gaps, such as unpatched systems, exposed APIs, and improperly configured services, which can be mitigated before adversaries exploit them.</p>
+       
+        <a href="https://osintframework.com/" target="_blank">OSINT Framework</a>
+       
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/-15dpxv1AYE?si=TiBGmy-PknJxJ-US&amp;start=31" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>
+            <p>Video Credit: <strong>Gary Ruddell</strong> - OSINT Framework</p>
+        </div>
+ 
+        <h2>Google Dorks</h2>
+        <p>Google Dorks utilize advanced search operators to uncover information not easily accessible through standard search queries. By combining specific search commands, you can reveal hidden directories, unsecured files, and exposed admin panels.</p>
+        <ul>
+            <li><a href="https://www.exploit-db.com/google-hacking-database" target="_blank">Google Hacking Database</a></li>
+            <li><strong>Common Operators:</strong>
+                <ul>
+                    <li><code>site:example.com</code> - Restricts search to a particular domain.</li>
+                    <li><code>filetype:pdf</code> - Searches for specific file types like PDFs.</li>
+                    <li><code>intitle:"Index of /"</code> - Finds directory listings for websites.</li>
+                </ul>
+            </li>
+            <li><strong>Examples of Google Dorks:</strong>
+                <ul>
+                    <li><code>site:example.com filetype:pdf</code> - Finds PDF files on the domain example.com.</li>
+                    <li><code>site:example.com inurl:admin</code> - Searches for admin pages on the domain.</li>
+                    <li><code>intitle:"Index of /" "parent directory"</code> - Finds publicly accessible directories.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Reverse Image Search</h2>
+        <p>Reverse Image Search allows you to find the origin of an image, discover similar images, or gather details about where the image appears online. It is an invaluable tool in OSINT for tracking down image sources, verifying authenticity, identifying individuals or objects, and analyzing the online spread of images. Below are several tools that can assist you in performing detailed reverse image searches:</p>
+        <ul>
+            <li><a href="https://images.google.com/" target="_blank">Google Images</a> - Google Images offers an effective reverse image search feature. You can either upload an image or paste an image URL to find similar images or details about the image. Google Images is commonly used to trace the source of images or discover similar content across the web. Google's extensive index of websites makes it one of the most comprehensive tools for reverse image search.</li>
+            <li><a href="https://tineye.com/" target="_blank">TinEye</a> - TinEye is a specialized reverse image search engine that allows you to find out where an image has been used online, its origin, and whether there are modified versions of it. TinEye also offers features like 'MatchEngine,' which is a commercial service for businesses to track image use. TinEye's focus on tracking and analyzing image usage makes it especially useful for intellectual property protection and brand monitoring.</li>
+            <li><a href="https://yandex.com/images/" target="_blank">Yandex Images</a> - Yandex is known for its highly advanced image recognition capabilities, making it a powerful tool for reverse image searches. It often provides results that Google may miss, particularly for images originating from Eastern Europe and Russia. Yandex can help identify objects, people, and locations that are less prevalent in Western databases, making it a useful tool for thorough OSINT investigations.</li>
+            <li><a href="https://www.bing.com/visualsearch" target="_blank">Bing Visual Search</a> - Bing Visual Search allows you to upload an image and find visually similar content across the web. It can also identify objects within an image, such as products, landmarks, or text. Bing Visual Search provides results that are sometimes distinct from Google, which makes it a good complementary tool in a reverse image search process. It also integrates with Microsoft's broader ecosystem, which can enhance search capabilities for related information.</li>
+        </ul>
+        <p>Reverse image search tools are particularly useful for verifying the authenticity of photos, identifying misinformation, and conducting digital forensics. They are a crucial part of an investigator's toolkit in tracing the digital trail of images and uncovering hidden insights.</p>
+
+    <h2>Extract Metadata from Files</h2>
+    <p>Metadata often contains hidden information about files, such as location, author, or timestamp, that can be useful for investigations. Tools like ExifTool can extract metadata from various file types.</p>
+    <p><strong>Install ExifTool:</strong> To install ExifTool on your system, use the following command:</p>
+    <div class="terminal">
+        <pre>sudo apt-get install exiftool</pre>
+    </div>
+    <p><strong>Extract Metadata from an Image:</strong> To extract metadata from an image, use the command:</p>
+    <div class="terminal">
+        <pre>exiftool &lt;image_name&gt;.jpg</pre>
+    </div>
+    <p><em>Note:</em> Extracted metadata can reveal sensitive information such as GPS coordinates or device details used to create an image.</p>
+
+    <h2>theHarvester</h2>
+    <p>theHarvester is a powerful tool used for gathering email addresses, employee names, subdomains, and other publicly available information from various search engines and platforms. It is often used in the early stages of penetration testing to build a list of targets.</p>
+    <p><strong>Install theHarvester:</strong></p>
+    <div class="terminal">
+        <pre>sudo apt-get install theharvester</pre>
+    </div>
+    <p><strong>Run theHarvester:</strong></p>
+    <div class="terminal">
+        <pre>theharvester -d example.com -l 500 -b google,bing,linkedin</pre>
+    </div>
+    <p><em>Note:</em> theHarvester can also utilize APIs for more advanced queries if configured with relevant keys.</p>
+
+
+    <h2>Shodan</h2>
+    <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/dETzrQiljPU?si=u_3ZtlGHiPGJkzqq&amp;start=50" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div>
+        <p>Video Credit: <strong>Gary Ruddell</strong> - Shodan</p>
+    </div>
+    <p><strong>Shodan</strong> is known as the "search engine for the Internet of Things." It allows you to search for internet-connected devices, such as routers, webcams, and industrial control systems. Unlike traditional search engines that index websites, Shodan indexes devices and the services they run. This makes it a powerful tool for security researchers, penetration testers, and IT administrators who need to assess the exposure of devices within their network.</p>
+
+<h3>Getting Started with Shodan</h3>
+<p>To use Shodan, you need to create an account on the Shodan website (<a href="https://www.shodan.io/" target="_blank">Shodan.io</a>). A basic free account will provide you with limited query access, while a paid subscription unlocks more advanced features and higher query limits.</p>
+
+<h3>Understanding Shodan's Search Queries</h3>
+<p>Shodan allows you to perform highly specific searches to find exposed devices. Here are some common query parameters:</p>
+
+<ul>
+    <li><code>ip:192.0.2.1</code> - Search for a specific IP address to see what services are running on it.</li>
+    <li><code>hostname:"example.com"</code> - Search for all devices linked to a specific hostname or domain.</li>
+    <li><code>port:22</code> - Find devices that have a specific port open, such as SSH (port 22).</li>
+    <li><code>country:US</code> - Limit search results to devices located in a specific country (e.g., United States).</li>
+    <li><code>os:"Windows 10"</code> - Find devices running a specific operating system.</li>
+    <li><code>before:2023-01-01</code> - Search for devices that were last indexed before a certain date.</li>
+</ul>
+
+<h3>Searching for Exposed Devices</h3>
+<p>Shodan can be used to locate exposed devices on the internet. Here are a few examples of practical searches:</p>
+
+<ul>
+    <li><code>webcamxp</code> - Search for webcams using the WebcamXP software.</li>
+    <li><code>title:"VNC Viewer" port:5900</code> - Find devices with VNC access enabled.</li>
+    <li><code>default password</code> - Search for devices that are still using default credentials, which are often a security risk.</li>
+</ul>
+
+<h3>Using Shodan Filters</h3>
+<p>Shodan provides a wide range of filters to help you narrow down your search results:</p>
+
+<ul>
+    <li><strong>Geo-Location:</strong> Use <code>city:</code>, <code>country:</code>, and <code>geo:</code> filters to find devices in specific regions. For example, <code>city:London</code> will show devices in London.</li>
+    <li><strong>Service Filters:</strong> Use <code>port:</code> or <code>product:</code> to filter based on the service. For instance, <code>product:"Apache httpd"</code> will display devices running the Apache HTTP server.</li>
+    <li><strong>Vulnerabilities:</strong> Shodan can identify devices with known vulnerabilities using the <code>vuln:</code> filter. For example, <code>vuln:CVE-2021-44228</code> will show devices vulnerable to the Log4Shell vulnerability.</li>
+</ul>
+
+<h3>Exporting Search Results</h3>
+<p>Shodan allows you to export search results for further analysis. Paid users can download results as CSV or JSON files, which can be useful for large-scale investigations or integrations into other tools.</p>
+
+<h3>Shodan API</h3>
+<p>Shodan provides an API that allows developers to integrate its functionality into custom applications. You can use the API to automate tasks like device discovery and vulnerability assessment. To get started with the API, you will need an API key, which you can find on your Shodan account page.</p>
+
+<h3>Practical Use Cases for Shodan</h3>
+<ul>
+    <li><strong>Network Security Assessment:</strong> IT administrators can use Shodan to discover vulnerable devices within their organization's network and ensure proper security configurations are in place.</li>
+    <li><strong>Penetration Testing:</strong> Security professionals use Shodan to gather information about targets, including exposed services and devices, to help during penetration testing engagements.</li>
+    <li><strong>Research:</strong> Researchers use Shodan to understand the scope of internet-connected devices, the types of services running, and potential security risks in different industries.</li>
+</ul>
+
+<h3>Shodan Command-Line Interface (CLI)</h3>
+<p>Shodan also offers a command-line interface that can be installed using Python's package manager:</p>
+<div class="terminal">
+    <pre>pip install shodan</pre>
+</div>
+<p>Once installed, you need to initialize it with your API key:</p>
+<div class="terminal">
+    <pre>shodan init YOUR_API_KEY</pre>
+</div>
+<p>Here are some common CLI commands:</p>
+<ul>
+    <li><code>shodan search "apache"</code> - Search for devices running Apache HTTP server.</li>
+    <li><code>shodan host [IP]</code> - Get detailed information about a specific IP address.</li>
+    <li><code>shodan stats "default password"</code> - Get statistics about devices using default passwords.</li>
+</ul>
+
+<h3>Shodan Alerts</h3>
+<p>Shodan Alerts is a feature that allows you to monitor specific IP ranges for changes or vulnerabilities. This is useful for companies that want to stay aware of any new devices or potential security risks in their network.</p>
+
+<p>To create an alert, go to your Shodan account and navigate to the "Create Alert" section. You can specify IP ranges or CIDR blocks that you want Shodan to monitor.</p>
+    </ul>
+
+    <p>Shodan can identify devices with open ports, vulnerable services, and even exposed databases. This information is crucial for understanding potential attack surfaces.</p>
+
+    <h2>Maltego</h2>
+    <p>Maltego is a data mining tool that helps build relationships between various types of data such as domains, IP addresses, email addresses, and social media profiles. It is extremely valuable for visualizing complex relationships.</p>
+    <p><strong>Download and Install Maltego:</strong></p>
+    <p>Visit: <a href="https://www.maltego.com/download/" target="_blank">Maltego Download</a></p>
+    <p><strong>Creating a New Graph:</strong></p>
+    <ul>
+        <li>Add entities such as domains, IP addresses, or email addresses.</li>
+        <li>Run transforms by right-clicking an entity to uncover connections, such as DNS details or associated individuals.</li>
+    </ul>
+    <p>Maltego is particularly useful for mapping out a company’s digital footprint and identifying relationships that could lead to vulnerabilities.</p>
+
+    <h2>Recon-ng</h2>
+    <p>Recon-ng is a reconnaissance framework that automates the process of gathering information. It is modular and can be extended to perform different types of OSINT tasks, such as domain, subdomain, and employee discovery.</p>
+    <p><strong>Install Recon-ng:</strong></p>
+    <div class="terminal">
+        <pre>sudo apt-get install recon-ng</pre>
+    </div>
+    <p><strong>Start Recon-ng:</strong></p>
+    <div class="terminal">
+        <pre>recon-ng</pre>
+    </div>
+    <p><strong>Setting Up a Workspace:</strong></p>
+    <div class="terminal">
+        <pre>workspaces create example</pre>
+    </div>
+    <p><strong>Loading Modules and Running Commands:</strong></p>
+    <div class="terminal">
+        <pre>modules load recon/domains-hosts/google_site_web
+set SOURCE example.com
+run</pre>
+    </div>
+
+    <h2>FOCA</h2>
+    <p>FOCA (Fingerprinting Organizations with Collected Archives) is a tool that scans for metadata in documents obtained from public sources, helping to identify potential vulnerabilities in document properties.</p>
+    <p><strong>Download FOCA:</strong> FOCA is a Windows-based tool, available for download from its official website.</p>
+    <p><strong>Use Cases for FOCA:</strong></p>
+    <ul>
+        <li>Scan document properties like author names, creation dates, and software used.</li>
+        <li>Identify potentially sensitive information in company documents.</li>
+    </ul>
+
+    <h2>Sublist3r</h2>
+    <p>Sublist3r is a tool designed to enumerate subdomains of websites using OSINT. It is a valuable tool for understanding the infrastructure of a target.</p>
+    <p><strong>Install Sublist3r:</strong></p>
+    <div class="terminal">
+        <pre>git clone https://github.com/aboul3la/Sublist3r.git
+cd Sublist3r
+sudo python setup.py install</pre>
+    </div>
+    <p><strong>Run Sublist3r:</strong></p>
+    <div class="terminal">
+        <pre>sublist3r -d example.com</pre>
+    </div>
+
+    <h2>Social Media and Public Registries</h2>
+    <p>Social media platforms and public registries are important resources for OSINT. Platforms like LinkedIn, Facebook, and Twitter can reveal employee details, job descriptions, and other sensitive information.</p>
+    <ul>
+        <li><strong>LinkedIn:</strong> Use advanced search to find employee profiles of the target organization. Extract employee names, positions, and associated projects.</li>
+        <li><strong>WHOIS:</strong> Use WHOIS to gather information about domains, such as registration dates and domain ownership.</li>
+    </ul>
+    <div class="terminal">
+        <pre>whois example.com</pre>
+    </div>
+
+    <h2>DNS Enumeration</h2>
+    <p>DNS enumeration involves gathering information about a domain’s DNS infrastructure, which can reveal subdomains, IP addresses, and potential points of vulnerability.</p>
+    <p><strong>Install dnsenum:</strong></p>
+    <div class="terminal">
+        <pre>sudo apt-get install dnsenum</pre>
+    </div>
+    <p><strong>Run dnsenum:</strong></p>
+    <div class="terminal">
+        <pre>dnsenum example.com</pre>
+    </div>
+    <p><em>Note:</em> DNS enumeration is useful for uncovering the digital landscape of a target organization and potential misconfigurations.</p>
+
+    <h2>SSL Certificates</h2>
+    <p>SSL certificates are crucial for secure communication between clients and servers. Understanding how to inspect SSL certificates can provide insight into an organization’s security posture.</p>
+    <p><strong>View SSL Certificates in Web Browser:</strong> Click on the lock icon next to the URL to inspect certificate details, such as the issuer and expiration date.</p>
+    <p><strong>Retrieve SSL Certificate Information via CLI:</strong></p>
+    <div class="terminal">
+        <pre>openssl s_client -connect example.com:443 | openssl x509 -noout -text</pre>
+    </div>
+    <p>Inspecting SSL certificates helps determine the encryption used and ensures that the target has up-to-date and secure certificates.</p>
+
+    <h2>Social-Engineer Toolkit (SET)</h2>
+    <p>The Social-Engineer Toolkit (SET) is an open-source tool that automates the process of social engineering attacks. It can be used for phishing, credential harvesting, and other types of social engineering campaigns.</p>
+    <p><strong>Install SET:</strong></p>
+    <div class="terminal">
+        <pre>git clone https://github.com/trustedsec/social-engineer-toolkit.git
+cd social-engineer-toolkit
+sudo python setup.py install</pre>
+    </div>
+    <p><strong>Use Cases:</strong> SET can be utilized to create custom phishing emails, clone websites for credential harvesting, and generate payloads that can exploit vulnerabilities on the target's machine.</p>
+    </div>
+
+    <footer>
+        <p>Empowering Cybersecurity Knowledge</p>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="main.js"></script>
+</body>
+</html>

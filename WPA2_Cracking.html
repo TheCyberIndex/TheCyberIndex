@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WPA2 WI-FI Cracking</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <!-- Dropdown Menu HTML to be added to each page -->
+    <div class="dropdown-menu-container">
+        <button class="dropdown-toggle" onclick="toggleDropdownMenu()">Menu</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">Home</a>
+            <a href="linux_basics.html">Linux Basics</a>
+            <a href="OSINT.html">OSINT</a>
+            <a href="social_engineering.html">Social Engineering</a>
+            <a href="nmap.html">Enumeration</a>
+            <a href="exploitation.html">Exploitation</a>
+            <a href="Webapp_Testing.html">Web Application Testing</a>
+            <a href="privilege_escalation.html">Privilege Escalation</a>
+            <a href="persistence.html">Persistence</a>
+            <a href="PasswordCracking.html">Password Cracking</a>
+            <a href="WPA2_Cracking.html">WPA2 Cracking</a>
+            <a href="additional_training.html">Additional Training</a>
+
+        </div>
+    </div>
+
+    <header>
+        <h1>WPA2 Wi-Fi Cracking</h1>
+    </header>
+
+    <section class="content">
+        <h2>WPA2 Wi-Fi Password Cracking</h2>
+        <p>WPA2 Wi-Fi password cracking is the process of exploiting vulnerabilities in wireless networks to gain unauthorized access by targeting weak security configurations or poorly chosen passwords. This guide will cover the various techniques and tools used in Wi-Fi security assessments, focusing on capturing WPA2 handshakes, which are crucial for decrypting network passwords. Tools like <strong>Aircrack-ng</strong> and <strong>Hashcat</strong> are often used to capture and crack these handshakes, allowing penetration testers to test the strength of WPA2 encryption.</p>
+    
+    <p>We will also explore common attack vectors, such as dictionary attacks, brute-force methods, and the use of deauthentication attacks to force reconnections and capture handshakes more efficiently. Understanding these techniques is essential for evaluating and strengthening the security of wireless networks, ensuring that they are properly protected against unauthorized access and attacks.</p>
+
+    <p>However, with the introduction of WPA3, many of these attacks become less effective due to stronger encryption and a feature called Simultaneous Authentication of Equals (SAE), which replaces the traditional pre-shared key (PSK) method. WPA3 also introduces protections against offline dictionary attacks, making it significantly harder to crack passwords using traditional methods. As a result, penetration testers must adopt different techniques when assessing networks secured by WPA3, as the common methods used for WPA2 cracking may not work on these newer networks.</p>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/X49lIPHcurE?si=l0IRe8_q1-B3zoUf" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>
+            <p>Video Credit: <strong>David Bombal</strong> - Educational video on WPA2 and Wi-Fi Security.</p>
+        </div>
+   
+        <h2>Identifying Your Wireless Adapter</h2>
+        <p>First, we need to identify our wireless adapter to ensure it is compatible with monitor mode, which is essential for packet capture. Use the command below to see available network interfaces:</p>
+        <div class="terminal">
+            <pre>iwconfig
+lo        no wireless extensions.
+eth0      no wireless extensions.
+
+wlan0     IEEE 802.11  Mode:Managed  Frequency:2.457 GHz  Tx-Power=20 dBm   
+           Retry short limit:7   RTS thr:off   Fragment thr:off
+           Power Management:on</pre>
+        </div>
+        <p>The output above shows that <strong>wlan0</strong> is in Managed mode, which means it is connected to an access point. To conduct WiFi cracking, we need to switch it to monitor mode.</p>
+
+        <h2>Enabling Monitor Mode</h2>
+        <p>Before enabling monitor mode, it is important to kill any processes that could interfere with the operation of the wireless interface:</p>
+        <div class="terminal">
+            <pre>sudo airmon-ng check kill</pre>
+        </div>
+        <p>Now, enable monitor mode on <strong>wlan0</strong> using:</p>
+        <div class="terminal">
+            <pre>sudo airmon-ng start wlan0</pre>
+        </div>
+        <p>Verify that the mode has changed to Monitor by running the following command again:</p>
+        <div class="terminal">
+            <pre>iwconfig
+wlan0mon  IEEE 802.11  Mode:Monitor  Frequency:2.457 GHz  Tx-Power=20 dBm   
+           Retry short limit:7   RTS thr:off   Fragment thr:off
+           Power Management:on</pre>
+        </div>
+        <p>The interface name might have changed to <strong>wlan0mon</strong>, indicating that it is now in Monitor mode and ready for packet capture.</p>
+
+        <h2>Scanning for Available Networks</h2>
+        <p>Next, we will scan for available wireless networks. Use <code>airodump-ng</code> to gather information about nearby networks:</p>
+        <div class="terminal">
+            <pre>sudo airodump-ng wlan0mon
+
+CH 13 ][ Elapsed: 0 s ][ 2024-10-12 20:44                                                                                  
+                                                                                                                          
+ BSSID              PWR  Beacons    #Data, #/s  CH   MB   ENC CIPHER  AUTH ESSID 
+ 00:00:00:00:00:00  -41  1          11    0     7  1300  WPA2 CCMP    PSK  ExampleWiFi</pre>
+        </div>
+        <p>Identify the target network by noting its <strong>BSSID (MAC Address)</strong> and the <strong>Channel (CH)</strong> it is using. This information is crucial for the next steps.</p>
+
+        <h2>Capturing Handshake Data</h2>
+        <p>We will now capture packets to obtain the WPA2 handshake, which occurs when a device connects to the target network. Use the following command, replacing the placeholders with your captured details:</p>
+        <div class="terminal">
+            <pre>sudo airodump-ng -w capturefile -c 7 --bssid 00:00:00:00:00:00 wlan0mon</pre>
+        </div>
+        <p>The above command will write captured packets to a file named <code>capturefile</code>. Once a client connects, a WPA handshake should be captured.</p>
+
+        <h2>Forcing a Client to Reconnect</h2>
+        <p>In some cases, you may need to force a device to disconnect so that it will reconnect, thereby allowing you to capture the handshake. This can be done by sending deauthentication packets:</p>
+        <div class="terminal">
+            <pre>sudo aireplay-ng --deauth 0 -a 00:00:00:00:00:00 wlan0mon</pre>
+        </div>
+        <p>Wait for the handshake to be captured, which will appear in the terminal as <code>[WPA Handshake: 00:00:00:00:00:00]</code>.</p>
+
+        <h2>Cracking the Password</h2>
+        <p>After capturing the handshake, the next step is to attempt to crack the WPA2 passphrase using a dictionary attack. Use <code>aircrack-ng</code> along with a wordlist like <code>rockyou.txt</code>:</p>
+        <div class="terminal">
+            <pre>aircrack-ng capturefile-01.cap -w /usr/share/wordlists/rockyou.txt</pre>
+        </div>
+        <p>If the wordlist is compressed, unzip it first:</p>
+        <div class="terminal">
+            <pre>gunzip /usr/share/wordlists/rockyou.txt.gz</pre>
+        </div>
+        <p>Aircrack-ng will then attempt to crack the passphrase by trying every password in the wordlist.</p>
+
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/dZwbb42pdtg?si=tdzCcll72NG5r-3v" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>    
+        <div>
+            <p>Video Credit: <strong>NetworkChuck</strong>- Wi-Fi Hacking</p>
+        </div>
+
+        <h2>Introduction to Bettercap</h2>
+        <p>Bettercap is a powerful and modular tool designed for network reconnaissance, penetration testing, and Man-in-the-Middle (MITM) attacks. With a wide range of capabilities, it allows attackers to intercept, modify, or even manipulate data being transmitted on a network. Bettercap works on many protocols, including HTTP, HTTPS, TCP, UDP, and more, and is highly effective for wireless network attacks. This guide will help you understand how to perform a MITM attack using Bettercap.</p>
+
+        <h2>Installing Bettercap</h2>
+        <p>To begin, you need to install Bettercap. This can be done through a package manager like <code>apt</code> on Debian-based systems, or by installing it manually via the Go language.</p>
+        <div class="terminal">
+         <pre>sudo apt-get update
+sudo apt-get install bettercap</pre>
+        </div>
+        <p>Alternatively, you can install Bettercap using Go:</p>
+        <div class="terminal">
+    <pre>go install github.com/bettercap/bettercap@latest</pre>
+    </div>
+
+    <h2>Setting Up Bettercap for MITM Attacks</h2>
+    <p>Before initiating a MITM attack, ensure you have the correct network adapter in monitor mode. Use <code>ifconfig</code> or <code>ip a</code> to identify your network interfaces and then enable monitoring using <code>airmon-ng</code> or <code>ip link</code>.</p>
+    <div class="terminal">
+    <pre>sudo ifconfig wlan0 down
+sudo iwconfig wlan0 mode monitor
+sudo ifconfig wlan0 up</pre>
+    </div>
+
+    <h2>Launching Bettercap</h2>
+    <p>To start Bettercap, simply use the following command:</p>
+    <div class="terminal">
+    <pre>sudo bettercap -iface wlan0</pre>
+    </div>
+    <p>Replace <code>wlan0</code> with your network interface name.</p>
+
+    <h2>Performing ARP Spoofing with Bettercap</h2>
+    <p>ARP spoofing is a technique that allows an attacker to position themselves between two communicating devices, intercepting their data in a MITM attack. Bettercap makes ARP spoofing straightforward. First, you need to identify the targets on the network:</p>
+    <div class="terminal">
+    <pre>net.probe on</pre>
+    </div>
+    <p>This command will discover all active devices on the network. Once you have the IP addresses of your target, you can start ARP spoofing:</p>
+    <div class="terminal">
+    <pre>set arp.spoof.targets [target-ip]
+arp.spoof on</pre>
+    </div>
+    <p>Replace <code>[target-ip]</code> with the actual IP address of the device you want to target. You can also target multiple devices by separating the IPs with commas.</p>
+
+    <h2>HTTP/HTTPS Traffic Interception</h2>
+    <p>To intercept HTTP traffic, Bettercap has a built-in module called <code>http.proxy</code>. To enable it, use:</p>
+    <div class="terminal">
+<pre>http.proxy on</pre>
+    </div>
+    <p>Bettercap can also strip HTTPS and downgrade it to HTTP, making it easier to view transmitted data. Enable <code>https.proxy</code>:</p>
+    <div class="terminal">
+       <pre>https.proxy on</pre>
+    </div>
+    <p>Keep in mind that HTTPS stripping will only work if clients ignore warnings about untrusted certificates, so this may not be effective on all targets.</p>
+
+    <h2>DNS Spoofing</h2>
+    <p>Another powerful feature of Bettercap is DNS spoofing, which allows you to redirect DNS requests to a fake IP address, such as a cloned website for phishing:</p>
+    <div class="terminal">
+    <pre>set dns.spoof.all true
+dns.spoof on</pre>
+    </div>
+    <p>With DNS spoofing enabled, all DNS requests on the network will be redirected to a specified IP address.</p>
+
+    <h2>Sniffing Network Data</h2>
+    <p>Bettercap includes a powerful sniffer module for capturing packets from the network:</p>
+    <div class="terminal">
+    <pre>net.sniff on</pre>
+    </div>
+    <p>Bettercap will start capturing packets and displaying relevant information on the console. You can use various filters to capture only specific data, such as credentials or sensitive information.</p>
+
+    <h2>SSL Stripping</h2>
+    <p>SSL stripping is a method used to downgrade HTTPS to HTTP, allowing you to capture sensitive information transmitted over secure connections. To enable SSL stripping, use:</p>
+    <div class="terminal">
+    <pre>https.proxy on
+set https.proxy.sslstrip true</pre>
+    </div>
+    <p>This will force connections to use HTTP instead of HTTPS, making data easier to capture and analyze.</p>
+
+    <h2>Disconnecting a Client</h2>
+    <p>If you want to disconnect a specific client from the network to force reconnection (for instance, to capture data), you can use deauthentication attacks with Bettercap:</p>
+    <div class="terminal">
+    <pre>wifi.deauth [target-mac]</pre>
+    </div>
+    <p>Replace <code>[target-mac]</code> with the MAC address of the device you want to disconnect. This will send deauthentication packets, disconnecting the target from the network momentarily.</p>
+    <h2>Viewing Captured Traffic with Wireshark</h2>
+    <p>Wireshark is a powerful tool that can be used to analyze the traffic captured during a MITM attack. After starting Bettercap’s sniffer, you can save the captured packets to a file and then analyze them using Wireshark.</p>
+
+    <p>First, make sure you have Wireshark installed:</p>
+    <div class="terminal">
+        <pre>sudo apt-get install wireshark</pre>
+    </div>
+
+    <p>To save the captured packets in Bettercap, use the following command:</p>
+    <div class="terminal">
+      <pre>net.sniff.output /path/to/save/capture.pcap</pre>
+    </div>
+    <p>Replace <code>/path/to/save/capture.pcap</code> with the desired file path where you want to save the packet capture.</p>
+
+    <p>Once you have saved the packets, open Wireshark and load the capture file:</p>
+    <div class="terminal">
+        <pre>wireshark /path/to/save/capture.pcap</pre>
+    </div>
+    <p>Wireshark will provide a detailed view of the captured packets, allowing you to analyze various network protocols and identify sensitive information. Here are some tips for analyzing the traffic:</p>
+<ul>
+    <li><strong>Filter Traffic:</strong> Use Wireshark’s filter bar to narrow down the packets of interest. For example, to view only HTTP packets, use the filter <code>http</code>. For ARP packets, use <code>arp</code>.</li>
+    <li><strong>Follow TCP Stream:</strong> If you want to view the entire conversation between a client and a server, right-click on a packet and select <code>Follow</code> &gt; <code>TCP Stream</code>. This will provide a complete view of the data exchanged in that session.</li>
+    <li><strong>Inspect Credentials:</strong> Look for HTTP POST requests that may contain login credentials in the form of plaintext. Use filters like <code>http.request.method == "POST"</code> to find such requests.</li>
+    <li><strong>Analyze DNS Spoofing:</strong> If you performed DNS spoofing, you can filter for DNS packets using <code>dns</code> and observe which requests were redirected.</li>
+</ul>
+
+    <h2>MITM Attacks Becoming Outdated</h2>
+    <p>MITM attacks have become increasingly outdated due to the widespread adoption of <strong>HTTPS</strong>, which encrypts data between clients and servers. Unlike HTTP, which transmits information in plaintext, HTTPS ensures that sensitive data such as login credentials and personal information are securely transmitted, making it challenging for attackers to capture meaningful information without decrypting the traffic. Without access to the decryption key, intercepted data remains unreadable, significantly reducing the effectiveness of MITM attacks in modern networks. As a result, MITM attacks are mostly limited to situations where attackers can bypass or compromise encryption.</p>
+    </section>
+
+    <footer>
+        <p>Disclaimer: This tutorial is intended for educational purposes only. Unauthorized access to networks is illegal. Always obtain permission before conducting any penetration testing.</p>
+    </footer>
+
+    <!-- JavaScript for dropdown functionality -->
+    <script src="main.js"></script>
+</body>
+</html>

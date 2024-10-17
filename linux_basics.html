@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kali Linux Basics</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <!-- Dropdown Menu HTML to be added to each page -->
+    <div class="dropdown-menu-container">
+        <button class="dropdown-toggle" onclick="toggleDropdownMenu()">Menu</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">Home</a>
+            <a href="linux_basics.html">Linux Basics</a>
+            <a href="osint.html">OSINT</a>
+            <a href="social_engineering.html">Social Engineering</a>
+            <a href="nmap.html">Enumeration</a>
+            <a href="exploitation.html">Exploitation</a>
+            <a href="Webapp_Testing.html">Web Application Testing</a>
+            <a href="privilege_escalation.html">Privilege Escalation</a>
+            <a href="persistence.html">Persistence</a>
+            <a href="password_cracking.html">Password Cracking</a>
+            <a href="wpa2_cracking.html">WPA2 Cracking</a>
+            <a href="additional_training.html">Additional Training</a>
+        </div>
+    </div>
+
+    <header>
+        <h1>Kali Linux Basics</h1>
+    </header>
+
+    <div class="content">
+        <h2>Introduction to Kali Linux</h2>
+        <p>Kali Linux is a Debian-based, open-source operating system tailored for penetration testing, digital forensics, and ethical hacking, making it an ideal platform for cybersecurity professionals. It comes pre-installed with hundreds of powerful tools, such as Metasploit, Nmap, Wireshark, and John the Ripper, allowing users to conduct a wide range of security assessments. Kali’s lightweight design and flexibility make it accessible on various platforms, from virtual machines to live USBs. There are many other Linux distributions, or “flavors,” each suited to different purposes. For example, Ubuntu is popular for general-purpose use with a focus on user-friendliness, while CentOS and Red Hat Enterprise Linux are used for enterprise environments due to their stability and long-term support. Arch Linux is favored by users who want a customizable, minimalist system, and Parrot OS is another security-focused distribution, like Kali, but with added privacy tools. This guide will walk you through the basics of using Kali Linux, starting from downloading and installing VirtualBox and Kali, to basic Linux commands that will help you get started.</p>
+
+        <h2>Downloading VirtualBox</h2>
+        <p>VirtualBox is a free and open-source virtual machine software that allows you to run multiple operating systems on your computer without modifying your primary system. VirtualBox is an essential tool for setting up Kali Linux, especially if you want to run it alongside other operating systems.</p>
+        <p><strong>Steps to Download VirtualBox:</strong></p>
+        <ul>
+            <li>Visit <a href="https://www.virtualbox.org" target="_blank">virtualbox.org</a> and click on the "Download" button.</li>
+            <li>Select the appropriate version for your host operating system (Windows, macOS, Linux, or Solaris).</li>
+            <li>Download the installer and follow the installation instructions to set up VirtualBox on your computer.</li>
+        </ul>
+
+        <h2>Downloading Kali Linux</h2>
+        <p>Kali Linux can be downloaded from the official website. The image available for download can be used with VirtualBox to set up a virtual environment for penetration testing.</p>
+        <p><strong>Steps to Download and Install Kali Linux:</strong></p>
+        <ul>
+            <li>Go to the official Kali Linux website at <a href="https://www.kali.org" target="_blank">kali.org</a> and navigate to the "Downloads" section.</li>
+            <li>Select the appropriate image file for VirtualBox (usually an OVA file).</li>
+            <li>Once the file is downloaded, open VirtualBox and import the Kali Linux OVA by going to "File > Import Appliance" and selecting the OVA file.</li>
+            <li>Follow the on-screen instructions to complete the setup.</li>
+        </ul>
+
+        <h2>Basic Commands</h2>
+        
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/gd7BXuUQ91w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div>   
+            <p>Video Credit: <strong>NetworkChuck</strong> - Educational video on Linux Commands.</p>
+        </div>
+
+        <h2>Updating and Upgrading Packages</h2>
+        <p>After installing Kali Linux, it is essential to update and upgrade the packages to ensure you have the latest features, tools, and security patches.</p>
+        <p><strong>Update Package Lists:</strong> This command will fetch the updated list of packages from all configured sources.</p>
+        <div class="terminal">
+            <pre>sudo apt update</pre>
+        </div>
+        <p><strong>Upgrade Installed Packages:</strong> This command will upgrade all the installed packages to the latest versions available.</p>
+        <div class="terminal">
+            <pre>sudo apt upgrade</pre>
+        </div>
+        <p><strong>Full Upgrade:</strong> Use the following command to perform a full upgrade, which includes removing obsolete dependencies:</p>
+        <div class="terminal">
+            <pre>sudo apt full-upgrade</pre>
+        </div>
+
+        <h2>Changing Directories</h2>
+        <p>The <code>cd</code> command is used to navigate the Linux file system. Here are different ways you can use the <code>cd</code> command:</p>
+        <p><strong>Change to a Specific Directory:</strong> To navigate to a specific directory, provide the full path.</p>
+        <div class="terminal">
+            <pre>cd /home/kali/</pre>
+        </div>
+        <p><strong>Move Up One Directory:</strong> Use <code>..</code> to move up one directory level.</p>
+        <div class="terminal">
+            <pre>cd ..</pre>
+        </div>
+        <p><strong>Return to Home Directory:</strong> You can simply use <code>cd</code> to go back to your home directory.</p>
+        <div class="terminal">
+            <pre>cd</pre>
+        </div>
+        <p><strong>Change to Root Directory:</strong> To navigate to the root directory:</p>
+        <div class="terminal">
+            <pre>cd /</pre>
+        </div>
+
+        <h2>Displaying the Current Directory</h2>
+        <p>The <code>pwd</code> command (print working directory) is used to display the current directory you are in. This is helpful when navigating through the file system and ensuring you are in the correct location.</p>
+        <p><strong>Display the Current Directory:</strong> Simply run the <code>pwd</code> command to see your current directory.</p>
+        <div class="terminal">
+            <pre>pwd</pre>
+        </div>
+        <p>The output will show the full path of your current directory. For example, if you're in the home directory, it may show:</p>
+        <div class="terminal">
+            <pre>/home/kali/</pre>
+        </div>
+
+        <h2>Making Directories</h2>
+        <p>The <code>mkdir</code> command is used to create new directories. You can create one or multiple directories at once.</p>
+        <div class="terminal">
+            <pre>mkdir new_folder</pre>
+        </div>
+        <p><strong>Create Multiple Directories:</strong></p>
+        <div class="terminal">
+            <pre>mkdir folder1 folder2 folder3</pre>
+        </div>
+
+        <h2>Listing Files and Directories</h2>
+        <p>The <code>ls</code> command lists files and directories within the current directory. Different options allow you to modify the output.</p>
+        <p><strong>Basic List:</strong> Lists all visible files and directories in the current location.</p>
+        <div class="terminal">
+            <pre>ls</pre>
+        </div>
+        <p><strong>Detailed List:</strong> The <code>-l</code> option displays detailed information, including permissions, owner, group, size, and modification date.</p>
+        <div class="terminal">
+            <pre>ls -l</pre>
+        </div>
+        <p><strong>List All, Including Hidden Files:</strong> The <code>-a</code> option displays hidden files (files beginning with a dot).</p>
+        <div class="terminal">
+            <pre>ls -a</pre>
+        </div>
+        <p><strong>List with Human-Readable File Sizes:</strong> The <code>-lh</code> option displays file sizes in a more readable format (KB, MB, etc.).</p>
+        <div class="terminal">
+            <pre>ls -lh</pre>
+        </div>
+
+        <h2>Managing Users</h2>
+        <p>Managing users is crucial for system administration. Below are commands to add, delete, and modify users.</p>
+        <p><strong>Adding a User:</strong> This command adds a new user and prompts you to create a password.</p>
+        <div class="terminal">
+            <pre>sudo adduser new_username</pre>
+        </div>
+        <p><strong>Removing a User:</strong> This command removes a user account.</p>
+        <div class="terminal">
+            <pre>sudo deluser username</pre>
+        </div>
+        <p><strong>Changing User Permissions:</strong> The <code>chmod</code> command is used to modify permissions, and <code>chown</code> is used to change ownership of a file.</p>
+        <div class="terminal">
+            <pre>sudo chmod 755 filename
+sudo chown username:group filename</pre>
+        </div>
+
+        <h2>Understanding File Permissions and chmod Values</h2>
+        <p>In Linux, file permissions are critical for security and system integrity. Permissions determine who can read, write, or execute a file. The <code>chmod</code> command is used to change these permissions, and they can be set using either symbolic or numeric values.</p>
+
+        <h3>Using chmod with Symbolic Permissions</h3>
+        <p>Symbolic permissions are represented by characters like <code>r</code> (read), <code>w</code> (write), and <code>x</code> (execute). You can add or remove permissions using symbols like <code>+</code> and <code>-</code>:</p>
+
+        <p>To add execute permissions to a file, use the following command:</p>
+        <div class="terminal">
+          <pre>chmod +x filename</pre>
+        </div>
+
+<p>To remove write permissions for the group, use the following command:</p>
+<div class="terminal">
+    <pre>chmod g-w filename</pre>
+</div>
+
+        <p>In this example, the <code>+x</code> flag adds execute permissions, and the <code>g-w</code> removes write permissions for the group.</p>
+
+        <h3>Using chmod with Numeric Permissions</h3>
+        <p>Permissions in Linux can also be represented by a three-digit number, where each digit corresponds to the permissions for the user (owner), group, and others. The digits are calculated by adding the following values:</p>
+        <ul>
+            <li><strong>Read (r):</strong> 4</li>
+            <li><strong>Write (w):</strong> 2</li>
+            <li><strong>Execute (x):</strong> 1</li>
+        </ul>
+
+        <p>To set specific permissions, you add the values for read, write, and execute.</p>
+        <p><strong>Set read, write, and execute for the owner, and read and execute for group and others:</strong></p>
+        <div class="terminal">
+            <pre>chmod 755 filename</pre>
+        </div>
+
+        <p>In this example, <code>755</code> sets full permissions for the owner (7 = 4 + 2 + 1), and read and execute permissions for the group and others (5 = 4 + 1). The second example, <code>640</code>, sets read and write permissions for the owner (6 = 4 + 2), read-only for the group (4), and no permissions for others (0).</p>
+
+        <h3>Understanding chmod Examples</h3>
+        <p>Here is a breakdown of common permission values:</p>
+        <ul>
+            <li><code>777:</code> Full permissions for everyone (read, write, execute)</li>
+            <li><code>755:</code> Full permissions for the owner, read and execute for everyone else</li>
+            <li><code>644:</code> Read and write for the owner, read-only for everyone else</li>
+            <li><code>600:</code> Read and write for the owner, no permissions for anyone else</li>
+        </ul>
+
+        <h2>Changing Passwords</h2>
+        <p>The <code>passwd</code> command is used to change the password for the current user or another user.</p>
+        <div class="terminal">
+            <pre>passwd</pre>
+        </div>
+        <p><strong>Change Another User's Password:</strong></p>
+        <div class="terminal">
+            <pre>sudo passwd username</pre>
+        </div>
+
+        <h2>Creating and Managing Files</h2>
+        <p><strong>Create a New File:</strong> Use the <code>touch</code> command to create a new, empty file.</p>
+        <div class="terminal">
+            <pre>touch newfile.txt</pre>
+        </div>
+     
+        <h2>Editing Files with Nano</h2>
+        <p><strong>Open a File with Nano:</strong> Nano is a straightforward text editor that is used for editing configuration files and scripts.</p>
+        <div class="terminal">
+            <pre>nano filename.txt</pre>
+        </div>
+        <p><strong>Basic Commands in Nano:</strong></p>
+        <ul>
+            <li><code>Ctrl + X</code>: Exit the editor.</li> 
+            <li><code>Ctrl + O</code>: Save the changes.</li>
+            <li><code>Ctrl + K</code>: Cut a line of text.</li>
+            <li><code>Ctrl + U</code>: Paste the cut text.</li>
+        </ul>
+
+        <h2>Searching with Grep</h2>
+        <p>The <code>grep</code> command is used to search for specific patterns within files or output. It is an invaluable tool for quickly locating information.</p>
+        <div class="terminal">
+            <pre>grep 'pattern' filename.txt</pre>
+        </div>
+        <p><strong>Search Recursively in All Files:</strong></p>
+        <div class="terminal">
+            <pre>grep -r 'pattern' /path/to/directory</pre>
+        </div>
+
+        <h2>Using the Pipe Operator (|)</h2>
+        <p>The pipe operator <code>|</code> allows you to use the output of one command as input to another command. This is useful for chaining commands together to accomplish more complex tasks.</p>
+        <div class="terminal">
+            <pre>ls -l | grep 'filename'</pre>
+        </div>
+        <p>In this example, <code>ls -l</code> lists all files in long format, and <code>grep 'filename'</code> filters the output to show only lines containing 'filename'.</p>
+
+        <h2>Unzipping Files</h2>
+        <p>Linux provides several tools to extract compressed files.</p>
+        <p><strong>Unzip a ZIP File:</strong> Use the <code>unzip</code> command:</p>
+        <div class="terminal">
+            <pre>unzip file.zip</pre>
+        </div>
+        <p><strong>Unzip a GZ File:</strong> Use the <code>gunzip</code> command:</p>
+        <div class="terminal">
+            <pre>gunzip file.gz</pre>
+        </div>
+        <p><strong>Extract a TAR File:</strong> Use the <code>tar</code> command:</p>
+        <div class="terminal">
+            <pre>tar -xvf file.tar</pre>
+        </div>
+        <p><strong>Extract a TAR.GZ File:</strong></p>
+        <div class="terminal">
+            <pre>tar -zxvf file.tar.gz</pre>
+        </div>
+
+        <h2>Cloning Repositories with Git</h2>
+        <p><strong>Clone a GitHub Repository:</strong> Use <code>git clone</code> to download a repository from GitHub to your local machine. This is commonly used to obtain scripts and tools for cybersecurity tasks.</p>
+        <div class="terminal">
+            <pre>git clone https://github.com/user/repository.git</pre>
+        </div>
+
+        <h2>Using Man to Read Manuals</h2>
+        <p>The <code>man</code> command displays the manual pages for other commands. It is an excellent resource for understanding how commands work and what options are available.</p>
+        <div class="terminal">
+            <pre>man nmap</pre>
+        </div>
+        <p>Press <code>q</code> to quit the manual page once you are done reading.</p>
+
+        <h2>Copying and Moving Files</h2>
+        <p><strong>Copy a File:</strong> The <code>cp</code> command is used to copy files or directories from one location to another.</p>
+        <div class="terminal">
+            <pre>cp source_file destination_directory/</pre>
+        </div>
+        <p><strong>Move a File:</strong> The <code>mv</code> command is used to move files or directories. It can also be used to rename them.</p>
+        <div class="terminal">
+            <pre>mv filename.txt /path/to/destination/</pre>
+        </div>
+
+        <h2>Rename a File</h2>
+        <div class="terminal">
+            <pre>mv old_name.txt new_name.txt</pre>
+        </div>
+
+        <h2>Removing Files and Directories</h2>
+        <p>The <code>rm</code> command is used to remove files and directories in Linux. Be cautious when using this command, as deleted files and directories are not easily recoverable.</p>
+
+        <p><strong>Remove a Specific File:</strong> To remove a file, use the <code>rm</code> command followed by the file name.</p>
+        <div class="terminal">
+            <pre>rm filename.txt</pre>
+        </div>
+
+        <p><strong>Remove an Empty Directory:</strong> To remove an empty directory, you can use the <code>rmdir</code> command followed by the directory name.</p>
+        <div class="terminal">
+            <pre>rmdir directory_name</pre>
+        </div>
+
+        <p><strong>Remove a Directory and Its Contents:</strong> To remove a directory along with all of its contents, including subdirectories and files, use the <code>rm</code> command with the <code>-r</code> (recursive) option.</p>
+        <div class="terminal">
+            <pre>rm -r directory_name</pre>
+        </div>
+
+        <p><strong>Force Remove a File or Directory:</strong> You can use the <code>-f</code> (force) option to remove files or directories without any prompts.</p>
+        <div class="terminal">
+            <pre>rm -rf directory_name</pre>
+        </div>
+
+        <p><strong>Remove Multiple Files:</strong> To remove multiple files, list them with a space between each file name.</p>
+        <div class="terminal">
+            <pre>rm file1.txt file2.txt file3.txt</pre>
+        </div>
+    </div>
+
+    <footer>
+        <p>Empowering Cybersecurity Knowledge</p>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="main.js"></script>
+</body>
+</html>
