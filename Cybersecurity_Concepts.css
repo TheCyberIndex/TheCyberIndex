@@ -49,15 +49,15 @@ h1 {
 .subtitle {
     color: #3399ff; 
     text-align: center;
-    font-size: 1rem; /* Reduced size compared to h1 */
+    font-size: 1rem; 
     font-family: 'Arial', sans-serif;
-    letter-spacing: 1.5px; /* Slightly reduced spacing */
-    margin-bottom: 15px; /* Smaller margin to keep it closer to content */
+    letter-spacing: 1.5px; 
+    margin-bottom: 15px; 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
                  0px 0px 6px rgba(51, 153, 255, 1), 
                  0px 0px 12px rgba(51, 153, 255, 0.8); 
     border: 1px solid transparent;
-    -webkit-text-stroke: 0.5px white; /* Thinner stroke for subtitle */
+    -webkit-text-stroke: 0.5px white; 
     animation: neonGlowReduced 2s infinite alternate; 
 }
 
