@@ -274,7 +274,7 @@ footer {
                  0px 0px 8px rgba(51, 153, 255, 0.8); 
     border: 1px solid transparent;
     -webkit-text-stroke: 0.5px white; 
-    animation: footerNeonGlow 2s infinite alternate; /* Neon glow animation */
+    animation: footerNeonGlow 2s infinite alternate; 
 }
 
 @keyframes footerNeonGlow {
